@@ -1,0 +1,49 @@
+Nuestra recomendación es que leáis primero algunos manuales básicos de LaTeX. En Wikipedia tenéis los más populares:
+http://es.wikipedia.org/wiki/LaTeX
+
+Una vez familiarizados, podéis instalar LaTeX para vuestro sistema operativo:
+Win: MikTeX
+macOS: TeXShop
+Linux: ya viene instalado
+
+También es interesante que os instaléis un editor para LaTex:
+Win: TeXnic Center, TexWorks, TeXMaker, …
+macOS: TeXShop
+Linux: Kile (KDE), TeXMaker(GNU), TeXworks, …
+
+Un manual básico muy recomendable es The Not So Short Guide To LaTeX:
+http://mirror.ctan.org/info/lshort/spanish/lshort-a4.pdf
+
+Ahora pasamos a explicaros cómo funciona la Plantilla TFM VIU: 
+
+El contenido se estructura en:
+master.tex es el master del TFM, donde están todas las definiciones y parámetros, donde se cargan los paquetes y donde se compila el docuemnto pdf. Aquí en principio tendréis que cambiar poco (solo añadir la ruta a los nuevos capítulos).
+
+El contenido de vuestro trabajo irá almacenado por capítulos, en los documentos CAP01.tex… evidentemente, podéis cambiar de nombre estos archivos, pero recordad hacerlo también en el `master.tex`.
+
+Así, para escribir, debéis de modificar los documentos que hay en files/TFM/CAP
+
+En cada carpeta CAP01, CAP02, … tenéis el fichero CAP01.tex donde deberéis introducir directamente vuestro texto. Las figuras se almacenan en la carpeta figures/ dentro de cada carpeta CAP01, CAP02, …
+
+El título lo podéis editar en la carpeta files/TFM/title/.
+
+Para compilar (obtener el fichero .pdf) debéis de hacerlo desde el documento master.tex, que es el que a su vez llama a los diferentes capítulos, a la hoja con el título y a la Bibliografía. Para compilar el documento hay que hacer:
+a. Compliar Latex (encuentra las referencias cruzadas pero no las muestra)
+b. Compilar bib (enlaza con el archivo de bibliografía)
+c. Compliar Latex (busca de nuevo las referencias)
+d. Compilar Latex de nuevo (aparecen correctamente las referencias cruzadas)
+
+Algunas cosas importantes a modificar en el documento master.tex:
+1. Elegir el paquete "language" dependiendo de si se usa MAC OSX o Linux/Win.
+
+2. Las imágenes a usar han de estar en formato jpeg o eps (no pdf)
+
+3. Para la Bibliografía usamos BibTeX (más info en http://es.wikipedia.org/wiki/BibTeX). El archivo a modificar está en files/Biblio/Bib.bib (se abre con el editor LaTe que tengáis instalado).
+
+4. En el .tex se han definido (en la sección DEFINICIONES del PREÁMBULO) algunas unidades de medida. Para usarlas en el texto, hay que usar el comando que aparece justo después de \def. Así por ejemplo si tenemos definido km/s con:
+\def\kms{$\, \rm km\, s^{-1}$}
+
+En el texto para usarlo simplemente escribiríamos \kms
+
+De momento es todo… aunque al principio puede parecer algo durillo, LaTeX es muy potente y muy interesante. Mucho ánimo!!!
+

@@ -1,0 +1,276 @@
+% PLANTILLA LaTeX VIU - mayo 2020
+% Basado en plantilla original de Rafael Padilla (2011)
+% Modificaciones de Juande Santander-Vela (2020)
+%----------------------------------------------------------
+% PREAMBULO:
+\documentclass[a4paper,11pt]{book}
+%----------------------------------------------------------
+% PAQUETES:
+% Language
+
+% In moder computers, this should be set to UTF8
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc} // only for non-UTF supporting 
+\usepackage[spanish]{babel}
+
+% SECTIONS WITH SmallCaps
+\usepackage[T1]{fontenc}
+
+% PAQUETE PARA AÑADIR URLs
+\usepackage{url}
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+% PARA HACER CLICKABLES LAS URLs EN EL PDF
+\usepackage{hyperref}
+% SETUP COLORES PDF
+\hypersetup{
+    colorlinks = true,
+    linkcolor = black,
+    anchorcolor = black,
+    citecolor = black,
+    filecolor = black,
+    urlcolor = black
+}
+
+% Formulas y simbolos de matematicas:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage{mathrsfs}
+
+% Graficos
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{lscape}
+\usepackage{wrapfig}
+
+% NOTA:
+% Si compilamos en DVI->dvips->ps2pdf tendremos que usar: EPS o PS (tamin BMP)
+% Si compilamos directamente en pdf: JPEG o PNG
+
+% INDEX
+\usepackage{makeidx}
+
+% MOSTRAR BIBLIOGRAFIA EN INDICE
+\usepackage[nottoc]{tocbibind}
+
+% PAQUETE PARA LA BIBLIOGRAFIA: 
+% BibTeX
+\usepackage[sectionbib]{natbib}  % Cross-reference package (Natural BiB)
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{chapterbib}  % Put References at the end of each chapter
+% Archivo con la bibliografia: ./files/TFM/Biblio/Bib.bib
+% Compilar: Normal, BibTeX y 2 veces mas como Normal
+
+% Tablas
+\usepackage{multirow} % Para unir varias filas
+\usepackage{longtable} % Para crear tablas de mas de una pagina
+
+%----------------------------------------------------------
+% Encabezados y pies de pagina
+\usepackage{fancyhdr}
+% Formato para los encabezados y pies de pagina
+% En lo siguiente, fancyhead sirve para configurar la cabecera, fancyfoot para el pie.
+% JustificaciÃ³n: C=centered, R=right, L=left, (nada)=LRC
+% PÃ¡gina: O=odd, E=even, (nada)=OE
+
+% Formato FANCY (Usando \thispagestyle{fancy})
+\pagestyle{fancy}
+% Borrar todos los ajustes previos
+\fancyhf{}
+% Redefinimos el comando \chaptermark (mostrar Capitulo en roman)  -> Aparece en \leftmark
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+% Redefinimos el comando \sectionmark (mostrar Seccion en roman) -> Aparece en \rightmark
+%\renewcommand{\sectionmark}[1]{\markright{#1}}
+% Encabezado
+\fancyhead[LE]{Valencian International University / VIU}
+\fancyhead[RO]{Máster en Astronomía y Astrofísica}
+% Pie de pagina
+\fancyfoot[LE, RO]{\thepage}
+% TamaÃ±o de las lineas del encabezado y pie de pagina
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+% Si quitamos las lineas, mejor poner el texto de los encabezados y pie de pagina en negrita o cursiva
+% Formato PLAIN (Usando \thispagestyle{plain}) CREO QUE ES EL QUE USAN LOS CHAPTERS...
+\fancypagestyle{plain}{
+\fancyhf{} % borrar todos los ajustes
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyfoot[LE, RO]{\thepage}
+}
+% Formato EMPTY (Usando \thispagestyle{empty})
+%----------------------------------------------------------
+
+
+%Paquete Theorem:
+\usepackage{theorem}
+%\usepackage{amsthm}
+%Defs. del TEOREM:      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{break}
+\newtheorem{Def}{Definición}
+\newtheorem{Prob}{Problema}
+\newtheorem{Prop}[Def]{Propiedad}
+\newtheorem{Propo}{Proposición}
+\newtheorem{Cor}{Corolario}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Alg}{Algoritmo}
+
+\newcommand{\ind}{\textrm{ind}}
+\newcommand{\Ind}{\textrm{Ind}}
+\newcommand{\tab}{\hspace{5mm}}
+
+%\newtheorem{Ejer}{Ejercicio}
+%\newtheorem{Ejem}{Ejemplo}
+
+
+{\theorembodyfont{\rmfamily} \newtheorem{Ejer}{Ejercicio}}
+{\theorembodyfont{\rmfamily} \newtheorem{Ejem}{Ejemplo}}
+
+\newenvironment{demo}{{\bf
+Demostración}}{\begin{flushright}Q.E.D.\end{flushright}}
+\newenvironment{nota}{{\bf Nota: }}{\vspace{12pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PAQUETE PARA ESPACIADOS
+\usepackage{setspace}
+
+% PARA CORREGIR
+\usepackage[modulo,switch]{lineno} 
+
+% PAQUETE PARA HACER CAPTIONS MAS VISUALES
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+
+% DEFINICIONES
+\def\d{$\,\rm day$ }
+%\def\h{$\,\rm h$ }
+%\def\min{$\,\rm min$ }
+%\def\seg{$\,\rm s$ }
+\def\km{$\,\rm km$ }
+\def\m{$\,\rm m$ }
+\def\mm{$\,\rm mm$ }
+\def\ppm{$\,\rm ppm$ }
+\def\kg{$\,\rm Kg$ }
+\def\K{$\,\rm K$ }
+\def\arcsec{$\,\rm arcsec$ }
+\def\pixels{$\,\rm pixels$ }
+\newcommand{\cd}{{\, \rm c\, d^{-1}}}
+\newcommand{\h}{{\rm ^{h}}}
+\newcommand{\minutos}{{\rm ^{m}}}
+\newcommand{\segundos}{{\rm ^{s}}}
+\newcommand{\MHz}{\,\rm{MHz}}
+\newcommand{\rmdiv}{{\rm div}}
+\def\kms{$\, \rm km\, s^{-1}$}
+% Comando ION
+\newcommand\ion[2]{#1$\;${\scshape{#2}}}%                       % ion, i.e., CII = \ion{C}{ii}
+
+% REVISTAS
+\def\aap{Astronomy \& Astrophysics}
+\def\aaps{Astronomy \& Astrophysics Supplement Series}
+\def\apj{Astrophysical Journal}
+\def\apjl{Astrophysical Journal Letters}
+\def\apjs{Astrophysical Journal Supplement Series}
+\def\mnras{Monthly Notices of the Royal Astronomical Society}
+\def\nat{Nature}
+\def\araa{Annual Review of Astronomy and Astrophysics}
+\def\pasj{Publications of the Astronomical Society of Japan}
+\def\araa{Annual Review of Astronomy \& Astrophysics}
+\def\aj{Astronomical Journal}
+\def\apss{Astrophysics and Space Science}
+\def\pasp{Publications of the Astronomical Society of the Pacific}
+
+
+
+% MAKES
+\makeindex
+
+% MAIN
+\begin{document}
+% PARA CORREGIR
+%\linenumbers
+% Separacion entre parrafos
+\parskip 15pt
+
+% Separacion entre lineas
+\onehalfspacing
+% \singlespacing
+% \doublespacing
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% TITULO DEL TRABAJO
+\thispagestyle{empty}
+
+\input{files/portada.tex}
+
+\newpage
+
+
+% INDICE
+\pagestyle{fancy}
+\pagenumbering{roman}
+\tableofcontents
+
+
+% CAPITULOS
+\newpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+% CAPITULO 1
+\chapter{Resumen}
+\label{chapter:01}
+\input{./files/cap01.tex}
+
+% CAPITULO 2
+\chapter{Introducción}
+\label{chapter:02}
+\input{./files/cap02.tex}
+
+
+% CAPITULO 3
+\chapter{Estado del Arte}
+\label{chapter:03}
+\input{./files/cap03.tex}
+
+% CAPITULO 4
+\chapter{Marco Teórico}
+\label{chapter:04}
+\input{./files/cap04.tex}
+
+% CAPITULO 5
+\chapter{Metodología}
+\label{chapter:05}
+\input{./files/cap05.tex}
+
+% CAPITULO 6
+\chapter{Resultados}
+\label{chapter:06}
+\input{./files/cap06.tex}
+
+% CAPITULO 7
+\chapter{Conclusiones}
+\label{chapter:07}
+\input{./files/cap07.tex}
+
+% CAPITULO 8
+\chapter{Limitaciones y trabajos futuros}
+\label{chapter:08}
+\input{./files/cap08.tex}
+
+% BIBLIOGRAFIA
+\bibliographystyle{./sty/astron}
+\bibliography{./biblio/tfm_biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
