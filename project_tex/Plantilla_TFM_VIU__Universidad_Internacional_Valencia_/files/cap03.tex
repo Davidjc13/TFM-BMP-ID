@@ -1,0 +1,71 @@
+El estado del arte en la biometría del comportamiento en dispositivos móviles abarca una amplia gama de técnicas y metodologías que buscan identificar y autenticar a los usuarios basándose en sus patrones de interacción con el dispositivo. A continuación, se presentan algunas de las investigaciones y desarrollos más relevantes en este campo.
+
+\section{IJCB 2022 MobileB2C: Competición de Autenticación Basada en Comportamiento Móvil}
+
+El trabajo de \cite{stragapede2022ijcb2022mobilebehavioral} presenta una \textbf{evaluación comparativa} de sistemas de autenticación móvil basados en \textbf{biometría conductual}, capturada de manera transparente mientras el usuario interactúa con su dispositivo.
+
+\subsection{Base de Datos Utilizada}
+
+El estudio emplea la base pública \textbf{BehavePassDB}, recopilada en condiciones reales, que incluye:
+\begin{itemize}
+    \item Dinámica de tecleo (\textit{keystroke})
+    \item Lectura de texto (\textit{text reading})
+    \item Deslizamiento de galería (\textit{gallery swiping})
+    \item Toques en pantalla (\textit{tapping})
+    \item Sensores como acelerómetro, giroscopio, magnetómetro, entre otros
+\end{itemize}
+
+\subsection{Escenarios de Ataque Evaluados}
+
+Se analizaron dos tipos de impostores:
+\begin{itemize}
+    \item \textbf{Impostores aleatorios}: otro usuario con un dispositivo distinto.
+    \item \textbf{Impostores hábiles}: individuos que intentan imitar al usuario legítimo.
+\end{itemize}
+
+\subsection{Conclusiones Principales}
+
+Los resultados de la competición \textbf{MobileB2C} muestran que la autenticación basada en comportamiento es \textbf{viable}, aunque sigue siendo un desafío complejo debido a la variabilidad del entorno y la dificultad de modelar múltiples modalidades de interacción.
+
+Como contribución adicional, el estudio consolida \textbf{MobileB2C como una competición continua}, proporcionando una base de datos abierta y un protocolo estándar que facilita nuevas investigaciones en autenticación conductual bajo condiciones realistas.
+
+\begin{center}
+    \noindent 
+    \captionof{table}{Resultados durante la fase de evaluación (AUC [\%])}
+    \begin{tabular}{c l c c c}
+        \toprule
+        \# & Team & Mixed & Random & Skilled \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Task 1: Keystroke}} \\
+        \midrule
+        1 & NUS-UoA-UoM & \textbf{66.37} & \textbf{64.77} & \textbf{67.91} \\
+        2 & HCI Essen   & 51.12 & 53.02 & 51.23 \\
+        3 & HBKU CS Lab & 51.25 & 49.38 & 53.13 \\
+        4 & JAIRG       & 45.57 & 52.29 & 39.89 \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Task 2: Text Reading}} \\
+        \midrule
+        1 & HCI Essen   & \textbf{57.63} & \textbf{61.27} & \textbf{53.98} \\
+        2 & NUS-UoA-UoM & 54.89 & 58.49 & 51.29 \\
+        3 & JAIRG       & 50.63 & 50.00 & 41.25 \\
+        4 & HBKU CS Lab & 48.27 & 59.42 & 37.13 \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Task 3: Gallery Swiping}} \\
+        \midrule
+        1 & HBKU CS Lab & \textbf{61.54} & \textbf{67.35} & \textbf{55.73} \\
+        2 & JAIRG       & 55.94 & 61.95 & 50.62 \\
+        3 & NUS-UoA-UoM & 55.66 & 55.54 & 55.77 \\
+        4 & HCI Essen   & 54.72 & 57.30 & 51.17 \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Task 4: Tapping}} \\
+        \midrule
+        1 & HBKU CS Lab & \textbf{59.58} & \textbf{57.22} & \textbf{61.94} \\
+        2 & NUS-UoA-UoM & 52.39 & 54.72 & 50.06 \\
+        3 & JAIRG       & 46.25 & 48.75 & 43.75 \\
+        4 & HCI Essen   & 43.89 & 40.16 & 47.62 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+
+
