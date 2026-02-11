@@ -1,1 +1,29 @@
-Prueba
+
+En el panorama actual de la ciberseguridad móvil, la dependencia de métodos de autenticación estática ---como contraseñas, PINs o patrones de dibujo--- presenta vulnerabilidades críticas frente a ataques de ingeniería social e interceptación. Si bien la biometría fisiológica (huella dactilar o reconocimiento facial) ha reforzado el perímetro de seguridad, estos métodos actúan como guardianes de ``un solo paso'' que no protegen la sesión una vez iniciada.
+
+El presente proyecto propone el desarrollo de un \textbf{Sistema de Autenticación Basado en la Biometría del Comportamiento}, un enfoque que permite la verificación de identidad de forma \textbf{pasiva, continua y transparente} para el usuario.
+
+\subsection{El Fundamento de la Biometría Conductual}
+
+A diferencia de los rasgos físicos, la biometría conductual se centra en \textbf{cómo} interactúa el usuario con su dispositivo[cite: 26]. Este sistema aprovecha la singularidad de los patrones neurofisiológicos y motores, analizando variables clave capturadas de manera transparente:
+
+\begin{itemize}
+    \item \textbf{Dinámica de Tecleo (\textit{Keystroke Dynamics}):} Estudio de los tiempos de presión (\textit{Dwell Time}), las latencias entre teclas (\textit{Flight Time}) y los intervalos entre pulsaciones (\textit{Inter-key Interval}).
+    \item \textbf{Interacción Táctil:} Patrones de desplazamiento (\textit{scrolling}), toques en pantalla (\textit{tapping}) y gestos en la interfaz.
+    \item \textbf{Sensores de Movimiento (\textit{IMU}):} Uso de acelerómetros, giroscopios y magnetómetros para capturar la micro-gestualidad y el manejo físico del terminal durante la interacción.
+\end{itemize}
+
+\subsection{Innovación Tecnológica y Arquitectura}
+
+Para superar las limitaciones de los modelos clásicos (como SVM o KNN), que presentan dificultades de escalabilidad en entornos masivos [cite: 86, 87], este sistema se fundamenta en arquitecturas de \textbf{Aprendizaje Profundo (\textit{Deep Learning})}:
+
+\begin{itemize}
+    \item \textbf{Modelos Híbridos y Atención:} Integración de redes neuronales convolucionales (CNN) para la extracción de características locales y redes recurrentes (LSTM) para dependencias temporales globales.
+    \item \textbf{Mecanismos de Atención Dual:} Empleo de arquitecturas basadas en \textit{transformers} (como \textit{STDAT}) que aplican atención tanto temporal como de canal para capturar patrones característicos.
+    \item \textbf{Fusión Multimodal:} Combinación de la dinámica de tecleo con datos de sensores inerciales para incrementar la robustez del sistema frente a cambios de contexto.
+    \item \textbf{Funciones de Pérdida Avanzadas:} Implementación de técnicas como \textit{Triplet Loss} y \textit{Set2set Loss}, permitiendo comparar flujos continuos de datos contra el perfil del usuario con mínima fricción.
+\end{itemize}
+
+\subsection{Objetivos y Desafíos}
+
+El sistema busca resolver desafíos críticos identificados en el estado del arte, como la \textbf{fragmentación de modalidades} y la necesidad de \textbf{generalización} en escenarios reales. El objetivo final es alcanzar tasas de error competitivas ---con un \textit{Equal Error Rate} (EER) en dispositivos móviles--- utilizando ráfagas cortas de actividad (apenas 50 caracteres), garantizando así una revocación de acceso casi instantánea ante un posible impostor sin requerir interacción explícita del usuario.

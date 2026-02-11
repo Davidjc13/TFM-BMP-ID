@@ -1,22 +1,23 @@
 # Fdb version 4
-["bibtex master"] 1770838422.49941 "master.aux" "master.bbl" "master" 1770838423.0909 0
+["bibtex master"] 1770839032.49306 "master.aux" "master.bbl" "master" 1770839198.31194 0
   "./biblio/tfm_biblio.bib" 1770838405.58196 2311 608acdbca801b4b1b189d707dbae2981 ""
   "./sty/astron.bst" 1764431964 24606 54c503b2f802f17feae0c8e908fd2490 ""
-  "master.aux" 1770838422.94709 5512 92a7d0ffb472956c620993735b5b4299 "pdflatex"
+  "master.aux" 1770839198.1589 4452 77df8531a18ab985c4c5e8a9cf8a6380 "pdflatex"
   (generated)
   "master.bbl"
   "master.blg"
   (rewritten before read)
-["makeindex master.idx"] 1770838032.66897 "master.idx" "master.ind" "master" 1770838423.09077 0
-  "master.idx" 1770838422.79296 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex master.idx"] 1770839031.26823 "master.idx" "master.ind" "master" 1770839198.31183 0
+  "master.idx" 1770839198.0219 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "master.ilg"
   "master.ind"
   (rewritten before read)
-["pdflatex"] 1770838422.55548 "/home/david/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" "master.pdf" "master" 1770838423.09096 0
+["pdflatex"] 1770839197.77206 "/home/david/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" "master.pdf" "master" 1770839198.31199 0
   "/etc/texmf/web2c/texmf.cnf" 1763841640.30945 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/david/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" 1764701625.4242 7350 dc402f15e9229edea4ed939227a020da ""
+  "/home/david/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" 1770838993.86192 7362 c4b7259428072bb5da278bc0a69a6774 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbi1200.tfm" 1136768653 3072 ccae1a240ab272417e4399fe942df546 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm" 1136768653 3584 ad49a18d8515beef6d92d4d3f197d0fd ""
@@ -137,6 +138,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1741904018 41538 c016915c1d51223b6dbbfe27341748a8 ""
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1636152094 2971 def0b6c1f0b107b3b936def894055589 ""
+  "/usr/share/texmf/fonts/type1/public/cm-super/sfbi1200.pfb" 1764434526.20454 205875 5958bf9326f04501f7006947acfbcae1 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb" 1764434526.2265 140176 d4962f948b4cc0adf4d3dde77a128c95 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb" 1764434526.22694 135942 859a90cad7494a1e79c94baf546d7de5 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb" 1764434526.22717 139826 9213617a7cb78635fc326b859c0b2273 ""
@@ -148,22 +150,16 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1741904018 41538 c016915c1d51223b6dbbfe27341748a8 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1764434531 5467255 9a64d1b40e0b893fc5588ecce9d8accf ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1764434608 3348308 fb849a52e38755324f0645eaf1797aca ""
-  "files/cap01.tex" 1764684554.31134 164 6654663e8b8445c1a834c9a53a2273e5 ""
-  "files/cap02.tex" 1764619351.19578 6 5bc8c567a89112d5f408a8af4f17970d ""
+  "files/cap02.tex" 1770839197.6319 3456 05d512519512aeb1d445861d0085bd86 ""
   "files/cap03.tex" 1770838421.81196 14247 0e64d5fdb09930b2c41f8a8268719263 ""
-  "files/cap04.tex" 1764437027.41676 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "files/cap05.tex" 1764437027.41676 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "files/cap06.tex" 1764437027.41676 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "files/cap07.tex" 1764437029.36476 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "files/cap08.tex" 1764437027.33576 0 d41d8cd98f00b204e9800998ecf8427e ""
   "files/figures/logo_viu.pdf" 1764431964 10626 1dbecb00837b6d2cc16061f921e3ccd4 ""
   "files/portada.tex" 1764437663.87078 764 92eaf5f34458a7fda32c8ddefe08658f ""
-  "master.aux" 1770838422.94709 5512 92a7d0ffb472956c620993735b5b4299 "pdflatex"
-  "master.bbl" 1770838422.55358 1385 2d1dc367909ac7674ca169980378046b "bibtex master"
-  "master.ind" 1770838032.71999 0 d41d8cd98f00b204e9800998ecf8427e "makeindex master.idx"
-  "master.out" 1770838422.94709 5391 5ba226f033603594e8aefb74638667f3 "pdflatex"
-  "master.tex" 1764701625.4242 7350 dc402f15e9229edea4ed939227a020da ""
-  "master.toc" 1770838422.94836 2237 cbe106cf095c8b82f87d2b3e95cf973f "pdflatex"
+  "master.aux" 1770839198.1589 4452 77df8531a18ab985c4c5e8a9cf8a6380 "pdflatex"
+  "master.bbl" 1770839032.54391 1385 2d1dc367909ac7674ca169980378046b "bibtex master"
+  "master.ind" 1770839031.32091 0 d41d8cd98f00b204e9800998ecf8427e "makeindex master.idx"
+  "master.out" 1770839198.1599 5406 9e244a797cedc900f0f90e66c8d051fd "pdflatex"
+  "master.tex" 1770838993.86192 7362 c4b7259428072bb5da278bc0a69a6774 ""
+  "master.toc" 1770839198.1609 2117 504708583b70dca30c008a5a6faa013f "pdflatex"
   (generated)
   "master.aux"
   "master.idx"
