@@ -1,7 +1,23 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\astroncite{Stragapede et al.}{2022}]{stragapede2022ijcb2022mobilebehavioral}
-Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J., Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers, J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022,
+\bibitem[\protect\astroncite{Acien and et~al.}{2022}]{deepkeystroke2022}
+Acien, A. y et~al.: 2022,
+\newblock {\em Expert Systems with Applications}
+
+\bibitem[\protect\astroncite{González et al.}{2025}]{type2branch}
+González, N., Stragapede, G., Vera-Rodriguez, R., y Tolosana, R.: 2025,
+\newblock {\em Type2Branch: Keystroke Biometrics based on a Dual-branch Architecture with Attention Mechanisms and Set2set Loss}
+
+\bibitem[\protect\astroncite{Senerath et al.}{2023}]{senerath2023}
+Senerath, D., Tharinda, S., Vishwajith, M., Rasnayaka, S., Wickramanayake, S., y Meedeniya, D.: 2023,
+\newblock {\em BehaveFormer: A Framework with Spatio-Temporal Dual Attention Transformers for IMU enhanced Keystroke Dynamics}
+
+\bibitem[\protect\astroncite{Stragapede et al.}{2022a}]{Stragapede2022}
+Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Acien, A., y Le~Lan, G.: 2022a,
+\newblock {\em Pattern Recognition Letters} {\bf 157}, 35
+
+\bibitem[\protect\astroncite{Stragapede et al.}{2022b}]{stragapede2022ijcb2022mobilebehavioral}
+Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J., Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers, J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022b,
 \newblock {\em IJCB 2022 Mobile Behavioral Biometrics Competition (MobileB2C)}
 
 \end{thebibliography}

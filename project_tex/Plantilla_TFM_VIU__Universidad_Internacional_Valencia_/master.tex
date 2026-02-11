@@ -3,7 +3,21 @@
 % Modificaciones de Juande Santander-Vela (2020)
 %----------------------------------------------------------
 % PREAMBULO:
-\documentclass[a4paper,11pt]{book}
+\documentclass[a4paper,12pt]{book}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\titlespacing*{\section}
+  {0pt}{12pt}{6pt}
+
+\titlespacing*{\subsection}
+  {0pt}{10pt}{4pt}
+
+\titlespacing*{\subsubsection}
+  {0pt}{8pt}{3pt}
+
+
+\setlist[itemize]{itemsep=0pt, topsep=2pt, parsep=0pt, leftmargin=1.5em}
 %----------------------------------------------------------
 % PAQUETES:
 % Language
@@ -12,7 +26,7 @@
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc} // only for non-UTF supporting 
 \usepackage[spanish]{babel}
-
+\usepackage{caption}
 % SECTIONS WITH SmallCaps
 \usepackage[T1]{fontenc}
 
@@ -64,7 +78,7 @@
 % PAQUETE PARA LA BIBLIOGRAFIA: 
 % BibTeX
 \usepackage[sectionbib]{natbib}  % Cross-reference package (Natural BiB)
-\bibpunct{(}{)}{;}{a}{}{,}
+\bibpunct{\(}{\)}{;}{a}{}{,}
 %\usepackage{chapterbib}  % Put References at the end of each chapter
 % Archivo con la bibliografia: ./files/TFM/Biblio/Bib.bib
 % Compilar: Normal, BibTeX y 2 veces mas como Normal
@@ -91,7 +105,7 @@
 %\renewcommand{\sectionmark}[1]{\markright{#1}}
 % Encabezado
 \fancyhead[LE]{Valencian International University / VIU}
-\fancyhead[RO]{Máster en Astronomía y Astrofísica}
+\fancyhead[RO]{Máster en Inteligencia Artificial}
 % Pie de pagina
 \fancyfoot[LE, RO]{\thepage}
 % TamaÃ±o de las lineas del encabezado y pie de pagina
@@ -148,10 +162,9 @@ Demostración}}{\begin{flushright}Q.E.D.\end{flushright}}
 \usepackage[modulo,switch]{lineno} 
 
 % PAQUETE PARA HACER CAPTIONS MAS VISUALES
-\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
-
+\usepackage[hypcap=false]{caption}
 % DEFINICIONES
-\def\d{$\,\rm day$ }
+\def\d{$\,\rm day$}
 %\def\h{$\,\rm h$ }
 %\def\min{$\,\rm min$ }
 %\def\seg{$\,\rm s$ }
@@ -196,9 +209,9 @@ Demostración}}{\begin{flushright}Q.E.D.\end{flushright}}
 % MAIN
 \begin{document}
 % PARA CORREGIR
-%\linenumbers
+% \linenumbers
 % Separacion entre parrafos
-\parskip 15pt
+\parskip 10pt
 
 % Separacion entre lineas
 \onehalfspacing
@@ -233,44 +246,36 @@ Demostración}}{\begin{flushright}Q.E.D.\end{flushright}}
 \pagenumbering{arabic}
 
 % CAPITULO 1
-\chapter{Resumen}
-\label{chapter:01}
+\chapter{Resumen}\label{chapter:01}
 \input{./files/cap01.tex}
 
 % CAPITULO 2
-\chapter{Introducción}
-\label{chapter:02}
+\chapter{Introducción}\label{chapter:02}
 \input{./files/cap02.tex}
 
 
 % CAPITULO 3
-\chapter{Estado del Arte}
-\label{chapter:03}
+\chapter{Estado del Arte}\label{chapter:03}
 \input{./files/cap03.tex}
 
 % CAPITULO 4
-\chapter{Marco Teórico}
-\label{chapter:04}
+\chapter{Marco Teórico}\label{chapter:04}
 \input{./files/cap04.tex}
 
 % CAPITULO 5
-\chapter{Metodología}
-\label{chapter:05}
+\chapter{Metodología}\label{chapter:05}
 \input{./files/cap05.tex}
 
 % CAPITULO 6
-\chapter{Resultados}
-\label{chapter:06}
+\chapter{Resultados}\label{chapter:06}
 \input{./files/cap06.tex}
 
 % CAPITULO 7
-\chapter{Conclusiones}
-\label{chapter:07}
+\chapter{Conclusiones}\label{chapter:07}
 \input{./files/cap07.tex}
 
 % CAPITULO 8
-\chapter{Limitaciones y trabajos futuros}
-\label{chapter:08}
+\chapter{Limitaciones y trabajos futuros}\label{chapter:08}
 \input{./files/cap08.tex}
 
 % BIBLIOGRAFIA

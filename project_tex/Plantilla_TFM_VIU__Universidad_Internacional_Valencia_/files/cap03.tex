@@ -1,10 +1,11 @@
-El estado del arte en la biometría del comportamiento en dispositivos móviles abarca una amplia gama de técnicas y metodologías que buscan identificar y autenticar a los usuarios basándose en sus patrones de interacción con el dispositivo. A continuación, se presentan algunas de las investigaciones y desarrollos más relevantes en este campo.
+El estado del arte en la biometría del comportamiento en dispositivos móviles abarca una amplia gama de técnicas y metodologías que buscan identificar y autenticar a los usuarios basándose en sus patrones de interacción con el dispositivo. A continuación, se presentan algunas de las investigaciones y desarrollos más relevantes en este campo. 
 
 \section{IJCB 2022 MobileB2C: Competición de Autenticación Basada en Comportamiento Móvil}
 
+
 El trabajo de \cite{stragapede2022ijcb2022mobilebehavioral} presenta una \textbf{evaluación comparativa} de sistemas de autenticación móvil basados en \textbf{biometría conductual}, capturada de manera transparente mientras el usuario interactúa con su dispositivo.
 
-\subsection{Base de Datos Utilizada}
+\subsubsection{Base de Datos Utilizada}
 
 El estudio emplea la base pública \textbf{BehavePassDB}, recopilada en condiciones reales, que incluye:
 \begin{itemize}
@@ -14,58 +15,158 @@ El estudio emplea la base pública \textbf{BehavePassDB}, recopilada en condicio
     \item Toques en pantalla (\textit{tapping})
     \item Sensores como acelerómetro, giroscopio, magnetómetro, entre otros
 \end{itemize}
-
-\subsection{Escenarios de Ataque Evaluados}
-
-Se analizaron dos tipos de impostores:
+Para el \textit{benchmarking}, además de la identeficación del usuario legítimo, se consideran dos tipos de ataques de impostores:
 \begin{itemize}
     \item \textbf{Impostores aleatorios}: otro usuario con un dispositivo distinto.
     \item \textbf{Impostores hábiles}: individuos que intentan imitar al usuario legítimo.
 \end{itemize}
-
-\subsection{Conclusiones Principales}
+\subsubsection{Conclusiones}
 
 Los resultados de la competición \textbf{MobileB2C} muestran que la autenticación basada en comportamiento es \textbf{viable}, aunque sigue siendo un desafío complejo debido a la variabilidad del entorno y la dificultad de modelar múltiples modalidades de interacción.
 
 Como contribución adicional, el estudio consolida \textbf{MobileB2C como una competición continua}, proporcionando una base de datos abierta y un protocolo estándar que facilita nuevas investigaciones en autenticación conductual bajo condiciones realistas.
 
-\begin{center}
-    \noindent 
-    \captionof{table}{Resultados durante la fase de evaluación (AUC [\%])}
-    \begin{tabular}{c l c c c}
-        \toprule
-        \# & Team & Mixed & Random & Skilled \\
-        \midrule
-        \multicolumn{5}{c}{\textbf{Task 1: Keystroke}} \\
-        \midrule
-        1 & NUS-UoA-UoM & \textbf{66.37} & \textbf{64.77} & \textbf{67.91} \\
-        2 & HCI Essen   & 51.12 & 53.02 & 51.23 \\
-        3 & HBKU CS Lab & 51.25 & 49.38 & 53.13 \\
-        4 & JAIRG       & 45.57 & 52.29 & 39.89 \\
-        \midrule
-        \multicolumn{5}{c}{\textbf{Task 2: Text Reading}} \\
-        \midrule
-        1 & HCI Essen   & \textbf{57.63} & \textbf{61.27} & \textbf{53.98} \\
-        2 & NUS-UoA-UoM & 54.89 & 58.49 & 51.29 \\
-        3 & JAIRG       & 50.63 & 50.00 & 41.25 \\
-        4 & HBKU CS Lab & 48.27 & 59.42 & 37.13 \\
-        \midrule
-        \multicolumn{5}{c}{\textbf{Task 3: Gallery Swiping}} \\
-        \midrule
-        1 & HBKU CS Lab & \textbf{61.54} & \textbf{67.35} & \textbf{55.73} \\
-        2 & JAIRG       & 55.94 & 61.95 & 50.62 \\
-        3 & NUS-UoA-UoM & 55.66 & 55.54 & 55.77 \\
-        4 & HCI Essen   & 54.72 & 57.30 & 51.17 \\
-        \midrule
-        \multicolumn{5}{c}{\textbf{Task 4: Tapping}} \\
-        \midrule
-        1 & HBKU CS Lab & \textbf{59.58} & \textbf{57.22} & \textbf{61.94} \\
-        2 & NUS-UoA-UoM & 52.39 & 54.72 & 50.06 \\
-        3 & JAIRG       & 46.25 & 48.75 & 43.75 \\
-        4 & HCI Essen   & 43.89 & 40.16 & 47.62 \\
-        \bottomrule
-    \end{tabular}
-\end{center}
+{\centering
+\captionof{table}{Resultados durante la fase de evaluación (AUC [\%])}
+\label{TablaB2C}
+\begin{tabular}{c l c c c}
+    \toprule
+    \# & Team & Mixed & Random & Skilled \\
+    \midrule
+    \multicolumn{5}{c}{\textbf{Task 1: Keystroke}} \\
+    \midrule
+    1 & NUS-UoA-UoM & \textbf{66.37} & \textbf{64.77} & \textbf{67.91} \\
+    2 & HCI Essen   & 51.12 & 53.02 & 51.23 \\
+    3 & HBKU CS Lab & 51.25 & 49.38 & 53.13 \\
+    4 & JAIRG       & 45.57 & 52.29 & 39.89 \\
+    \midrule
+    \multicolumn{5}{c}{\textbf{Task 2: Text Reading}} \\
+    \midrule
+    1 & HCI Essen   & \textbf{57.63} & \textbf{61.27} & \textbf{53.98} \\
+    2 & NUS-UoA-UoM & 54.89 & 58.49 & 51.29 \\
+    3 & JAIRG       & 50.63 & 50.00 & 41.25 \\
+    4 & HBKU CS Lab & 48.27 & 59.42 & 37.13 \\
+    \midrule
+    \multicolumn{5}{c}{\textbf{Task 3: Gallery Swiping}} \\
+    \midrule
+    1 & HBKU CS Lab & \textbf{61.54} & \textbf{67.35} & \textbf{55.73} \\
+    2 & JAIRG       & 55.94 & 61.95 & 50.62 \\
+    3 & NUS-UoA-UoM & 55.66 & 55.54 & 55.77 \\
+    4 & HCI Essen   & 54.72 & 57.30 & 51.17 \\
+    \midrule
+    \multicolumn{5}{c}{\textbf{Task 4: Tapping}} \\
+    \midrule
+    1 & HBKU CS Lab & \textbf{59.58} & \textbf{57.22} & \textbf{61.94} \\
+    2 & NUS-UoA-UoM & 52.39 & 54.72 & 50.06 \\
+    3 & JAIRG       & 46.25 & 48.75 & 43.75 \\
+    4 & HCI Essen   & 43.89 & 40.16 & 47.62 \\
+    \bottomrule
+\end{tabular}
+\par
+}
+
+\section{BehaveFormer: A Framework with Spatio-Temporal Dual Attention
+Transformers for IMU enhanced Keystroke Dynamics}
 
 
+El trabajo de \cite{senerath2023} propone \textit{BehaveFormer}, un sistema de autenticación continua en dispositivos móviles basado en la biometría del comportamiento. El enfoque combina dinámicas de tecleo con datos procedentes de sensores inerciales (IMU), presentes de forma estándar en la mayoría de teléfonos inteligentes. El núcleo del modelo es el \textit{Spatio-Temporal Dual Attention Transformer} (STDAT), una arquitectura basada en \textit{transformers} que emplea mecanismos de atención tanto temporal como de canal para capturar patrones característicos en el comportamiento del usuario.
 
+Para la modalidad de tecleo, se utilizan secuencias de di-gramas y tri-gramas enriquecidas con tiempos de pulsación (\textit{hold}), transiciones entre eventos y latencias entre teclas. En el caso de la IMU, se extraen derivadas de primer y segundo orden sobre los ejes tridimensionales y se aplica la transformada rápida de Fourier (FFT), obteniendo un vector descriptivo de 36 características por instante.
+
+Cada modalidad es procesada por un STDAT independiente; posteriormente ambas representaciones se fusionan mediante concatenación para generar una incrustación final del usuario. El entrenamiento se realiza mediante \textit{triplet loss}, favoreciendo que muestras del mismo usuario queden próximas en el espacio de representación y que las de distintos usuarios estén separadas.
+
+El método se evalúa sobre tres conjuntos de datos ampliamente utilizados en autenticación continua: Aalto DB, HMOG DB y HuMIdb. Los resultados muestran mejoras significativas frente al estado del arte previo, alcanzando por ejemplo un EER del 1.80\% utilizando solo tecleo en Aalto DB, y un EER del 2.95\% al combinar tecleo e IMU en HuMIdb. Estas cifras confirman la eficacia de la fusión multimodal y del mecanismo de atención dual.
+
+En conjunto, BehaveFormer demuestra que la combinación de información de tecleo y sensores inerciales, unida a arquitecturas basadas en transformers, constituye una vía sólida para sistemas de autenticación pasiva y continua, incrementando la seguridad sin exigir interacción explícita del usuario.
+
+\section{Type2Branch: Keystroke Biometrics based on a Dual-branch Architecture
+with Attention Mechanisms and Set2set Loss}
+
+En esta sección se analiza el artículo de \cite{type2branch} que introduce \textit{Type2Branch}, un sistema de autenticación basado en la dinámica de tecleo que se destaca por su capacidad de generalización en escenarios reales, superando las limitaciones de modelos anteriores como \textit{TypeNet}.
+
+\subsection{Evolución de las Arquitecturas de Aprendizaje Profundo}
+Históricamente, los sistemas de \textit{Keystroke Dynamics} se basaban en redes recurrentes simples para modelar secuencias temporales. Sin embargo, las limitaciones de estas para capturar patrones locales llevaron al desarrollo de enfoques híbridos:
+
+\begin{itemize}
+    \item \textbf{Arquitectura Dual-Branch:} El modelo propone una rama de Redes Neuronales Convolucionales (CNN) para la extracción de características locales y una rama de Redes Recurrentes (RNN/LSTM) para las dependencias temporales globales.
+    \item \textbf{Mecanismos de Atención:} A diferencia de los modelos precedentes como \textit{TypeNet}, se introducen capas de atención que permiten al sistema ponderar eventos de pulsación específicos que poseen mayor carga discriminativa para la identidad del usuario.
+\end{itemize}
+
+\subsection{Funciones de Pérdida y Verificación}
+Uno de los mayores avances del artículo es la transición de funciones de pérdida punto a punto hacia enfoques de conjuntos:
+
+\begin{itemize}
+    \item \textbf{Set2set Loss:} Frente al tradicional \textit{Triplet Loss}, la función \textit{Set2set} permite comparar un conjunto de muestras de enrolamiento contra una muestra de consulta. Esto es crítico para la \textbf{autenticación pasiva}, donde la decisión se basa en el flujo continuo de datos y no en una única entrada estática.
+\end{itemize}
+
+\subsection{Métricas de Rendimiento en Autenticación Pasiva}
+El rendimiento reportado establece un nuevo estándar para escenarios de texto libre (\textit{free-text}) y dispositivos heterogéneos:
+
+\begin{table}[h]
+\centering
+\caption{Rendimiento de Type2Branch en entornos reales.}
+\begin{tabular}{l|c|c|r}
+\hline
+\textbf{Escenario} & \textbf{Usuarios} & \textbf{EER (\%)} & \textbf{Longitud de Secuencia} \\
+\hline
+Desktop (Escritorio) & 15,000 & $0.77\%$ & 50 caracteres \\
+Mobile (Táctil) & 5,000 & $1.03\%$ & 50 caracteres \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Importancia para la Autenticación Pasiva}
+El modelo demuestra que es posible alcanzar una alta tasa de precisión con ráfagas cortas de actividad (50 caracteres). En el contexto de la seguridad continua, esto reduce el \textit{Time-to-Detection} (TTD) de un posible impostor, permitiendo una revocación de acceso casi instantánea sin intervención del usuario.
+
+\section{Estado del Arte: Autenticación Continua y Ensamblados de Redes Profundas}
+
+El estudio de la biometría de teclado (\textit{Keystroke Dynamics}) ha transitado desde el análisis de textos fijos hacia la autenticación pasiva y continua en entornos de texto libre. El trabajo de \cite{deepkeystroke2022} contextualiza este avance mediante la comparación de técnicas tradicionales frente a arquitecturas de aprendizaje profundo.
+
+\subsection{Evolución de las Técnicas de Clasificación}
+La literatura previa se divide fundamentalmente en dos vertientes metodológicas:
+
+\begin{itemize}
+    \item \textbf{Aproximaciones Clásicas:} Se basan en algoritmos de aprendizaje automático supervisado como \textit{K-Nearest Neighbors} (KNN), \textit{Naive Bayes} y \textit{Support Vector Machines} (SVM). Aunque eficaces en datasets pequeños, presentan limitaciones de escalabilidad y precisión en escenarios de autenticación continua donde el flujo de datos es masivo y desestructurado.
+    \item \textbf{Aprendizaje Profundo (Deep Learning):} El estado del arte reciente destaca el uso de Redes Neuronales Convolucionales (CNN) para extraer características espaciales de las pulsaciones y Redes Neuronales Recurrentes (RNN), específicamente LSTM, para capturar la dependencia temporal. Aversano et al. introducen el concepto de \textit{Ensemble Learning}, combinando múltiples clasificadores base para reducir la varianza y mejorar la robustez del sistema.
+\end{itemize}
+
+\subsection{Extracción de Características y Representación de Datos}
+El consenso en las investigaciones actuales identifica tres métricas temporales críticas para la biometría conductual:
+\begin{enumerate}
+    \item \textbf{Dwell Time (DT):} El tiempo que una tecla permanece presionada.
+    \item \textbf{Flight Time (FT):} El intervalo entre la liberación de una tecla y la pulsación de la siguiente.
+    \item \textbf{Inter-key Interval (IKI):} El tiempo transcurrido entre dos pulsaciones consecutivas.
+\end{enumerate}
+El artículo subraya que la integración de estos rasgos en arquitecturas profundas permite omitir la ingeniería de características manual, ya que la red aprende representaciones jerárquicas de los patrones de tecleo.
+
+\subsection{Desafíos en la Autenticación Pasiva}
+A pesar de los avances, el estado del arte identifica brechas significativas que este estudio busca solventar:
+\begin{itemize}
+    \item \textbf{Fragmentación de Datos:} La mayoría de los estudios previos utilizan datasets pequeños (menos de 100 usuarios). El artículo destaca la necesidad de \textit{benchmarks} masivos, proponiendo un dataset integrado de más de 160,000 usuarios.
+    \item \textbf{Generalización:} La dificultad de los modelos para mantener la precisión cuando el usuario cambia de contexto de escritura o de dispositivo.
+    \item \textbf{Toma de Decisión Continua:} La transición de una autenticación de un solo paso (login) a una monitorización constante sin fricción para el usuario.
+\end{itemize}
+
+\section*{Estado del Arte: Biometría Conductual en Dispositivos Móviles}
+
+El artículo de \cite{Stragapede2022} sitúa su investigación en el contexto de la autenticación pasiva mediante biometría conductual en smartphones, analizando tanto la interacción táctil como los sensores de movimiento (background sensors).
+
+\subsection*{Clasificación de Técnicas Anteriores}
+Los autores clasifican los trabajos previos principalmente en base a las modalidades biométricas y las arquitecturas de procesamiento:
+\begin{itemize}
+    \item \textbf{Dinámica de Tecleo (Keystroke Dynamics):} Se divide en escenarios de \textit{texto fijo} (contraseñas) y \textit{texto libre}. Se mencionan aproximaciones basadas en redes neuronales recurrentes, específicamente Long Short-Term Memory (LSTM) para autenticación a gran escala.
+    \item \textbf{Gestos Táctiles (Touch Gestures):} Técnicas que analizan el desplazamiento (scrolling), toques (tapping) y dibujo de patrones.
+    \item \textbf{Sensores de Movimiento (Background Sensors):} Uso de acelerómetros, giroscopios y magnetómetros para capturar patrones físicos del usuario durante la interacción.
+    \item \textbf{Arquitecturas de Aprendizaje:} El artículo distingue entre modelos estadísticos tradicionales y enfoques modernos de Deep Learning (como CNNs para gestos y LSTMs para secuencias temporales).
+\end{itemize}
+
+\subsection*{Limitaciones Identificadas}
+El estudio subraya varias deficiencias en la literatura actual:
+\begin{enumerate}
+    \item \textbf{Fragmentación de Modalidades:} La mayoría de los estudios se centran en una sola modalidad (solo tecleo o solo acelerómetro), perdiendo la sinergia de la fusión multimodal.
+    \item \textbf{Escalabilidad y Realismo:} Muchos trabajos utilizan bases de datos pequeñas o recolectadas en entornos de laboratorio controlados que no reflejan el uso cotidiano ("in-the-wild").
+    \item \textbf{Ventanas de Tiempo Elevadas:} Algunos sistemas requieren periodos de observación demasiado largos para alcanzar precisiones aceptables, lo que reduce la eficacia de la autenticación pasiva inmediata.
+\end{enumerate}
+
+\subsection*{Problema Específico a Resolver}
+El vacío que este artículo intenta llenar es la \textbf{evaluación exhaustiva de la fusión de múltiples biometrías conductuales} (tecleo, scroll, dibujo, sensores de fondo) bajo un protocolo común y utilizando una base de datos pública de gran escala (\textit{HuMIdb}). El objetivo es determinar cuál es la combinación mínima de sensores y tiempo de análisis necesaria para lograr una autenticación robusta y transparente.
