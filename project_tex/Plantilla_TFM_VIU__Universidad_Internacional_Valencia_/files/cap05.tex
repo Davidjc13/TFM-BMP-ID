@@ -1,0 +1,163 @@
+\chapter{Desarrollo del Proyecto}\label{chap:desarrollo}
+\section{Descripción del Problema}
+
+El problema central de este trabajo es la autenticación continua y pasiva de usuarios en dispositivos móviles 
+a partir de su biometría conductual. A diferencia de los mecanismos de autenticación estática —contraseñas, 
+PINs o biometría fisiológica— que únicamente verifican la identidad en el momento del acceso, el objetivo es 
+mantener una verificación activa durante toda la sesión sin que el usuario deba realizar ninguna acción adicional.
+Este enfoque plantea un problema de \textbf{verificación biométrica de una clase} (\textit{one-class} o \textit{open-set}): 
+dado un perfil conductual enrolado para un usuario legítimo, el sistema debe decidir, a partir de una ventana 
+corta de interacción, si el individuo que está operando el dispositivo corresponde a dicho perfil o se trata 
+de un impostor. La dificultad inherente reside en que durante la fase de entrenamiento no se dispone de muestras 
+etiquetadas de todos los posibles impostores, lo que impide formular el problema como una clasificación cerrada 
+convencional.
+Las modalidades conductuales seleccionadas para este trabajo son tres, elegidas por su complementariedad y por
+la riqueza de información identitaria que aportan:
+
+\begin{itemize}
+    \item \textbf{Dinámica de tecleo (\textit{keystroke dynamics})}: secuencias de tiempos de pulsación (\textit{Dwell Time}, DT),
+     tiempos de vuelo entre teclas (\textit{Flight Time}, FT) e intervalos entre pulsaciones consecutivas 
+     (\textit{Inter-key Interval}, IKI). Constituye la modalidad más estudiada en la literatura y ofrece alta 
+     discriminabilidad incluso con ráfagas cortas de texto.
+    \item \textbf{Dinámica de firma (\textit{signature dynamics})}: patrones de presión, velocidad y
+     aceleración durante el trazo de la firma en pantalla táctil. Aporta una señal de alta varianza 
+     inter-usuario y baja varianza intra-usuario cuando el individuo firma de forma natural.
+    \item \textbf{Gestos de desplazamiento (\textit{scroll dynamics})}: características extraídas de 
+    los movimientos de deslizamiento sobre la pantalla, incluyendo velocidad, aceleración, longitud del trazo 
+    y ángulo de desplazamiento. Su inclusión está condicionada al análisis del beneficio marginal que aporta en 
+    la fusión multimodal.
+\end{itemize}
+
+El principal desafío técnico es la \textbf{heterogeneidad temporal} de las señales: la dinámica de tecleo 
+es discreta y de longitud variable, la firma es una señal continua de corta duración, y el scroll produce 
+eventos esporádicos dependientes del contexto de uso. El sistema debe ser capaz de integrar estas tres fuentes 
+de forma coherente y tomar decisiones de autenticación con latencia mínima, idealmente tras menos de 50 eventos
+de interacción.
+
+\section{Metodología}\label{sec:metodologia}
+Para abordar el problema descrito, se propone una metodología experimental comparativa basada en dos 
+enfoques arquitectónicos complementarios, cuyo rendimiento se evaluará bajo un protocolo común.
+
+\subsection{Preprocesamiento y Extracción de Características}
+Previo al modelado, cada modalidad requiere un pipeline de preprocesamiento específico:
+
+\begin{itemize}
+    \item \textbf{Tecleo}: a partir de los eventos de pulsación se extraen las tripletas $(DT_i, FT_i, IKI_i)$ para cada tecla 
+    $i$ de la secuencia. Las secuencias se segmentan en ventanas deslizantes de longitud fija $N$ 
+    (objetivo: $N = 50$ eventos), con solapamiento configurable para la autenticación continua. Los 
+    valores atípicos se filtran mediante umbrales basados en percentiles y las secuencias se normalizan
+     con estadísticos calculados por usuario en la fase de enrolamiento.
+    \item \textbf{Firma}: se extraen series temporales de posición $(x_t, y_t)$, presión $p_t$ y sus derivadas 
+    de primer y segundo orden. La señal se remuestrea a una frecuencia fija para garantizar la homogeneidad 
+    de la representación de entrada.
+    \item \textbf{Scroll}: se caracterizan cada gesto de deslizamiento mediante un vector de rasgos agregados: 
+    velocidad media, velocidad máxima, aceleración media, longitud euclidiana del trazo, duración y desviación 
+    angular respecto al eje vertical.
+\end{itemize}
+
+\subsection{Enfoque 1: Arquitectura basada en Transformer}
+
+El primer enfoque propone una arquitectura \textit{end-to-end} inspirada en BehaveFormer~\cite{senerath2023behaveformer}
+ y Type2Branch~\cite{gonzalez2025type2branch}, que procesa las tres modalidades de forma conjunta 
+ mediante mecanismos de atención.
+Cada secuencia de interacción se trata como una serie de \textit{tokens} de entrada. Un codificador 
+Transformer independiente por modalidad —con capas de \textit{Multi-Head Self-Attention} y redes 
+\textit{feed-forward} posicionales— genera una representación de contexto para cada fuente de señal. Las 
+representaciones resultantes se fusionan mediante un módulo de \textbf{atención cruzada entre modalidades} 
+(\textit{cross-modal attention}), que aprende a ponderar dinámicamente la contribución de cada fuente en función del contexto de uso.
+La función de pérdida empleada para el entrenamiento es \textit{Set2set Loss}~\cite{gonzalez2025type2branch}, 
+que compara un conjunto de muestras de enrolamiento $\mathcal{S} = \{s_1, \ldots, s_k\}$ contra una muestra de consulta $q$, 
+permitiendo una estimación más robusta de la similitud que el clásico \textit{Triplet Loss} puntual:
+
+\begin{equation}
+    \mathcal{L}_{\text{set2set}} = \max\left(0,\; m + d\!\left(\bar{e}_{\mathcal{S}},\, q^+\right) - d\!\left(\bar{e}_{\mathcal{S}},\, q^-\right)\right)
+    \label{eq:set2set}
+\end{equation}
+
+donde $\bar{e}_{\mathcal{S}}$ es la representación agregada del conjunto de enrolamiento, 
+$q^+$ una muestra del usuario legítimo, $q^-$ una muestra de impostor y $m$ el margen de separación.
+
+\subsection{Enfoque 2: Ensemble de Modelos Especializados por Modalidad}
+
+El segundo enfoque adopta una estrategia modular: se entrena un modelo especializado e independiente 
+para cada modalidad conductual, y sus puntuaciones de similitud se combinan mediante una estrategia de fusión 
+a nivel de \textit{score}.
+
+\begin{itemize}
+    \item \textbf{Modelo de tecleo}: red LSTM bidireccional seguida de una capa de proyección métrica, 
+    entrenada con \textit{Triplet Loss}, siguiendo la línea de TypeNet~\cite{acien2022typenet}.
+    \item \textbf{Modelo de firma}: red CNN-LSTM que extrae características locales de los segmentos del 
+    trazo (CNN) y modela la dinámica temporal global (LSTM).
+    \item \textbf{Modelo de scroll}: clasificador ligero basado en un perceptrón multicapa (MLP) o una red 
+    CNN-1D sobre los vectores de rasgos agregados por gesto.
+\end{itemize}
+
+La fusión de puntuaciones se explorará mediante tres estrategias: combinación lineal con pesos fijos, 
+combinación lineal con pesos aprendidos, y un meta-clasificador entrenado sobre las puntuaciones de los 
+modelos base.
+
+\subsection{Protocolo de Evaluación}
+
+Ambos enfoques se evaluarán bajo un protocolo común de verificación, siguiendo las directrices establecidas en 
+las competiciones MobileB2C~\cite{stragapede2022mobileb2c}:
+
+\begin{itemize}
+    \item \textbf{Partición de datos}: división en conjuntos de enrolamiento, desarrollo y evaluación, 
+    sin solapamiento de usuarios entre particiones.
+    \item \textbf{Escenarios de impostor}: se considerarán impostores aleatorios (usuarios distintos sin 
+    conocimiento del objetivo) e impostores hábiles (usuarios que intentan imitar al legítimo), cuando el 
+    dataset seleccionado lo permita.
+    \item \textbf{Métricas principales}: \textit{Equal Error Rate} (EER) como métrica primaria de comparación, 
+    complementada con AUC, FAR@1\%FRR y el \textit{Time-to-Detection} (TTD) estimado.
+\end{itemize}
+
+
+\section{Resultados Preliminares}\label{sec:resultados_preliminares}
+
+En el momento de redacción de este documento, el desarrollo del sistema se encuentra en fase de diseño 
+arquitectónico y planificación experimental. Por tanto, los resultados que se presentan a continuación son 
+estimaciones de referencia (\textit{baseline}) derivadas de la replicación parcial de trabajos del estado del 
+arte sobre datasets públicos, con el objetivo de establecer un punto de comparación para las arquitecturas 
+propuestas.
+
+\subsection{Baseline de Referencia}
+
+A continuación se muestra la tabla que recoge los valores de EER reportados por los sistemas más relevantes del estado
+ del arte sobre las modalidades y datasets que se emplearán en este trabajo,
+  y que constituyen el umbral de rendimiento que el sistema propuesto deberá superar.
+
+\begin{table}[h]
+\centering
+\caption{Resultados de referencia del estado del arte (EER~\%).}\label{tab:baseline}
+\begin{tabular}{llccc}
+\textbf{Sistema} & \textbf{Modalidad} & \textbf{Dataset} & \textbf{EER (\%)} & \textbf{Seq. length} \\
+TypeNet~\cite{acien2022typenet}             & Tecleo              & Aalto DB   & 2.20 & 50 chars \\
+Type2Branch~\cite{gonzalez2025type2branch}  & Tecleo              & Mobile     & 1.03 & 50 chars \\
+BehaveFormer~\cite{senerath2023behaveformer}& Tecleo + IMU        & HuMIdb     & 2.95 & ---      \\
+MobileB2C top-1~\cite{stragapede2022mobileb2c} & Keystroke      & BehavePassDB & \multicolumn{1}{c}{AUC: 66.37} & --- \\
+\end{tabular}
+\end{table}
+
+\subsection{Estimaciones Esperadas del Sistema Propuesto}
+
+A modo orientativo, y en base a las mejoras arquitectónicas propuestas respecto a los sistemas de referencia,
+ se anticipan los rangos de rendimiento recogidos en la siguiente tabla:
+
+\begin{table}[h]
+\centering
+\caption{Estimación de rendimiento esperado del sistema propuesto (EER~\%). 
+\textbf{[PENDIENTE DE ACTUALIZAR]}}\label{tab:resultados_esperados}
+\begin{tabular}{llcc}
+\textbf{Enfoque} & \textbf{Modalidades} & \textbf{EER esperado (\%)} & \textbf{Observaciones} \\
+Transformer unificado  & Tecleo + Firma          & $\sim$1.5 -- 2.5  & Fusión cross-modal \\
+Transformer unificado  & Tecleo + Firma + Scroll & $\sim$1.2 -- 2.0  & Mejora con scroll  \\
+Ensemble modular       & Tecleo + Firma          & $\sim$1.8 -- 3.0  & Fusión de scores   \\
+Ensemble modular       & Tecleo + Firma + Scroll & $\sim$1.5 -- 2.5  & Meta-clasificador  \\
+\end{tabular}
+\end{table}
+
+Estas estimaciones se fundamentan en la hipótesis de que la fusión multimodal de tecleo y firma 
+aportará una mejora consistente respecto al uso de tecleo en solitario, tal y como sugieren los trabajos 
+previos en fusión de modalidades conductuales~\cite{stragapede2022patterns}. 
+La incorporación del scroll se plantea como un experimento ablativo para cuantificar su contribución marginal 
+al rendimiento global del sistema.

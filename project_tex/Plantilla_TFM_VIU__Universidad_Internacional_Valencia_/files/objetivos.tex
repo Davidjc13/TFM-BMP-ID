@@ -1,0 +1,30 @@
+
+El presente trabajo tiene como propósito fundamental el diseño, desarrollo y evaluación de un sistema de 
+autenticación continua y pasiva basado en la biometría del comportamiento en dispositivos móviles. A 
+continuación se detallan los objetivos generales y específicos que guiarán la investigación.
+
+\section{Objetivo General}
+
+Desarrollar un sistema de autenticación basado en biometría conductual para dispositivos móviles que sea capaz de verificar la identidad 
+del usuario de forma continua y transparente, sin requerir interacción explícita, mediante el uso de 
+arquitecturas de aprendizaje profundo y fusión multimodal de señales.
+
+\section{Objetivos Específicos}
+
+Para alcanzar el objetivo general, se plantean los siguientes objetivos específicos:
+
+\begin{enumerate}
+    \item \textbf{Diseñar una arquitectura de aprendizaje profundo multimodal} capaz de procesar de forma conjunta señales heterogéneas —dinámica de tecleo (\textit{keystroke dynamics}) y datos de sensores inerciales (IMU)— para generar representaciones de identidad robustas frente a variaciones de contexto y dispositivo.
+    \item \textbf{Implementar y evaluar mecanismos de atención dual} (temporal y de canal) inspirados en arquitecturas tipo Transformer, con el fin de ponderar automáticamente los instantes y características más discriminativos del flujo de interacción del usuario.
+    \item \textbf{Explorar funciones de pérdida orientadas a la verificación}, en particular \textit{Triplet Loss} y \textit{Set2set Loss}, que permitan optimizar el sistema para la comparación de perfiles continuos de usuario en lugar de clasificaciones estáticas.
+    \item \textbf{Evaluar el rendimiento del sistema sobre benchmarks públicos reconocidos} en el dominio, tales como BehavePassDB, HuMIdb o Aalto DB, utilizando métricas estándar como el \textit{Equal Error Rate} (EER) y el \textit{Area Under the Curve} (AUC), con el objetivo de facilitar la comparación con trabajos previos.
+    \item \textbf{Analizar el impacto de la longitud de secuencia} en la precisión de autenticación, buscando alcanzar una detección fiable con ráfagas cortas de actividad (en torno a 50 caracteres), lo que se traduce directamente en una reducción del \textit{Time-to-Detection} (TTD) ante posibles impostores.
+    \item \textbf{Garantizar el cumplimiento de los principios de privacidad y ética} aplicables al tratamiento de datos biométricos conductuales, siguiendo las directrices del RGPD y el principio de \textit{Privacy by Design}, con especial atención a la minimización de datos y la no recuperabilidad del contenido textual a partir de las métricas capturadas.
+\end{enumerate}
+
+\section{Alcance y Limitaciones}
+
+El sistema se circunscribe al ámbito de los dispositivos móviles con pantalla táctil, siendo el escenario 
+principal de uso la escritura de texto libre (\textit{free-text}). 
+Quedan fuera del alcance de este trabajo la autenticación basada en biometría fisiológica 
+(huella dactilar, reconocimiento facial) y el análisis de señales de voz o vídeo u otros sistemas de autenticación.

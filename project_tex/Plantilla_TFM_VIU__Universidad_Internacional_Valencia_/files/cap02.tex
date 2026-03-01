@@ -3,7 +3,7 @@ En el panorama actual de la ciberseguridad móvil, la dependencia de métodos de
 
 El presente proyecto propone el desarrollo de un \textbf{Sistema de Autenticación Basado en la Biometría del Comportamiento}, un enfoque que permite la verificación de identidad de forma \textbf{pasiva, continua y transparente} para el usuario.
 
-\subsection{El Fundamento de la Biometría Conductual}
+\section{El Fundamento de la Biometría Conductual}
 
 A diferencia de los rasgos físicos, la biometría conductual se centra en \textbf{cómo} interactúa el usuario con su dispositivo[cite: 26]. Este sistema aprovecha la singularidad de los patrones neurofisiológicos y motores, analizando variables clave capturadas de manera transparente:
 
@@ -13,7 +13,7 @@ A diferencia de los rasgos físicos, la biometría conductual se centra en \text
     \item \textbf{Sensores de Movimiento (\textit{IMU}):} Uso de acelerómetros, giroscopios y magnetómetros para capturar la micro-gestualidad y el manejo físico del terminal durante la interacción.
 \end{itemize}
 
-\subsection{Innovación Tecnológica y Arquitectura}
+\section{Innovación Tecnológica y Arquitectura}
 
 Para superar las limitaciones de los modelos clásicos (como SVM o KNN), que presentan dificultades de escalabilidad en entornos masivos [cite: 86, 87], este sistema se fundamenta en arquitecturas de \textbf{Aprendizaje Profundo (\textit{Deep Learning})}:
 
@@ -23,7 +23,3 @@ Para superar las limitaciones de los modelos clásicos (como SVM o KNN), que pre
     \item \textbf{Fusión Multimodal:} Combinación de la dinámica de tecleo con datos de sensores inerciales para incrementar la robustez del sistema frente a cambios de contexto.
     \item \textbf{Funciones de Pérdida Avanzadas:} Implementación de técnicas como \textit{Triplet Loss} y \textit{Set2set Loss}, permitiendo comparar flujos continuos de datos contra el perfil del usuario con mínima fricción.
 \end{itemize}
-
-\subsection{Objetivos y Desafíos}
-
-El sistema busca resolver desafíos críticos identificados en el estado del arte, como la \textbf{fragmentación de modalidades} y la necesidad de \textbf{generalización} en escenarios reales. El objetivo final es alcanzar tasas de error competitivas ---con un \textit{Equal Error Rate} (EER) en dispositivos móviles--- utilizando ráfagas cortas de actividad (apenas 50 caracteres), garantizando así una revocación de acceso casi instantánea ante un posible impostor sin requerir interacción explícita del usuario.

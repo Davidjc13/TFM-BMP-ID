@@ -2,28 +2,53 @@
 \contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}%
 \contentsline {subsection}{\numberline {1.0.1}El Fundamento de la Biometría Conductual}{1}{subsection.1.0.1}%
 \contentsline {subsection}{\numberline {1.0.2}Innovación Tecnológica y Arquitectura}{2}{subsection.1.0.2}%
-\contentsline {subsection}{\numberline {1.0.3}Objetivos y Desafíos}{2}{subsection.1.0.3}%
-\contentsline {chapter}{\numberline {2}Estado del Arte}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}IJCB 2022 MobileB2C: Competición de Autenticación Basada en Comportamiento Móvil}{5}{section.2.1}%
-\contentsline {subsubsection}{Base de Datos Utilizada}{6}{subsubsection*.2}%
-\contentsline {subsubsection}{Conclusiones}{6}{subsubsection*.3}%
-\contentsline {section}{\numberline {2.2}BehaveFormer: A Framework with Spatio-Temporal Dual Attention Transformers for IMU enhanced Keystroke Dynamics}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Type2Branch: Keystroke Biometrics based on a Dual-branch Architecture with Attention Mechanisms and Set2set Loss}{9}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Evolución de las Arquitecturas de Aprendizaje Profundo}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Funciones de Pérdida y Verificación}{9}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Métricas de Rendimiento en Autenticación Pasiva}{10}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Importancia para la Autenticación Pasiva}{10}{subsection.2.3.4}%
-\contentsline {section}{\numberline {2.4}Estado del Arte: Autenticación Continua y Ensamblados de Redes Profundas}{10}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Evolución de las Técnicas de Clasificación}{11}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Extracción de Características y Representación de Datos}{11}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Desafíos en la Autenticación Pasiva}{12}{subsection.2.4.3}%
-\contentsline {chapter}{\numberline {3}Marco Teórico}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Marco Teórico}{15}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Fundamentos de autenticación y seguridad}{15}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Modalidades de biometría conductual}{15}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Métodos de aprendizaje automático aplicados}{15}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Fusión multimodal}{15}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Funciones de pérdida para verificación biométrica}{15}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Bases de datos y benchmarks del dominio}{15}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Privacidad y consideraciones éticas}{15}{subsection.3.1.7}%
-\contentsline {section}{Bibliograf\'{\i }a}{15}{subsection.3.1.7}%
+\contentsline {chapter}{\numberline {2}Objetivos}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Objetivo General}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Objetivos Específicos}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Alcance y Limitaciones}{5}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Estado del Arte}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}IJCB 2022 MobileB2C: Competición de Autenticación Basada en Comportamiento Móvil}{7}{section.3.1}%
+\contentsline {subsubsection}{Base de Datos Utilizada}{8}{subsubsection*.2}%
+\contentsline {subsubsection}{Conclusiones}{8}{subsubsection*.3}%
+\contentsline {section}{\numberline {3.2}BehaveFormer: A Framework with Spatio-Temporal Dual Attention Transformers for IMU enhanced Keystroke Dynamics}{9}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Type2Branch: Keystroke Biometrics based on a Dual-branch Architecture with Attention Mechanisms and Set2set Loss}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Evolución de las Arquitecturas de Aprendizaje Profundo}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Funciones de Pérdida y Verificación}{11}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Métricas de Rendimiento en Autenticación Pasiva}{12}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Importancia para la Autenticación Pasiva}{12}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Estado del Arte: Autenticación Continua y Ensamblados de Redes Profundas}{12}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Evolución de las Técnicas de Clasificación}{13}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Extracción de Características y Representación de Datos}{13}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Desafíos en la Autenticación Pasiva}{14}{subsection.3.4.3}%
+\contentsline {chapter}{\numberline {4}Marco Teórico}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sistemas de autenticación biométrica}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Métodos de aprendizaje automático aplicados}{19}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Redes de Memoria a Largo Plazo}{20}{subsection.4.2.1}%
+\contentsline {subsubsection}{Arquitectura y Mecanismo de Compuertas}{20}{subsubsection*.4}%
+\contentsline {subsection}{\numberline {4.2.2}Ventajas frente a RNN's clásicas}{21}{subsection.4.2.2}%
+\contentsline {subsubsection}{Aplicación a la Biometría Conductual}{21}{subsubsection*.5}%
+\contentsline {subsection}{\numberline {4.2.3}Transformers y Mecanismos de Atención}{22}{subsection.4.2.3}%
+\contentsline {subsubsection}{El Mecanismo de Atención}{22}{subsubsection*.6}%
+\contentsline {subsubsection}{Atención Dual Espacio-Temporal en Biometría Conductual}{23}{subsubsection*.7}%
+\contentsline {subsubsection}{Fusión Multimodal mediante Atención}{23}{subsubsection*.8}%
+\contentsline {section}{\numberline {4.3}Bases de datos y benchmarks del dominio}{24}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Privacidad y Consideraciones Éticas}{24}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Marco Normativo}{24}{subsection.4.4.1}%
+\contentsline {subsubsection}{Reglamento General de Protección de Datos (RGPD)}{24}{subsubsection*.9}%
+\contentsline {subsubsection}{Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD)}{25}{subsubsection*.10}%
+\contentsline {subsection}{\numberline {4.4.2}Consideraciones Éticas del Sistema}{26}{subsection.4.4.2}%
+\contentsline {subsubsection}{Transparencia y Consentimiento Informado}{26}{subsubsection*.11}%
+\contentsline {subsubsection}{Privacidad desde el Diseño}{27}{subsubsection*.12}%
+\contentsline {subsubsection}{Sesgos y Equidad del Sistema}{27}{subsubsection*.13}%
+\contentsline {subsubsection}{Revocabilidad del Perfil Biométrico}{27}{subsubsection*.14}%
+\contentsline {chapter}{\numberline {5}Desarrollo del Proyecto}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Descripción del Problema}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Metodología}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Preprocesamiento y Extracción de Características}{30}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Enfoque 1: Arquitectura basada en Transformer}{31}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Enfoque 2: Ensemble de Modelos Especializados por Modalidad}{32}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Protocolo de Evaluación}{32}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Resultados Preliminares}{33}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Baseline de Referencia}{33}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Estimaciones Esperadas del Sistema Propuesto}{33}{subsection.5.3.2}%
+\contentsline {section}{Bibliograf\'{\i }a}{35}{table.5.2}%

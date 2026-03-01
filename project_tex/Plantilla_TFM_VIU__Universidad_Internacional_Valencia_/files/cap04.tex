@@ -1,8 +1,368 @@
-\section{Marco Teórico}
-\subsection{Fundamentos de autenticación y seguridad}
-\subsection{Modalidades de biometría conductual}
-\subsection{Métodos de aprendizaje automático aplicados}
-\subsection{Fusión multimodal}
-\subsection{Funciones de pérdida para verificación biométrica}
-\subsection{Bases de datos y benchmarks del dominio}
-\subsection{Privacidad y consideraciones éticas}
+\section{Sistemas de autenticación biométrica}
+
+La biometría se ha consolidado como el pilar fundamental de la identidad digital moderna, 
+desplazando a los sistemas basados en posesión y conocimiento. 
+Este marco teórico analiza la biometría no solo como una herramienta técnica, sino como un proceso científico de reconocimiento 
+de individuos basado en sus características biológicas y conductuales.
+
+La biometría se basa en la premisa de que ciertos rasgos físicos o de comportamiento son únicos, estables y medibles.
+Para que una característica humana sea considerada un indicador biométrico eficaz, debe cumplir con siete criterios fundamentales 
+definidos por \cite{jain2008handbookofbiometrics} (Sección 1.6 \textit{biometric characteristics}):
+
+\begin{enumerate}
+    \item \textbf{Universalidad}: Cada persona debe poseer el rasgo.
+    \item \textbf{Unicidad}: Dos personas no deben tener el mismo rasgo (distinguibilidad).
+    \item \textbf{Permanencia}: El rasgo debe ser \textit{invariante} en el tiempo.
+    \item \textbf{Colectabilidad}: El rasgo debe poder medirse cuantitativamente.
+    \item \textbf{Rendimiento}: Precisión y velocidad en el reconocimiento.
+    \item \textbf{Aceptabilidad}: Grado en que la población está dispuesta a utilizar el sistema.
+    \item \textbf{Resistencia al fraude}: Dificultad para engañar al sistema mediante artefactos.
+\end{enumerate}
+
+Los sistemas biométricos se basan en un flujo de trabajo estándar dividido en dos fases críticas:
+
+\begin{enumerate}
+    \item \textbf{Alistamiento o Registro}: En esta fase un sistema de sensores captura la huella biométrica del individuo. Posteriormente se elimina el ruido y se extraen las características de interés de la huella. Finalmente se genera una representación matemática de la huella. Es importante remarcar que no se guarda la imagen original de la huella sino su representación matemática.
+    \item \textbf{Reconocimiento}: En esta fase se distinguen dos procesos:
+    \begin{itemize}
+        \item \textbf{Verificación}: Se realiza la comparación \textit{uno a uno} de la huella (\textit{¿Es, realmente, la persona que dice ser?}).
+        \item \textbf{Identificación}: Se realiza la comparación \textit{uno a varios} de la huella (\textit{¿Quién es esta persona?}).
+    \end{itemize}
+\end{enumerate}
+
+(Incluir un diagrama de los dos sistemas quedaría bien)
+
+\subsection*{Modalidades de biometría conductual}
+
+En la literatura científica es común ver que la biometría se clasifica en tres grupos:
+
+\begin{enumerate}
+    \item \textbf{Biometría Fisiológica}: Se centra en la medida directa de diferentes partes del cuerpo como: la huella dactilar, el reconocimiento facial, ocular, geometría de la mano y su patrón de venas.
+    \item \textbf{Biometría Conductual}: Analiza patrones de comportamientos que pueden ser aprendidos o adquiridos como: la mecanografía, la marcha (forma de caminar) y la firma.
+    \item \textbf{Biometría Química}: Se basa en las características químicas del individuo como el ADN o el olor corporal (compuestos órganicos volátiles emitidos por la piel).
+\end{enumerate}
+
+En este trabajo nos centraremos en la biometría conductual o del comportamiento.
+
+\subsection*{Métricas de Rendimiento y Errores}
+
+Para medir la eficacia del sistema biométrico usaremos principalmente las siguientes tasas de error fundamentales:
+\begin{enumerate}
+    \item \textbf{FAR (\textit{False Acceptance Rate})}: Probabilidad de que el sistema acepte por error a un impostor.
+    \item \textbf{FRR (\textit{False Rejection Rate})}: Probabilidad de que el sistema rechace erróneamente a un usuario legítimo.
+    \item \textbf{ERR (\textit{Equal Error Rate})}: El punto donde \textit{FAR} y \textit{FRR} son iguales.
+\end{enumerate}
+
+\section{Métodos de aprendizaje automático aplicados}
+
+La evolución de la biometría moderna está intrínsecamente ligada al avance del \textit{Aprendizaje Automático} y del \textit{Aprendijaze Profundo}. Estas arquitecturas permiten pasar de una comparación basada
+en reglas manuales a una extracción de características latentes con dimensionalidad alta.
+
+\subsection{Redes de Memoria a Largo Plazo}
+
+Las redes neuronales LSTM \textit{(Long Short-Term Memory)} son una variante 
+de las Redes Neuronales Recurrentes \textit{(RNN)} diseñadas para evitar el 
+problema del desvanecimiento del gradiente \textit{(vanishing gradient)}, 
+permitiendo aprender dependencias a largo plazo en datos secuenciales 
+\cite{hochreiter1997lstm}.
+
+\subsubsection{Arquitectura y Mecanismo de Compuertas}
+
+A diferencia de una RNN estándar, cuya celda oculta se actualiza 
+completamente en cada paso temporal, la LSTM introduce un estado de celda 
+$C_t$ que actúa como una ``memoria'' capaz de retener información relevante 
+durante largas secuencias. Este mecanismo se regula mediante tres compuertas 
+diferenciables:
+
+\begin{itemize}
+    \item \textbf{Compuerta de olvido} $f_t$: Decide qué información del 
+    estado anterior debe descartarse. Se define como:
+    \begin{equation}
+        f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
+    \end{equation}
+
+    \item \textbf{Compuerta de entrada} $i_t$: Controla qué nueva información 
+    se almacena en el estado de celda:
+    \begin{equation}
+        i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
+    \end{equation}
+    \begin{equation}
+        \tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)
+    \end{equation}
+
+    \item \textbf{Compuerta de salida} $o_t$: Determina qué parte del estado 
+    de celda se expone como salida:
+    \begin{equation}
+        o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
+    \end{equation}
+    \begin{equation}
+        h_t = o_t \cdot \tanh(C_t)
+    \end{equation}
+\end{itemize}
+
+Donde $\sigma$ es la función sigmoide, $W$ son las matrices de pesos 
+entrenables, $b$ los sesgos, $h_{t-1}$ el estado oculto anterior y $x_t$ 
+la entrada en el instante $t$. La actualización del estado de celda combina 
+el olvido selectivo del pasado con la incorporación de nueva información:
+
+\begin{equation}
+    C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
+\end{equation}
+
+donde $\odot$ denota el producto elemento a elemento \textit{(Hadamard)}.
+
+\subsection{Ventajas frente a RNN's clásicas}
+
+El problema del desvanecimiento del gradiente en RNN estándar surge cuando, 
+durante la retropropagación a través del tiempo \textit{(BPTT)}, el gradiente 
+se multiplica repetidamente por valores menores que uno, haciendo que la señal 
+de error se extinga antes de alcanzar pasos temporales lejanos. Las LSTM 
+mitigan este efecto gracias al estado de celda, que permite que el gradiente 
+fluya sin atenuación a través de largos intervalos temporales siempre que la 
+compuerta de olvido permanezca abierta \cite{goodfellow2016deep}.
+
+\subsubsection{Aplicación a la Biometría Conductual}
+
+En el contexto de la autenticación basada en biometría del comportamiento, 
+las LSTM resultan especialmente adecuadas por la naturaleza inherentemente 
+secuencial de las señales capturadas. Para la \textbf{dinámica de tecleo}, 
+cada pulsación genera un vector de características temporales —Dwell Time 
+($DT$), Flight Time ($FT$) e Inter-key Interval ($IKI$)— que forman una 
+secuencia variable en longitud. La LSTM es capaz de modelar las dependencias 
+entre pulsaciones no adyacentes, capturando el ritmo global de escritura 
+del usuario, algo imposible de representar con modelos estáticos como SVM 
+o KNN \cite{acien2022keystroke}.
+
+Del mismo modo, para señales de \textbf{sensores inerciales} (acelerómetro 
+y giroscopio), la LSTM aprende patrones de micro-gestualidad que se 
+manifiestan en ventanas temporales de cientos de milisegundos, extrayendo 
+representaciones del comportamiento físico del usuario al sostener e 
+interactuar con el dispositivo.
+
+Trabajos como TypeNet \cite{acien2022keystroke} y BehaveFormer 
+\cite{senerath2023behaveformer} han demostrado que las LSTM alcanzan 
+resultados competitivos en autenticación continua de texto libre, siendo 
+posteriormente complementadas con mecanismos de atención y arquitecturas 
+basadas en Transformers para capturar dependencias tanto locales como globales 
+en la secuencia de interacción.
+
+\subsection{Transformers y Mecanismos de Atención}
+
+Originalmente propuestos por \citeauthor{vaswani2017attention} para el 
+procesamiento del lenguaje natural, los Transformers han revolucionado 
+múltiples campos de la inteligencia artificial gracias a su capacidad para 
+modelar relaciones globales entre todos los elementos de una secuencia de 
+forma paralela, superando las limitaciones de las arquitecturas recurrentes 
+en cuanto a eficiencia computacional y captura de dependencias a larga 
+distancia \cite{vaswani2017attention}.
+
+\subsubsection{El Mecanismo de Atención}
+
+El núcleo del Transformer es el mecanismo de \textit{Scaled Dot-Product 
+Attention}, que opera sobre tres matrices: consultas \textit{(Queries, $Q$)}, 
+claves \textit{(Keys, $K$)} y valores \textit{(Values, $V$)}, todos ellos 
+proyecciones lineales de la entrada. La atención se calcula como:
+
+\begin{equation}
+    \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
+
+donde $d_k$ es la dimensión de las claves, y el factor $\frac{1}{\sqrt{d_k}}$ 
+evita que el producto escalar crezca excesivamente para dimensiones altas, 
+estabilizando el gradiente durante el entrenamiento \cite{vaswani2017attention}.
+
+En la práctica se emplea \textit{Multi-Head Attention}, que aplica $h$ 
+cabezas de atención en paralelo sobre distintas proyecciones del espacio de 
+representación, permitiendo al modelo atender simultáneamente a diferentes 
+aspectos de la secuencia:
+
+\begin{equation}
+    \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, 
+    \text{head}_h)W^O
+\end{equation}
+\begin{equation}
+    \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+\end{equation}
+
+\subsubsection{Atención Dual Espacio-Temporal en Biometría Conductual}
+
+En el contexto de la autenticación basada en biometría del comportamiento, 
+el mecanismo de atención adquiere una relevancia especial, ya que no todas 
+las pulsaciones o instantes temporales contribuyen por igual a la identidad 
+del usuario. Arquitecturas como BehaveFormer \cite{senerath2023behaveformer} 
+introducen el \textit{Spatio-Temporal Dual Attention Transformer (STDAT)}, 
+que aplica dos dimensiones de atención de forma simultánea:
+
+\begin{itemize}
+    \item \textbf{Atención Temporal}: Pondera la relevancia de cada instante 
+    en la secuencia de pulsaciones, identificando qué momentos del flujo de 
+    tecleo son más discriminativos para verificar la identidad.
+    
+    \item \textbf{Atención de Canal}: Opera sobre las características 
+    extraídas de los sensores inerciales (IMU), determinando qué ejes del 
+    acelerómetro o giroscopio aportan mayor información identitaria en cada 
+    contexto de uso.
+\end{itemize}
+
+\subsubsection{Fusión Multimodal mediante Atención}
+
+Una de las ventajas más relevantes de los Transformers para este trabajo es 
+su capacidad natural para la \textbf{fusión multimodal}. Al tratar cada 
+modalidad —dinámica de tecleo, gestos táctiles y señales IMU— como una 
+secuencia de tokens, el mecanismo de atención aprende automáticamente a 
+qué fuente de información debe dar mayor peso en cada instante, optimizando 
+la decisión de autenticación sin necesidad de definir manualmente reglas de 
+fusión \cite{senerath2023behaveformer}. Esto contrasta con los enfoques 
+clásicos de fusión a nivel de puntuación, donde la combinación de modalidades 
+se realiza mediante reglas heurísticas fijas.
+
+Type2Branch \cite{gonzalez2025type2branch} extiende este principio 
+incorporando capas de atención sobre una arquitectura dual CNN-LSTM, 
+permitiendo al modelo ponderar eventos de pulsación específicos con mayor 
+carga discriminativa, lo que se traduce en mejoras significativas del 
+Equal Error Rate (EER) frente a modelos precedentes como TypeNet.
+
+\section{Bases de datos y benchmarks del dominio}
+
+Aquí incluiré lo que utilice para comparar más adelante...
+
+\section{Privacidad y Consideraciones Éticas}
+
+El desarrollo de sistemas de autenticación basados en biometría conductual 
+implica la captura, procesamiento y almacenamiento de datos de carácter 
+personal de especial sensibilidad. En consecuencia, cualquier implementación 
+debe enmarcarse en el conjunto normativo vigente en materia de protección 
+de datos, tanto a nivel europeo como nacional.
+
+\subsection{Marco Normativo}
+
+\subsubsection{Reglamento General de Protección de Datos (RGPD)}
+
+El Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, 
+conocido como RGPD \cite{rgpd2016}, establece el marco general de 
+protección de datos personales en la Unión Europea. En su artículo 9, 
+el RGPD clasifica los \textbf{datos biométricos} como una categoría 
+especial de datos personales, cuyo tratamiento queda prohibido con 
+carácter general salvo que concurra alguna de las excepciones tasadas, 
+entre las que destacan:
+
+\begin{itemize}
+    \item El \textbf{consentimiento explícito} del interesado para uno 
+    o varios fines específicos.
+    \item La necesidad del tratamiento por razones de \textbf{interés 
+    público esencial}.
+    \item Fines de \textbf{investigación científica}, siempre que se 
+    apliquen las garantías adecuadas.
+\end{itemize}
+
+Adicionalmente, el RGPD consagra una serie de principios de obligado 
+cumplimiento para cualquier sistema que trate datos biométricos 
+conductuales:
+
+\begin{itemize}
+    \item \textbf{Minimización de datos}: únicamente deben recogerse 
+    los datos estrictamente necesarios para el fin declarado. En el 
+    contexto de este sistema, esto implica limitar la captura a las 
+    métricas temporales de tecleo (DT, FT, IKI) y señales IMU 
+    imprescindibles, evitando el almacenamiento del contenido textual 
+    introducido por el usuario.
+
+    \item \textbf{Limitación de la finalidad}: los datos recogidos no 
+    podrán utilizarse para fines distintos a la autenticación del 
+    usuario para el que fueron enrolados.
+
+    \item \textbf{Exactitud y actualización}: los perfiles biométricos 
+    conductuales deben mantenerse actualizados, dado que los patrones 
+    de comportamiento del usuario pueden evolucionar con el tiempo 
+    debido a factores como el estado emocional, la fatiga o el cambio 
+    de dispositivo.
+
+    \item \textbf{Limitación del plazo de conservación}: los datos 
+    biométricos no deben conservarse más tiempo del necesario para 
+    cumplir la finalidad del tratamiento.
+
+    \item \textbf{Integridad y confidencialidad}: el sistema debe 
+    garantizar la seguridad de los datos mediante cifrado y controles 
+    de acceso adecuados.
+\end{itemize}
+
+\subsubsection{Ley Orgánica de Protección de Datos y Garantía de los 
+Derechos Digitales (LOPDGDD)}
+
+En el ámbito nacional español, la Ley Orgánica 3/2018, de 5 de 
+diciembre, de Protección de Datos Personales y Garantía de los Derechos 
+Digitales \cite{lopdgdd2018} complementa y adapta el RGPD al 
+ordenamiento jurídico español. En materia de datos biométricos, la 
+LOPDGDD refuerza las obligaciones del responsable del tratamiento y 
+establece garantías adicionales, entre las que destacan:
+\begin{itemize}
+    \item La obligatoriedad de realizar una \textbf{Evaluación de 
+    Impacto relativa a la Protección de Datos (EIPD)} antes de 
+    implementar cualquier sistema que trate datos biométricos a gran 
+    escala, tal y como exige el artículo 35 del RGPD.
+
+    \item El reconocimiento explícito del \textbf{derecho a la 
+    portabilidad} de los perfiles biométricos, permitiendo al usuario 
+    solicitar la transferencia o eliminación de su perfil conductual 
+    en cualquier momento.
+
+    \item La figura del \textbf{Delegado de Protección de Datos (DPD)}, 
+    cuya designación puede ser obligatoria cuando el tratamiento de 
+    datos biométricos se realice a gran escala.
+\end{itemize}
+
+\subsection{Consideraciones Éticas del Sistema}
+
+Más allá del cumplimiento normativo estricto, el diseño de un sistema 
+de autenticación conductual plantea una serie de consideraciones éticas 
+que deben abordarse desde las fases tempranas del desarrollo.
+
+\subsubsection{Transparencia y Consentimiento Informado}
+
+Dado que la biometría conductual opera de forma pasiva y transparente 
+para el usuario, existe el riesgo de que este no sea plenamente 
+consciente de los datos que se están recopilando. Por ello, es 
+imprescindible garantizar que el usuario reciba una información clara, 
+comprensible y accesible sobre el funcionamiento del sistema antes de 
+otorgar su consentimiento, evitando el uso de cláusulas genéricas o 
+formulaciones técnicas ininteligibles.
+
+\subsubsection{Privacidad desde el Diseño}
+
+El principio de \textit{Privacy by Design} \cite{cavoukian2009privacy}, 
+incorporado al artículo 25 del RGPD como \textit{protección de datos 
+desde el diseño y por defecto}, exige que las medidas de privacidad 
+se integren en la arquitectura del sistema desde su concepción, y no 
+como un añadido posterior. En la práctica, esto se traduce en decisiones 
+de diseño como:
+
+\begin{itemize}
+    \item Almacenar únicamente representaciones vectoriales cifradas 
+    del perfil conductual, nunca las secuencias de pulsaciones en bruto.
+    \item Aplicar técnicas de \textbf{anonimización} o 
+    \textbf{seudonimización} que impidan vincular el perfil biométrico 
+    con la identidad real del usuario en caso de brecha de seguridad.
+    \item Garantizar que el modelo entrenado no permita reconstruir el 
+    contenido textual original a partir de las métricas temporales 
+    capturadas.
+\end{itemize}
+
+\subsubsection{Sesgos y Equidad del Sistema}
+
+Los modelos de aprendizaje profundo pueden presentar sesgos en su 
+rendimiento en función de características del usuario como la edad, 
+condición motora o nivel de familiaridad con el dispositivo. Un sistema 
+de autenticación conductual que presente tasas de error 
+significativamente distintas entre grupos de usuarios podría generar 
+situaciones de discriminación inadvertida. Por ello, es necesario 
+evaluar el rendimiento del sistema de forma estratificada y adoptar 
+medidas correctoras cuando se detecten disparidades.
+
+\subsubsection{Revocabilidad del Perfil Biométrico}
+
+A diferencia de la biometría fisiológica, los patrones conductuales 
+son, en cierta medida, revocables: si el perfil de un usuario se ve 
+comprometido, es posible reentrenar el modelo con nuevas muestras. 
+No obstante, esto implica mantener protocolos claros de gestión del 
+ciclo de vida del perfil biométrico, incluyendo procedimientos de 
+re-enrolamiento y eliminación segura de perfiles obsoletos.
