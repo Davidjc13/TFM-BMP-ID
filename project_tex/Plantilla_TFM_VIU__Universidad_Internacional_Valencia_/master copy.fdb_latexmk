@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex master"] 1772393035.7869 "master.aux" "master.bbl" "master" 1772393042.16673 0
+["bibtex master copy"] 1772396900.50146 "master copy.aux" "master copy.bbl" "master copy" 1772396903.78994 0
   "./biblio/tfm_biblio.bib" 1772386416 8302 14a104a814639a6f1760015948359c2c ""
   "./sty/astron.bst" 1772366881 25781 54c503b2f802f17feae0c8e908fd2490 ""
-  "master.aux" 1772393039 12942 43fbdf12c086798f5d8b7d660525ed6a "pdflatex"
+  "master copy.aux" 1772396898 12942 43fbdf12c086798f5d8b7d660525ed6a "pdflatex"
   (generated)
-  "master.bbl"
-  "master.blg"
+  "master copy.bbl"
+  "master copy.blg"
   (rewritten before read)
-["makeindex master.idx"] 1772386423.41196 "master.idx" "master.ind" "master" 1772393042.16561 0
-  "master.idx" 1772393038 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex master copy.idx"] 1772396890.27695 "master copy.idx" "master copy.ind" "master copy" 1772396903.77644 0
+  "master copy.idx" 1772396897 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "master.ilg"
-  "master.ind"
+  "master copy.ilg"
+  "master copy.ind"
   (rewritten before read)
-["pdflatex"] 1772393036.79997 "c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" "master.pdf" "master" 1772393042.16821 0
-  "c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex" 1772386352 7739 8cef61f9681aa4e4d95d7382b9ff95ae ""
+["pdflatex"] 1772396901.16147 "c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master copy.tex" "master copy.pdf" "master copy" 1772396903.77676 2
+  "c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master copy.tex" 0 -1 0 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1772297155 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1772298357 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecbi1200.tfm" 1772297819 3072 ccae1a240ab272417e4399fe942df546 ""
@@ -161,17 +161,14 @@
   "files/figures/logo_viu.pdf" 1772366881 10626 024c7f99f55fd2d2f17ba13b20298a08 ""
   "files/objetivos.tex" 1772385044 3127 337133ce88d13aff1a85ed80ce6c9e82 ""
   "files/portada.tex" 1772385230 799 81d2bc46e224f998d03bb579aa89302b ""
-  "master.aux" 1772393039 12942 43fbdf12c086798f5d8b7d660525ed6a "pdflatex"
-  "master.bbl" 1772393036 4604 a8697047112bf05b97a35abc8b32d1a8 "bibtex master"
-  "master.ind" 1772386424 0 d41d8cd98f00b204e9800998ecf8427e "makeindex master.idx"
-  "master.out" 1772393039 10346 f75d0dd2909ec365d29e2e92a2b70c4d "pdflatex"
-  "master.tex" 1772386352 7739 8cef61f9681aa4e4d95d7382b9ff95ae ""
-  "master.toc" 1772393039 5358 4f433445d2655e7797f9658cd3fee30e "pdflatex"
+  "master copy.aux" 1772396898 12942 43fbdf12c086798f5d8b7d660525ed6a "pdflatex"
+  "master copy.bbl" 1772396901 4604 a8697047112bf05b97a35abc8b32d1a8 "bibtex master copy"
+  "master copy.ind" 1772396890 0 d41d8cd98f00b204e9800998ecf8427e "makeindex master copy.idx"
+  "master copy.out" 1772396898 10346 f75d0dd2909ec365d29e2e92a2b70c4d "pdflatex"
   (generated)
-  "master.aux"
-  "master.idx"
-  "master.log"
-  "master.out"
-  "master.pdf"
-  "master.toc"
+  "master copy.aux"
+  "master copy.idx"
+  "master copy.log"
+  "master copy.out"
+  "master copy.pdf"
   (rewritten before read)

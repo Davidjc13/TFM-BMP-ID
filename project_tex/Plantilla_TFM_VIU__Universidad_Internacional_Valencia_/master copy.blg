@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: master copy.aux
+The style file: ./sty/astron.bst
+Database file #1: ./biblio/tfm_biblio.bib
+Warning--entry type for "rgpd2016" isn't style-file defined
+--line 299 of file ./biblio/tfm_biblio.bib
+Warning--entry type for "lopdgdd2018" isn't style-file defined
+--line 325 of file ./biblio/tfm_biblio.bib
+Warning--empty journal in cavoukian2009privacy
+You've used 18 entries,
+            2251 wiz_defined-function locations,
+            566 strings with 7108 characters,
+and the built_in function-call counts, 7256 in all, are:
+= -- 636
+> -- 513
+< -- 6
++ -- 190
+- -- 184
+* -- 727
+:= -- 1341
+add.period$ -- 0
+call.type$ -- 18
+change.case$ -- 164
+chr.to.int$ -- 12
+cite$ -- 19
+duplicate$ -- 242
+empty$ -- 364
+format.name$ -- 208
+if$ -- 1313
+int.to.chr$ -- 7
+int.to.str$ -- 0
+missing$ -- 14
+newline$ -- 76
+num.names$ -- 55
+pop$ -- 182
+preamble$ -- 1
+purify$ -- 182
+quote$ -- 0
+skip$ -- 165
+stack$ -- 0
+substring$ -- 257
+swap$ -- 41
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 104
+warning$ -- 1
+while$ -- 41
+width$ -- 0
+write$ -- 192
+(There were 3 warnings)

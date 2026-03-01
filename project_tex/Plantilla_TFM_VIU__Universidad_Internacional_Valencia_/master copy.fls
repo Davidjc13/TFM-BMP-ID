@@ -2,8 +2,8 @@ PWD c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TF
 INPUT c:/texlive/2025/texmf.cnf
 INPUT c:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.tex
-OUTPUT master.log
+INPUT c:/Users/david/Downloads/TFM-BMP-ID-main/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master copy.tex
+OUTPUT master copy.log
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/bk12.clo
@@ -151,13 +151,13 @@ INPUT c:/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/lineno/lineno.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/lineno/lineno.sty
-OUTPUT master.idx
+OUTPUT master copy.idx
 INPUT c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./master.aux
-INPUT ./master.aux
-INPUT master.aux
-OUTPUT master.aux
+INPUT ./master copy.aux
+INPUT ./master copy.aux
+INPUT master copy.aux
+OUTPUT master copy.aux
 INPUT c:/texlive/2025/texmf-dist/tex/latex/caption/ltcaption.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/caption/ltcaption.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/graphics/color.sty
@@ -168,14 +168,14 @@ INPUT c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
-INPUT ./master.out
-INPUT ./master.out
-INPUT master.out
-INPUT master.out
-OUTPUT master.pdf
-INPUT ./master.out
-INPUT ./master.out
-OUTPUT master.out
+INPUT ./master copy.out
+INPUT ./master copy.out
+INPUT master copy.out
+INPUT master copy.out
+OUTPUT master copy.pdf
+INPUT ./master copy.out
+INPUT ./master copy.out
+OUTPUT master copy.out
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -200,9 +200,9 @@ INPUT c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm
-INPUT ./master.toc
-INPUT ./master.toc
-INPUT master.toc
+INPUT ./master copy.toc
+INPUT ./master copy.toc
+INPUT master copy.toc
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -239,7 +239,7 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/eccc1200.tfm
-OUTPUT master.toc
+OUTPUT master copy.toc
 INPUT ./files/cap02.tex
 INPUT ./files/cap02.tex
 INPUT ./files/cap02.tex
@@ -261,12 +261,12 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecrm0600.tfm
 INPUT ./files/cap05.tex
 INPUT ./files/cap05.tex
 INPUT ./files/cap05.tex
-INPUT ./master.bbl
-INPUT ./master.bbl
-INPUT master.bbl
-INPUT master.aux
-INPUT ./master.out
-INPUT ./master.out
+INPUT ./master copy.bbl
+INPUT ./master copy.bbl
+INPUT master copy.bbl
+INPUT master copy.aux
+INPUT ./master copy.out
+INPUT ./master copy.out
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
