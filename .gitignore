@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+project/
+nyit_smartphone_dataset_home_lab_cleaned/
+nyit_smartphone_dataset_home_lab_cleaned.tar.xz
+
 # Distribution / packaging
 .Python
 build/
@@ -218,3 +222,17 @@ project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.out
 project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.toc
 project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/texput.fls
 project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/master.synctex.gz
+
+# Experimental artefacts (keep directory)
+results/**
+!results/.gitkeep
+!results/README.md
+data/raw/**
+!data/raw/.gitkeep
+data/processed/**/*.npz
+data/processed/**/*.npy
+*.pt
+*.ckpt
+*.parquet
+checkpoints/**
+!checkpoints/.gitkeep

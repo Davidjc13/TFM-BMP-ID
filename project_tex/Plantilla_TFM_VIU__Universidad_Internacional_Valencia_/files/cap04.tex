@@ -209,15 +209,16 @@ que aplica dos dimensiones de atención de forma simultánea:
 
 \subsubsection{Fusión Multimodal mediante Atención}
 
-Una de las ventajas más relevantes de los Transformers para este trabajo es 
-su capacidad natural para la \textbf{fusión multimodal}. Al tratar cada 
-modalidad —dinámica de tecleo, gestos táctiles y señales IMU— como una 
-secuencia de tokens, el mecanismo de atención aprende automáticamente a 
-qué fuente de información debe dar mayor peso en cada instante, optimizando 
-la decisión de autenticación sin necesidad de definir manualmente reglas de 
-fusión \cite{senerath2023behaveformer}. Esto contrasta con los enfoques 
-clásicos de fusión a nivel de puntuación, donde la combinación de modalidades 
-se realiza mediante reglas heurísticas fijas.
+Una de las ventajas más relevantes de los Transformers es 
+su capacidad natural para la \textbf{fusión multimodal}. En el precedente 
+BehaveFormer \cite{senerath2023behaveformer}, cada modalidad ---dinámica de 
+tecleo y señales IMU--- se trata como una secuencia de tokens y el mecanismo 
+de atención aprende a qué fuente dar mayor peso en cada instante, sin reglas 
+de fusión manuales. El presente trabajo reutiliza ese principio de atención 
+cruzada, aplicándolo a las modalidades del sistema propuesto ---tecleo, firma 
+en pantalla y scroll---, y lo contrasta con la fusión clásica a nivel de 
+puntuación (ensemble de expertos). Esto mantiene la IMU en el marco teórico 
+como modalidad del estado del arte, no como rama del modelo a desarrollar.
 
 Type2Branch \cite{gonzalez2025type2branch} extiende este principio 
 incorporando capas de atención sobre una arquitectura dual CNN-LSTM, 
@@ -266,8 +267,9 @@ conductuales:
     \item \textbf{Minimización de datos}: únicamente deben recogerse 
     los datos estrictamente necesarios para el fin declarado. En el 
     contexto de este sistema, esto implica limitar la captura a las 
-    métricas temporales de tecleo (DT, FT, IKI) y señales IMU 
-    imprescindibles, evitando el almacenamiento del contenido textual 
+    métricas temporales de tecleo (DT, FT, IKI), las series de trazo 
+    de la firma y los descriptores de gestos de desplazamiento, 
+    evitando el almacenamiento del contenido textual 
     introducido por el usuario.
 
     \item \textbf{Limitación de la finalidad}: los datos recogidos no 

@@ -1,0 +1,92 @@
+# Protocolo común (open-set / verificación 1:1). No usar softmax de usuarios como métrica oficial.
+seed: 42
+
+# Tecleo: ráfagas cortas (TTD). Ablación 25 / 50 / 100.
+seq_len: 50
+seq_len_keystroke: 50
+seq_len_ablation: [25, 50, 100]
+keystroke_stride: 25
+
+set2set_margin: 0.2
+triplet_margin: 0.2
+k_enroll: 5
+
+privacy:
+  store_raw_text: false
+  # Caracteres / mensajes nunca en logs, checkpoints ni CSV.
+  persist_key_ids: hashed  # hashed | none  (nunca el carácter)
+
+ttd:
+  # Tiempo (o nº de eventos) hasta decisión de impostor.
+  unit: events  # events | seconds
+  # first_cross: primer score < tau; consecutive: k ventanas seguidas bajo tau.
+  rule: consecutive
+  k_consecutive: 2
+  tau_source: dev_eer  # umbral fijado en dev y congelado en eval
+
+dataset:
+  name: nyit
+  # Copia local cleaned (no LFS). Fuente: https://www.nyit-lamp.com/dataset/dataset4/
+  root: nyit_smartphone_dataset_home_lab_cleaned
+  source_url: https://www.nyit-lamp.com/dataset/dataset4/
+  citation: NYIT_dataset:2025
+  checksums_file: data/checksums/nyit_core.sha256
+
+splits:
+  names: [train, dev, eval]
+  disjoint_users: true
+  ratios: [0.6, 0.2, 0.2]
+
+signature:
+  # Gap: NYIT no es un corpus de firma on-line (SVC / DeepSignDB).
+  # proxy_touch = trayectoria de swipe del mismo corpus (no firma legal).
+  # Tecleo y swipe son trials distintos → no fusionar a nivel de la misma ventana.
+  decision: proxy_touch
+  source_task: nyit_swipe
+  same_trial_as_keystroke: false
+  pressure_available: false
+  fs: 100
+  T: 128
+
+scroll:
+  # Analogía BehavePassDB Task 3 (gallery swiping): sit/walk_and_swipe y home/swiping.
+  task: nyit_swipe
+  representation: trajectory  # series (x,y); el vector de gesto se deriva en Fase 2
+  gesture_gap_ms: 300
+
+imu:
+  enabled_in_proposed: false
+  include_in_manifest: true  # acc/gyro en manifiesto; no se entrenan por defecto
+  dim: 36
+
+preproc:
+  clip_low: 1
+  clip_high: 99
+  max_gestures: 16
+  write_imu_features: false  # tensores IMU solo con python -m bmpid.features --include-imu
+
+modalities:
+  core: [keystroke, signature, scroll]
+  missing_policy: skip_expert  # skip_expert | learned_missing_token
+
+fusion:
+  strategy: fixed  # fixed | learned | meta
+  missing_score: omit  # omit | zero
+  fixed_weights:
+    keystroke: 0.34
+    signature: 0.33
+    scroll: 0.33
+
+model:
+  d_embed: 128
+  d_model: 128
+  nhead: 4
+  n_layers: 2
+  ff: 256
+  dropout: 0.1
+
+paths:
+  data_root: nyit_smartphone_dataset_home_lab_cleaned
+  processed_root: data/processed
+  results_root: results
+  checkpoints_root: checkpoints

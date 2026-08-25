@@ -1,0 +1,27 @@
+name: tfm-bmp-id
+
+services:
+  bmpid:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bmpid:gpu
+    working_dir: /app
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    stdin_open: true
+    tty: true
+    shm_size: "8gb"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    volumes:
+      - .:/app
+    gpus: all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["bash"]

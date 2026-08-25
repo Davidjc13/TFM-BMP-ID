@@ -9,17 +9,19 @@ A diferencia de los rasgos físicos, la biometría conductual se centra en \text
 
 \begin{itemize}
     \item \textbf{Dinámica de Tecleo (\textit{Keystroke Dynamics}):} Estudio de los tiempos de presión (\textit{Dwell Time}), las latencias entre teclas (\textit{Flight Time}) y los intervalos entre pulsaciones (\textit{Inter-key Interval}).
-    \item \textbf{Interacción Táctil:} Patrones de desplazamiento (\textit{scrolling}), toques en pantalla (\textit{tapping}) y gestos en la interfaz.
-    \item \textbf{Sensores de Movimiento (\textit{IMU}):} Uso de acelerómetros, giroscopios y magnetómetros para capturar la micro-gestualidad y el manejo físico del terminal durante la interacción.
+    \item \textbf{Dinámica de Firma (\textit{Signature Dynamics}):} Patrones de posición, presión, velocidad y aceleración durante el trazo de la firma en pantalla táctil.
+    \item \textbf{Gestos de Desplazamiento (\textit{Scroll Dynamics}):} Velocidad, aceleración, longitud y ángulo de los deslizamientos sobre la interfaz, como señal complementaria de la interacción táctil.
 \end{itemize}
+
+Los sensores inerciales (\textit{IMU}) ---acelerómetro, giroscopio y magnetómetro--- aparecen de forma recurrente en el estado del arte (p.~ej.\ BehaveFormer) como modalidad de fusión con el tecleo. En este trabajo se consideran como \textbf{precedente bibliográfico y línea de comparación opcional}, no como pilar del sistema propuesto.
 
 \section{Innovación Tecnológica y Arquitectura}
 
 Para superar las limitaciones de los modelos clásicos (como SVM o KNN), que presentan dificultades de escalabilidad en entornos masivos, este sistema se fundamenta en arquitecturas de \textbf{Aprendizaje Profundo (\textit{Deep Learning})}:
 
 \begin{itemize}
-    \item \textbf{Modelos Híbridos y Atención:} Integración de redes neuronales convolucionales (CNN) para la extracción de características locales y redes recurrentes (LSTM) para dependencias temporales globales.
-    \item \textbf{Mecanismos de Atención Dual:} Empleo de arquitecturas basadas en \textit{transformers} (como \textit{STDAT}) que aplican atención tanto temporal como de canal para capturar patrones característicos.
-    \item \textbf{Fusión Multimodal:} Combinación de la dinámica de tecleo con datos de sensores inerciales para incrementar la robustez del sistema frente a cambios de contexto.
-    \item \textbf{Funciones de Pérdida Avanzadas:} Implementación de técnicas como \textit{Triplet Loss} y \textit{Set2set Loss}, permitiendo comparar flujos continuos de datos contra el perfil del usuario con mínima fricción.
+    \item \textbf{Dos enfoques comparables:} (i)~un Transformer unificado con encoders por modalidad y \textit{atención cruzada} entre tecleo, firma y scroll; (ii)~un ensemble de expertos (LSTM de tecleo, CNN-LSTM de firma y MLP/CNN de scroll) con fusión a nivel de puntuación.
+    \item \textbf{Modelos Híbridos y Atención:} Integración de CNN para características locales del trazo y LSTM para dependencias temporales, complementadas con mecanismos de atención sobre la secuencia de interacción.
+    \item \textbf{Fusión Multimodal:} Combinación de dinámica de tecleo, firma y desplazamiento, con un experimento ablativo para cuantificar el beneficio marginal del scroll. Las arquitecturas tipo \textit{STDAT} con IMU se tratan como trabajo relacionado, no como la arquitectura a implementar.
+    \item \textbf{Funciones de Pérdida Avanzadas:} \textit{Triplet Loss} en los expertos unimodales y \textit{Set2set Loss} en el enfoque Transformer, para comparar flujos continuos contra el perfil de enrolamiento.
 \end{itemize}
