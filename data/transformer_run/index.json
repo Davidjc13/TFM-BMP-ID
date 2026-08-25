@@ -1,0 +1,67 @@
+{
+  "env": {
+    "utc": "2026-08-25T13:10:01.468527+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "seed": 42,
+    "torch": "2.13.0+cpu",
+    "cuda": false
+  },
+  "runs": [
+    {
+      "kind": "fused",
+      "tag": "dev",
+      "eer": 0.18042024832855777,
+      "n_genuine": 349,
+      "n_impostor": 5235
+    },
+    {
+      "kind": "fused",
+      "tag": "eval",
+      "eer": 0.24603345925526174,
+      "n_genuine": 545,
+      "n_impostor": 9265
+    },
+    {
+      "kind": "unimodal",
+      "modality": "keystroke",
+      "tag": "eval_no_scroll_signature",
+      "eer": 0.4458890667768424,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "zscore_impostor": "owner"
+    },
+    {
+      "kind": "unimodal",
+      "modality": "signature",
+      "tag": "eval_no_keystroke_scroll",
+      "eer": 0.5019546175794619,
+      "n_genuine": 41335,
+      "n_impostor": 702695,
+      "zscore_impostor": "owner"
+    },
+    {
+      "kind": "unimodal",
+      "modality": "scroll",
+      "tag": "eval_no_keystroke_signature",
+      "eer": 0.4717754991905019,
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "zscore_impostor": "owner"
+    },
+    {
+      "kind": "ks_sig",
+      "tag": "eval_no_scroll",
+      "eer": 0.28137427051593245,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "kind": "ks",
+      "tag": "eval_no_scroll_signature",
+      "eer": 0.28142591540567063,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    }
+  ]
+}

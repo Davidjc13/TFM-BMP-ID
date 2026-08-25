@@ -1,0 +1,56 @@
+{
+  "best": "meta",
+  "dev_eer": 0.32561383395433263,
+  "candidates": [
+    {
+      "name": "fixed",
+      "dev_eer": 0.4155536447883825
+    },
+    {
+      "name": "fixed_inv_eer",
+      "dev_eer": 0.4127925862233687
+    },
+    {
+      "name": "learned",
+      "dev_eer": 0.4336295022451514
+    },
+    {
+      "name": "meta",
+      "dev_eer": 0.32561383395433263
+    }
+  ],
+  "fixed_weights": [
+    0.34,
+    0.33,
+    0.33
+  ],
+  "fixed_inv_eer_weights": [
+    0.45880608782864013,
+    0.2755956059989591,
+    0.2655983061724007
+  ],
+  "unimodal_eer_dev": {
+    "keystroke": 0.25598479691400045,
+    "signature": 0.42615840259864335,
+    "scroll": 0.442199293016146
+  },
+  "missing_score": "omit",
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "learned_logits": [
+    -0.3031674027442932,
+    -1.9326082468032837,
+    1.403583288192749
+  ],
+  "learned_scale": 4.325283527374268,
+  "meta_keys": [
+    "net.0.weight",
+    "net.0.bias",
+    "net.2.weight",
+    "net.2.bias"
+  ],
+  "best_dev_eer": 0.32561383395433263
+}

@@ -129,6 +129,8 @@ Código: `src/bmpid/features/{keystroke,signature,scroll,windowing,normalize,imu
 
 Tests: `tests/test_features.py` (ventana N=50 sin caracteres; trazo vertical sintético → ángulo ≈ 0; clip no usa eval; train no importa IMU).
 
+Registro del Transformer: `data/TRANSFORMER.md` y `data/transformer_run/`. Registro del ensemble: `data/ENSEMBLE.md` y `data/ensemble_run/`.
+
 ---
 
 ## Qué no hace este paso (siguiente fase)

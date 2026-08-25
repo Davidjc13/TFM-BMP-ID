@@ -1,0 +1,234 @@
+{
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "experts": [
+    {
+      "best_dev_eer": 0.2767857142857143,
+      "checkpoint": "/home/ubuntu/TFM-BMP-ID/checkpoints/ensemble/keystroke.pt",
+      "modality": "keystroke",
+      "n_train_users": 40,
+      "device": "cpu",
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.19569497058788934,
+          "modality": "keystroke",
+          "dev_eer": 0.3638392857142857,
+          "dev_auc": 0.6574258609693877
+        },
+        {
+          "epoch": 2,
+          "loss": 0.21589773815746108,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.19922680283586183,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.18843371762583652,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.20236093116303286,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.20163256954401731,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.21690519185115895,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.20078417689849934,
+          "modality": "keystroke",
+          "dev_eer": 0.30580357142857145,
+          "dev_auc": 0.7232940051020409
+        },
+        {
+          "epoch": 9,
+          "loss": 0.1943644224666059,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 10,
+          "loss": 0.21444491855800152,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 11,
+          "loss": 0.24121883232146502,
+          "modality": "keystroke"
+        },
+        {
+          "epoch": 12,
+          "loss": 0.20992613785589734,
+          "modality": "keystroke",
+          "dev_eer": 0.2767857142857143,
+          "dev_auc": 0.7376434948979592
+        }
+      ]
+    },
+    {
+      "best_dev_eer": 0.38671875,
+      "checkpoint": "/home/ubuntu/TFM-BMP-ID/checkpoints/ensemble/signature.pt",
+      "modality": "signature",
+      "n_train_users": 49,
+      "device": "cpu",
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.20582045630241433,
+          "modality": "signature",
+          "dev_eer": 0.412109375,
+          "dev_auc": 0.6013946533203125
+        },
+        {
+          "epoch": 2,
+          "loss": 0.2183469197091957,
+          "modality": "signature"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.19998439603174725,
+          "modality": "signature"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.20738956658169627,
+          "modality": "signature"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.2173472118253509,
+          "modality": "signature"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.20737996029977998,
+          "modality": "signature"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.2053699940443039,
+          "modality": "signature"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.20255804061889648,
+          "modality": "signature",
+          "dev_eer": 0.41796875,
+          "dev_auc": 0.5696563720703125
+        },
+        {
+          "epoch": 9,
+          "loss": 0.20265647241224846,
+          "modality": "signature"
+        },
+        {
+          "epoch": 10,
+          "loss": 0.19989526364952326,
+          "modality": "signature"
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2071487563662231,
+          "modality": "signature"
+        },
+        {
+          "epoch": 12,
+          "loss": 0.20517814407745996,
+          "modality": "signature",
+          "dev_eer": 0.38671875,
+          "dev_auc": 0.61767578125
+        }
+      ]
+    },
+    {
+      "best_dev_eer": 0.41015625,
+      "checkpoint": "/home/ubuntu/TFM-BMP-ID/checkpoints/ensemble/scroll.pt",
+      "modality": "scroll",
+      "n_train_users": 49,
+      "device": "cpu",
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.2505893640530606,
+          "modality": "scroll",
+          "dev_eer": 0.4296875,
+          "dev_auc": 0.5834197998046875
+        },
+        {
+          "epoch": 2,
+          "loss": 0.2553049788499872,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.284441274125129,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.27301270483682555,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.2732267410804828,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.24910018049801388,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.26133425952866673,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.2593296387543281,
+          "modality": "scroll",
+          "dev_eer": 0.41015625,
+          "dev_auc": 0.592254638671875
+        },
+        {
+          "epoch": 9,
+          "loss": 0.23889750878637037,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2593607759724061,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2343882874896129,
+          "modality": "scroll"
+        },
+        {
+          "epoch": 12,
+          "loss": 0.24497983061398068,
+          "modality": "scroll",
+          "dev_eer": 0.42578125,
+          "dev_auc": 0.5962982177734375
+        }
+      ]
+    }
+  ]
+}

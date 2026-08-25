@@ -14,7 +14,11 @@ def test_default_config_fase0_keys():
     assert cfg["signature"]["decision"] == "proxy_touch"
     assert cfg["scroll"]["task"] == "nyit_swipe"
     assert cfg["splits"]["disjoint_users"] is True
-    assert cfg["ttd"]["rule"] in {"first_cross", "consecutive"}
+    assert cfg["train"]["transformer"]["modalities"] == ["keystroke", "signature", "scroll"]
+    assert cfg["eval"]["collect_all_traces"] is True
+    assert cfg["train"]["ensemble"]["semi_hard"] is True
+    assert cfg["eval"]["ensemble_archive_root"] == "data/ensemble_run"
+    assert cfg["fusion"]["strategy"] == "meta"
 
 
 def test_store_raw_text_cannot_be_true(tmp_path):

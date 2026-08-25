@@ -70,7 +70,7 @@ modalities:
   missing_policy: skip_expert  # skip_expert | learned_missing_token
 
 fusion:
-  strategy: fixed  # fixed | learned | meta
+  strategy: meta  # chosen by EER on *dev* (NYIT ensemble); alternatives: fixed | fixed_inv_eer | learned
   missing_score: omit  # omit | zero
   fixed_weights:
     keystroke: 0.34
@@ -84,6 +84,45 @@ model:
   n_layers: 2
   ff: 256
   dropout: 0.1
+
+train:
+  transformer:
+    device: auto
+    batch_size: 8
+    epochs: 12
+    steps_per_epoch: 48
+    lr: 0.001
+    weight_decay: 0.0001
+    grad_clip: 1.0
+    eval_every: 8
+    modalities: [keystroke, signature, scroll]
+    max_genuine_per_user: 16
+    max_impostor_per_claimed: 16
+  ensemble:
+    device: auto
+    batch_size: 8
+    epochs: 12
+    steps_per_epoch: 48
+    lr: 0.001
+    weight_decay: 0.0001
+    grad_clip: 1.0
+    eval_every: 8
+    hidden: 64
+    lstm_layers: 2
+    conv_ch: 32
+    scroll_hidden: [64, 32]
+    scroll_dropout: 0.3
+    semi_hard: true
+    max_genuine_per_user: 16
+    max_impostor_per_claimed: 16
+
+eval:
+  collect_all_traces: true
+  pair: min
+  zscore_impostor: claimed
+  embed_batch_size: 32
+  archive_root: data/transformer_run
+  ensemble_archive_root: data/ensemble_run
 
 paths:
   data_root: nyit_smartphone_dataset_home_lab_cleaned

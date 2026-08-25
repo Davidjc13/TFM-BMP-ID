@@ -16,7 +16,7 @@ CMD          ?=
 export HOST_UID := $(shell id -u)
 export HOST_GID := $(shell id -g)
 
-.PHONY: help install install-gpu test data features infer \
+.PHONY: help install install-gpu test data features infer train-transformer eval-transformer eval-transformer-archive \
 	docker-build docker-shell docker-run docker-test docker-gpu docker-smi \
 	docker-data docker-features docker-infer clean
 
@@ -28,6 +28,8 @@ help:
 	@echo "  make data          python -m bmpid.data"
 	@echo "  make features      python -m bmpid.features"
 	@echo "  make infer         python -m bmpid.infer"
+	@echo "  make train-transformer  Transformer + Set2set (NYIT features)"
+	@echo "  make eval-transformer   EER/AUC/FAR/TTD (CHECKPOINT=...)"
 	@echo ""
 	@echo "Docker (NVIDIA Container Toolkit en el host / WSL2)"
 	@echo "  make docker-build     construye bmpid:gpu"
@@ -64,6 +66,15 @@ features: $(VENV)/bin/python
 
 infer: $(VENV)/bin/python
 	$(PY) -m bmpid.infer --config $(CONFIG)
+
+train-transformer: $(VENV)/bin/python
+	$(PY) -m bmpid.train.transformer --config $(CONFIG)
+
+eval-transformer: $(VENV)/bin/python
+	$(PY) -m bmpid.eval --config $(CONFIG) --checkpoint $(or $(CHECKPOINT),checkpoints/transformer/best.pt) --split $(or $(SPLIT),eval)
+
+eval-transformer-archive: $(VENV)/bin/python
+	$(PY) -m bmpid.eval --config $(CONFIG) --checkpoint $(or $(CHECKPOINT),checkpoints/transformer/best.pt) --archive-all
 
 docker-build:
 	$(COMPOSE) build

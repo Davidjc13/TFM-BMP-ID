@@ -1,0 +1,71 @@
+{
+  "dataset": "nyit",
+  "model": "transformer",
+  "seed": 42,
+  "k_enroll": 5,
+  "seq_len": 50,
+  "collect_all_traces": true,
+  "pair": "min",
+  "archive": "data/transformer_run",
+  "best_epoch": 1,
+  "device": "cpu",
+  "inventory_eval": {
+    "keystroke_leftover": 2278,
+    "signature_leftover": 41335,
+    "scroll_leftover": 545
+  },
+  "dev_fused": {
+    "eer": 0.18042024832855777,
+    "auc": 0.8913955276776601,
+    "n_genuine": 349,
+    "n_impostor": 5235
+  },
+  "eval": [
+    {
+      "infer": ["keystroke", "signature", "scroll"],
+      "eer": 0.24603345925526174,
+      "auc": 0.8295807938527654,
+      "far_at_1frr": 0.45979492714517,
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "op_dev_tau_far": 0.3303831624392876,
+      "op_dev_tau_frr": 0.13211009174311927
+    },
+    {
+      "infer": ["keystroke", "signature"],
+      "eer": 0.28137427051593245,
+      "auc": 0.7964898092934233,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "infer": ["keystroke"],
+      "zscore": "claimed",
+      "eer": 0.28142591540567063,
+      "auc": 0.7915395287220175,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "infer": ["keystroke"],
+      "kind": "unimodal_owner",
+      "eer": 0.4458890667768424,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "infer": ["signature"],
+      "kind": "unimodal_owner",
+      "eer": 0.5019546175794619,
+      "n_genuine": 41335,
+      "n_impostor": 702695
+    },
+    {
+      "infer": ["scroll"],
+      "kind": "unimodal_owner",
+      "eer": 0.4717754991905019,
+      "n_genuine": 545,
+      "n_impostor": 9265
+    }
+  ]
+}

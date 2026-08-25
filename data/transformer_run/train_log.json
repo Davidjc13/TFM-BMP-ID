@@ -1,0 +1,67 @@
+{
+  "best_dev_eer": 0.146484375,
+  "checkpoint": "/home/ubuntu/TFM-BMP-ID/checkpoints/transformer/best.pt",
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "n_train_users": 49,
+  "device": "cpu",
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.05984590012424936,
+      "dev_eer": 0.146484375,
+      "dev_auc": 0.9194488525390625
+    },
+    {
+      "epoch": 2,
+      "loss": 0.0463075740262866
+    },
+    {
+      "epoch": 3,
+      "loss": 0.04814935460065802
+    },
+    {
+      "epoch": 4,
+      "loss": 0.05847912720249345
+    },
+    {
+      "epoch": 5,
+      "loss": 0.049296225576351084
+    },
+    {
+      "epoch": 6,
+      "loss": 0.05042338208295405
+    },
+    {
+      "epoch": 7,
+      "loss": 0.043526796895700194
+    },
+    {
+      "epoch": 8,
+      "loss": 0.043489232659339905,
+      "dev_eer": 0.220703125,
+      "dev_auc": 0.8994903564453125
+    },
+    {
+      "epoch": 9,
+      "loss": 0.045265217001239456
+    },
+    {
+      "epoch": 10,
+      "loss": 0.05639390794870754
+    },
+    {
+      "epoch": 11,
+      "loss": 0.04534577227119977
+    },
+    {
+      "epoch": 12,
+      "loss": 0.04844038661879798,
+      "dev_eer": 0.15234375,
+      "dev_auc": 0.918487548828125
+    }
+  ]
+}

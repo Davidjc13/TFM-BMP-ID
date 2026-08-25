@@ -1,0 +1,36 @@
+{
+  "model": "ensemble",
+  "split": "eval",
+  "modalities": [
+    "scroll"
+  ],
+  "n_users": 18,
+  "drop_modalities": [
+    "keystroke",
+    "signature"
+  ],
+  "k_enroll": 5,
+  "pair": "min",
+  "collect_all": true,
+  "zscore_impostor": "owner",
+  "n_genuine": 41335,
+  "n_impostor": 702695,
+  "eer": 0.49506756131749907,
+  "auc": 0.5052116783207061,
+  "threshold_split_eer": -0.6333093047142029,
+  "far_at_1frr": {
+    "far": 0.9916236774133871,
+    "frr": 0.009991532599491926,
+    "threshold": -1.204777479171753,
+    "target_frr": 0.01
+  },
+  "ttd": {
+    "n_sequences": 0,
+    "n_detected": 0,
+    "detect_rate": NaN,
+    "mean_events": NaN,
+    "median_events": NaN
+  },
+  "fusion": "unimodal",
+  "n_scores": 744030
+}

@@ -1,0 +1,94 @@
+{
+  "env": {
+    "utc": "2026-08-25T13:41:15.549238+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "seed": 42,
+    "torch": "2.13.0+cpu",
+    "cuda": false
+  },
+  "runs": [
+    {
+      "kind": "fused",
+      "fusion": "meta",
+      "tag": "dev",
+      "eer": 0.32561383395433263,
+      "n_genuine": 3489,
+      "n_impostor": 52335
+    },
+    {
+      "kind": "fused",
+      "fusion": "meta",
+      "tag": "eval",
+      "eer": 0.289753653875949,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "kind": "fusion_fixed",
+      "tag": "eval_fixed",
+      "eer": 0.34718277126478336,
+      "n_genuine": 2278
+    },
+    {
+      "kind": "fusion_fixed_inv_eer",
+      "tag": "eval_fixed_inv_eer",
+      "eer": 0.3362211434178588,
+      "n_genuine": 2278
+    },
+    {
+      "kind": "fusion_learned",
+      "tag": "eval_learned",
+      "eer": 0.35693074420286114,
+      "n_genuine": 2278
+    },
+    {
+      "kind": "fusion_meta",
+      "tag": "eval_meta",
+      "eer": 0.289753653875949,
+      "n_genuine": 2278
+    },
+    {
+      "kind": "ks_sig",
+      "tag": "eval_no_scroll",
+      "eer": 0.3662010019108609,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "kind": "ks",
+      "tag": "eval_no_scroll_signature",
+      "eer": 0.30368486288281776,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "kind": "unimodal",
+      "modality": "keystroke",
+      "tag": "eval_no_scroll_signature_unimodal",
+      "eer": 0.4755719671538501,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "zscore_impostor": "owner"
+    },
+    {
+      "kind": "unimodal",
+      "modality": "signature",
+      "tag": "eval_no_keystroke_scroll_unimodal",
+      "eer": 0.4807740200229118,
+      "n_genuine": 41335,
+      "n_impostor": 702695,
+      "zscore_impostor": "owner"
+    },
+    {
+      "kind": "unimodal",
+      "modality": "scroll",
+      "tag": "eval_no_keystroke_signature_unimodal",
+      "eer": 0.49506756131749907,
+      "n_genuine": 41335,
+      "n_impostor": 702695,
+      "zscore_impostor": "owner"
+    }
+  ],
+  "best_fuser_dev": "meta"
+}

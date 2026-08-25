@@ -1,0 +1,391 @@
+{
+  "split": "eval",
+  "k_enroll": 5,
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "totals": {
+    "keystroke": {
+      "n": 2368,
+      "enroll": 90,
+      "leftover": 2278,
+      "users": 18
+    },
+    "signature": {
+      "n": 41425,
+      "enroll": 90,
+      "leftover": 41335,
+      "users": 18
+    },
+    "scroll": {
+      "n": 41425,
+      "enroll": 90,
+      "leftover": 41335,
+      "users": 18
+    }
+  },
+  "users": [
+    {
+      "user_id": "0059",
+      "split": "eval",
+      "keystroke": {
+        "n": 29,
+        "enroll": 5,
+        "leftover": 24
+      },
+      "signature": {
+        "n": 1171,
+        "enroll": 5,
+        "leftover": 1166
+      },
+      "scroll": {
+        "n": 1171,
+        "enroll": 5,
+        "leftover": 1166
+      },
+      "fused_min_leftover": 24
+    },
+    {
+      "user_id": "0067",
+      "split": "eval",
+      "keystroke": {
+        "n": 554,
+        "enroll": 5,
+        "leftover": 549
+      },
+      "signature": {
+        "n": 6541,
+        "enroll": 5,
+        "leftover": 6536
+      },
+      "scroll": {
+        "n": 6541,
+        "enroll": 5,
+        "leftover": 6536
+      },
+      "fused_min_leftover": 549
+    },
+    {
+      "user_id": "0133",
+      "split": "eval",
+      "keystroke": {
+        "n": 190,
+        "enroll": 5,
+        "leftover": 185
+      },
+      "signature": {
+        "n": 3588,
+        "enroll": 5,
+        "leftover": 3583
+      },
+      "scroll": {
+        "n": 3588,
+        "enroll": 5,
+        "leftover": 3583
+      },
+      "fused_min_leftover": 185
+    },
+    {
+      "user_id": "0158",
+      "split": "eval",
+      "keystroke": {
+        "n": 78,
+        "enroll": 5,
+        "leftover": 73
+      },
+      "signature": {
+        "n": 931,
+        "enroll": 5,
+        "leftover": 926
+      },
+      "scroll": {
+        "n": 931,
+        "enroll": 5,
+        "leftover": 926
+      },
+      "fused_min_leftover": 73
+    },
+    {
+      "user_id": "0166",
+      "split": "eval",
+      "keystroke": {
+        "n": 296,
+        "enroll": 5,
+        "leftover": 291
+      },
+      "signature": {
+        "n": 4474,
+        "enroll": 5,
+        "leftover": 4469
+      },
+      "scroll": {
+        "n": 4474,
+        "enroll": 5,
+        "leftover": 4469
+      },
+      "fused_min_leftover": 291
+    },
+    {
+      "user_id": "0182",
+      "split": "eval",
+      "keystroke": {
+        "n": 251,
+        "enroll": 5,
+        "leftover": 246
+      },
+      "signature": {
+        "n": 4934,
+        "enroll": 5,
+        "leftover": 4929
+      },
+      "scroll": {
+        "n": 4934,
+        "enroll": 5,
+        "leftover": 4929
+      },
+      "fused_min_leftover": 246
+    },
+    {
+      "user_id": "0281",
+      "split": "eval",
+      "keystroke": {
+        "n": 183,
+        "enroll": 5,
+        "leftover": 178
+      },
+      "signature": {
+        "n": 3543,
+        "enroll": 5,
+        "leftover": 3538
+      },
+      "scroll": {
+        "n": 3543,
+        "enroll": 5,
+        "leftover": 3538
+      },
+      "fused_min_leftover": 178
+    },
+    {
+      "user_id": "0299",
+      "split": "eval",
+      "keystroke": {
+        "n": 93,
+        "enroll": 5,
+        "leftover": 88
+      },
+      "signature": {
+        "n": 2041,
+        "enroll": 5,
+        "leftover": 2036
+      },
+      "scroll": {
+        "n": 2041,
+        "enroll": 5,
+        "leftover": 2036
+      },
+      "fused_min_leftover": 88
+    },
+    {
+      "user_id": "0307",
+      "split": "eval",
+      "keystroke": {
+        "n": 101,
+        "enroll": 5,
+        "leftover": 96
+      },
+      "signature": {
+        "n": 1337,
+        "enroll": 5,
+        "leftover": 1332
+      },
+      "scroll": {
+        "n": 1337,
+        "enroll": 5,
+        "leftover": 1332
+      },
+      "fused_min_leftover": 96
+    },
+    {
+      "user_id": "0323",
+      "split": "eval",
+      "keystroke": {
+        "n": 102,
+        "enroll": 5,
+        "leftover": 97
+      },
+      "signature": {
+        "n": 1952,
+        "enroll": 5,
+        "leftover": 1947
+      },
+      "scroll": {
+        "n": 1952,
+        "enroll": 5,
+        "leftover": 1947
+      },
+      "fused_min_leftover": 97
+    },
+    {
+      "user_id": "0364",
+      "split": "eval",
+      "keystroke": {
+        "n": 131,
+        "enroll": 5,
+        "leftover": 126
+      },
+      "signature": {
+        "n": 1883,
+        "enroll": 5,
+        "leftover": 1878
+      },
+      "scroll": {
+        "n": 1883,
+        "enroll": 5,
+        "leftover": 1878
+      },
+      "fused_min_leftover": 126
+    },
+    {
+      "user_id": "1172",
+      "split": "eval",
+      "keystroke": {
+        "n": 52,
+        "enroll": 5,
+        "leftover": 47
+      },
+      "signature": {
+        "n": 1277,
+        "enroll": 5,
+        "leftover": 1272
+      },
+      "scroll": {
+        "n": 1277,
+        "enroll": 5,
+        "leftover": 1272
+      },
+      "fused_min_leftover": 47
+    },
+    {
+      "user_id": "1271",
+      "split": "eval",
+      "keystroke": {
+        "n": 38,
+        "enroll": 5,
+        "leftover": 33
+      },
+      "signature": {
+        "n": 1135,
+        "enroll": 5,
+        "leftover": 1130
+      },
+      "scroll": {
+        "n": 1135,
+        "enroll": 5,
+        "leftover": 1130
+      },
+      "fused_min_leftover": 33
+    },
+    {
+      "user_id": "1321",
+      "split": "eval",
+      "keystroke": {
+        "n": 41,
+        "enroll": 5,
+        "leftover": 36
+      },
+      "signature": {
+        "n": 1040,
+        "enroll": 5,
+        "leftover": 1035
+      },
+      "scroll": {
+        "n": 1040,
+        "enroll": 5,
+        "leftover": 1035
+      },
+      "fused_min_leftover": 36
+    },
+    {
+      "user_id": "1339",
+      "split": "eval",
+      "keystroke": {
+        "n": 39,
+        "enroll": 5,
+        "leftover": 34
+      },
+      "signature": {
+        "n": 1198,
+        "enroll": 5,
+        "leftover": 1193
+      },
+      "scroll": {
+        "n": 1198,
+        "enroll": 5,
+        "leftover": 1193
+      },
+      "fused_min_leftover": 34
+    },
+    {
+      "user_id": "1362",
+      "split": "eval",
+      "keystroke": {
+        "n": 58,
+        "enroll": 5,
+        "leftover": 53
+      },
+      "signature": {
+        "n": 1394,
+        "enroll": 5,
+        "leftover": 1389
+      },
+      "scroll": {
+        "n": 1394,
+        "enroll": 5,
+        "leftover": 1389
+      },
+      "fused_min_leftover": 53
+    },
+    {
+      "user_id": "1438",
+      "split": "eval",
+      "keystroke": {
+        "n": 56,
+        "enroll": 5,
+        "leftover": 51
+      },
+      "signature": {
+        "n": 1462,
+        "enroll": 5,
+        "leftover": 1457
+      },
+      "scroll": {
+        "n": 1462,
+        "enroll": 5,
+        "leftover": 1457
+      },
+      "fused_min_leftover": 51
+    },
+    {
+      "user_id": "1446",
+      "split": "eval",
+      "keystroke": {
+        "n": 76,
+        "enroll": 5,
+        "leftover": 71
+      },
+      "signature": {
+        "n": 1524,
+        "enroll": 5,
+        "leftover": 1519
+      },
+      "scroll": {
+        "n": 1524,
+        "enroll": 5,
+        "leftover": 1519
+      },
+      "fused_min_leftover": 71
+    }
+  ]
+}

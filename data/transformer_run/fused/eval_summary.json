@@ -1,0 +1,41 @@
+{
+  "model": "transformer",
+  "checkpoint": "/home/ubuntu/TFM-BMP-ID/checkpoints/transformer/best.pt",
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "seed": 42,
+  "split": "eval",
+  "n_users": 18,
+  "n_genuine": 545,
+  "n_impostor": 9265,
+  "eer": 0.24603345925526174,
+  "auc": 0.8295807938527654,
+  "threshold_split_eer": -0.226954385638237,
+  "far_at_1frr": {
+    "far": 0.45979492714517,
+    "frr": 0.00917431192660545,
+    "threshold": -0.47194626927375793,
+    "target_frr": 0.01
+  },
+  "ttd": {
+    "n_sequences": 306,
+    "n_detected": 299,
+    "detect_rate": 0.9771241830065359,
+    "mean_events": 11.551839464882944,
+    "median_events": 2.0
+  },
+  "drop_modalities": [],
+  "k_enroll": 5,
+  "pair": "min",
+  "collect_all": true,
+  "zscore_impostor": "claimed",
+  "operating_point_dev_tau": {
+    "tau": -0.2931256890296936,
+    "far": 0.3303831624392876,
+    "frr": 0.13211009174311927
+  },
+  "n_scores": 9810
+}

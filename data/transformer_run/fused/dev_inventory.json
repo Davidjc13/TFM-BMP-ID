@@ -1,0 +1,351 @@
+{
+  "split": "dev",
+  "k_enroll": 5,
+  "modalities": [
+    "keystroke",
+    "signature",
+    "scroll"
+  ],
+  "totals": {
+    "keystroke": {
+      "n": 1426,
+      "enroll": 70,
+      "leftover": 1356,
+      "users": 14
+    },
+    "signature": {
+      "n": 25770,
+      "enroll": 80,
+      "leftover": 25690,
+      "users": 16
+    },
+    "scroll": {
+      "n": 429,
+      "enroll": 80,
+      "leftover": 349,
+      "users": 16
+    }
+  },
+  "users": [
+    {
+      "user_id": "0026",
+      "split": "dev",
+      "keystroke": {
+        "n": 321,
+        "enroll": 5,
+        "leftover": 316
+      },
+      "signature": {
+        "n": 3671,
+        "enroll": 5,
+        "leftover": 3666
+      },
+      "scroll": {
+        "n": 58,
+        "enroll": 5,
+        "leftover": 53
+      },
+      "fused_min_leftover": 53
+    },
+    {
+      "user_id": "0125",
+      "split": "dev",
+      "keystroke": {
+        "n": 0,
+        "enroll": 0,
+        "leftover": 0
+      },
+      "signature": {
+        "n": 1508,
+        "enroll": 5,
+        "leftover": 1503
+      },
+      "scroll": {
+        "n": 24,
+        "enroll": 5,
+        "leftover": 19
+      },
+      "fused_min_leftover": 19
+    },
+    {
+      "user_id": "0224",
+      "split": "dev",
+      "keystroke": {
+        "n": 304,
+        "enroll": 5,
+        "leftover": 299
+      },
+      "signature": {
+        "n": 3785,
+        "enroll": 5,
+        "leftover": 3780
+      },
+      "scroll": {
+        "n": 62,
+        "enroll": 5,
+        "leftover": 57
+      },
+      "fused_min_leftover": 57
+    },
+    {
+      "user_id": "0265",
+      "split": "dev",
+      "keystroke": {
+        "n": 75,
+        "enroll": 5,
+        "leftover": 70
+      },
+      "signature": {
+        "n": 1309,
+        "enroll": 5,
+        "leftover": 1304
+      },
+      "scroll": {
+        "n": 24,
+        "enroll": 5,
+        "leftover": 19
+      },
+      "fused_min_leftover": 19
+    },
+    {
+      "user_id": "0505",
+      "split": "dev",
+      "keystroke": {
+        "n": 77,
+        "enroll": 5,
+        "leftover": 72
+      },
+      "signature": {
+        "n": 645,
+        "enroll": 5,
+        "leftover": 640
+      },
+      "scroll": {
+        "n": 10,
+        "enroll": 5,
+        "leftover": 5
+      },
+      "fused_min_leftover": 5
+    },
+    {
+      "user_id": "1073",
+      "split": "dev",
+      "keystroke": {
+        "n": 0,
+        "enroll": 0,
+        "leftover": 0
+      },
+      "signature": {
+        "n": 635,
+        "enroll": 5,
+        "leftover": 630
+      },
+      "scroll": {
+        "n": 13,
+        "enroll": 5,
+        "leftover": 8
+      },
+      "fused_min_leftover": 8
+    },
+    {
+      "user_id": "1115",
+      "split": "dev",
+      "keystroke": {
+        "n": 48,
+        "enroll": 5,
+        "leftover": 43
+      },
+      "signature": {
+        "n": 1730,
+        "enroll": 5,
+        "leftover": 1725
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1149",
+      "split": "dev",
+      "keystroke": {
+        "n": 57,
+        "enroll": 5,
+        "leftover": 52
+      },
+      "signature": {
+        "n": 1626,
+        "enroll": 5,
+        "leftover": 1621
+      },
+      "scroll": {
+        "n": 23,
+        "enroll": 5,
+        "leftover": 18
+      },
+      "fused_min_leftover": 18
+    },
+    {
+      "user_id": "1164",
+      "split": "dev",
+      "keystroke": {
+        "n": 67,
+        "enroll": 5,
+        "leftover": 62
+      },
+      "signature": {
+        "n": 1461,
+        "enroll": 5,
+        "leftover": 1456
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1180",
+      "split": "dev",
+      "keystroke": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "signature": {
+        "n": 1112,
+        "enroll": 5,
+        "leftover": 1107
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1214",
+      "split": "dev",
+      "keystroke": {
+        "n": 78,
+        "enroll": 5,
+        "leftover": 73
+      },
+      "signature": {
+        "n": 1784,
+        "enroll": 5,
+        "leftover": 1779
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1222",
+      "split": "dev",
+      "keystroke": {
+        "n": 35,
+        "enroll": 5,
+        "leftover": 30
+      },
+      "signature": {
+        "n": 863,
+        "enroll": 5,
+        "leftover": 858
+      },
+      "scroll": {
+        "n": 17,
+        "enroll": 5,
+        "leftover": 12
+      },
+      "fused_min_leftover": 12
+    },
+    {
+      "user_id": "1313",
+      "split": "dev",
+      "keystroke": {
+        "n": 42,
+        "enroll": 5,
+        "leftover": 37
+      },
+      "signature": {
+        "n": 1303,
+        "enroll": 5,
+        "leftover": 1298
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1396",
+      "split": "dev",
+      "keystroke": {
+        "n": 81,
+        "enroll": 5,
+        "leftover": 76
+      },
+      "signature": {
+        "n": 1279,
+        "enroll": 5,
+        "leftover": 1274
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1404",
+      "split": "dev",
+      "keystroke": {
+        "n": 47,
+        "enroll": 5,
+        "leftover": 42
+      },
+      "signature": {
+        "n": 1852,
+        "enroll": 5,
+        "leftover": 1847
+      },
+      "scroll": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "3111",
+      "split": "dev",
+      "keystroke": {
+        "n": 168,
+        "enroll": 5,
+        "leftover": 163
+      },
+      "signature": {
+        "n": 1207,
+        "enroll": 5,
+        "leftover": 1202
+      },
+      "scroll": {
+        "n": 16,
+        "enroll": 5,
+        "leftover": 11
+      },
+      "fused_min_leftover": 11
+    }
+  ]
+}
