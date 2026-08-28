@@ -1,0 +1,124 @@
+seed: 42
+seq_len: 25
+seq_len_keystroke: 25
+seq_len_ablation:
+- 25
+- 50
+- 100
+keystroke_stride: 12
+set2set_margin: 0.2
+triplet_margin: 0.2
+k_enroll: 5
+privacy:
+  store_raw_text: false
+  persist_key_ids: hashed
+ttd:
+  unit: events
+  rule: consecutive
+  k_consecutive: 2
+  tau_source: dev_eer
+dataset:
+  name: nyit
+  root: nyit_smartphone_dataset_home_lab_cleaned
+  source_url: https://www.nyit-lamp.com/dataset/dataset4/
+  citation: NYIT_dataset:2025
+  checksums_file: data/checksums/nyit_core.sha256
+splits:
+  names:
+  - train
+  - dev
+  - eval
+  disjoint_users: true
+  ratios:
+  - 0.6
+  - 0.2
+  - 0.2
+signature:
+  decision: proxy_touch
+  source_task: nyit_swipe
+  same_trial_as_keystroke: false
+  pressure_available: false
+  fs: 100
+  T: 128
+scroll:
+  task: nyit_swipe
+  representation: trajectory
+  gesture_gap_ms: 300
+imu:
+  enabled_in_proposed: false
+  include_in_manifest: true
+  dim: 36
+preproc:
+  clip_low: 1
+  clip_high: 99
+  max_gestures: 16
+  write_imu_features: false
+modalities:
+  core:
+  - keystroke
+  - signature
+  - scroll
+  missing_policy: skip_expert
+fusion:
+  strategy: meta
+  missing_score: omit
+  fixed_weights:
+    keystroke: 0.34
+    signature: 0.33
+    scroll: 0.33
+model:
+  d_embed: 128
+  d_model: 128
+  nhead: 4
+  n_layers: 2
+  ff: 256
+  dropout: 0.1
+train:
+  transformer:
+    device: auto
+    batch_size: 8
+    epochs: 12
+    steps_per_epoch: 48
+    lr: 0.001
+    weight_decay: 0.0001
+    grad_clip: 1.0
+    eval_every: 8
+    modalities:
+    - keystroke
+    - signature
+    - scroll
+    max_genuine_per_user: 16
+    max_impostor_per_claimed: 16
+  ensemble:
+    device: auto
+    batch_size: 8
+    epochs: 12
+    steps_per_epoch: 48
+    lr: 0.001
+    weight_decay: 0.0001
+    grad_clip: 1.0
+    eval_every: 8
+    hidden: 64
+    lstm_layers: 2
+    conv_ch: 32
+    scroll_hidden:
+    - 64
+    - 32
+    scroll_dropout: 0.3
+    semi_hard: true
+    max_genuine_per_user: 16
+    max_impostor_per_claimed: 16
+eval:
+  collect_all_traces: true
+  pair: min
+  zscore_impostor: claimed
+  embed_batch_size: 32
+  archive_root: data/transformer_run
+  ensemble_archive_root: data/ensemble_run
+  eval_archive_root: data/eval_run
+paths:
+  data_root: nyit_smartphone_dataset_home_lab_cleaned
+  processed_root: data/processed
+  results_root: /home/ubuntu/TFM-BMP-ID/results/eval_seqlen/n25
+  checkpoints_root: /home/ubuntu/TFM-BMP-ID/checkpoints/eval_seqlen/n25
+  features_dir: /home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n25

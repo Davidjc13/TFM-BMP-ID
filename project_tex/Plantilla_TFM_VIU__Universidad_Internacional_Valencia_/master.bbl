@@ -6,18 +6,38 @@ Acien, A. y et~al.: 2022,
 
 \bibitem[\protect\astroncite{Acien et al.}{2022a}]{acien2022keystroke}
 Acien, A., Morales, A., Vera-Rodriguez, R., Tolosana, R., y Fierrez, J.: 2022a,
-\newblock {\em IEEE Transactions on Biometrics, Behavior, and Identity Science} {\bf 4(1)}, 57
+\newblock {\em IEEE Transactions on Biometrics, Behavior, and Identity Science}
+  {\bf 4(1)}, 57
 
 \bibitem[\protect\astroncite{Acien et al.}{2022b}]{acien2022typenet}
 Acien, A., Morales, A., Vera-Rodriguez, R., Tolosana, R., y Fierrez, J.: 2022b,
-\newblock {\em {IEEE} Transactions on Biometrics, Behavior, and Identity Science} {\bf 4(1)}, 57
+\newblock {\em {IEEE} Transactions on Biometrics, Behavior, and Identity
+  Science} {\bf 4(1)}, 57
+
+\bibitem[\protect\astroncite{Cariello et al.}{2025a}]{cariello2025posture}
+Cariello, N., Eslinger, R., Gallagher, R., Kurtzer, I., Gasti, P., y Balagani,
+  K.~S.: 2025a,
+\newblock {\em {IEEE} Transactions on Biometrics, Behavior, and Identity
+  Science} {\bf 7(1)}, 3
+
+\bibitem[\protect\astroncite{Cariello et al.}{2025b}]{NYIT_dataset:2025}
+Cariello, N., Gallagher, R., Balagani, K., Kurtzer, I., y Gasti, P.: 2025b,
+\newblock {\em {New York Institute of Technology Smartphone Activity Dataset}}
+
+\bibitem[\protect\astroncite{Cariello et al.}{2026}]{cariello2026keystroke}
+Cariello, N., Nguyen, L., Gallagher, R., Kurtzer, I., Balagani, K.~S., y Gasti,
+  P.: 2026,
+\newblock {\em {IEEE} Transactions on Biometrics, Behavior, and Identity
+  Science},
+\newblock Accepted
 
 \bibitem[\protect\astroncite{Cavoukian}{2009}]{cavoukian2009privacy}
 Cavoukian, A.: 2009
 
 \bibitem[\protect\astroncite{González et al.}{2025a}]{type2branch}
 González, N., Stragapede, G., Vera-Rodriguez, R., y Tolosana, R.: 2025a,
-\newblock {\em Type2Branch: Keystroke Biometrics based on a Dual-branch Architecture with Attention Mechanisms and Set2set Loss}
+\newblock {\em Type2Branch: Keystroke Biometrics based on a Dual-branch
+  Architecture with Attention Mechanisms and Set2set Loss}
 
 \bibitem[\protect\astroncite{González et al.}{2025b}]{gonzalez2025type2branch}
 González, N., Stragapede, G., Vera-Rodriguez, R., y Tolosana, R.: 2025b,
@@ -28,7 +48,8 @@ Goodfellow, I., Bengio, Y., y Courville, A.: 2016,
 \newblock {\em Deep Learning},
 \newblock MIT Press, Cambridge, MA
 
-\bibitem[\protect\astroncite{Hochreiter and Schmidhuber}{1997}]{hochreiter1997lstm}
+\bibitem[\protect\astroncite{Hochreiter and
+  Schmidhuber}{1997}]{hochreiter1997lstm}
 Hochreiter, S. y Schmidhuber, J.: 1997,
 \newblock {\em Neural Computation} {\bf 9(8)}, 1735
 
@@ -39,38 +60,53 @@ Jain, A.~K., Flynn, P.~J., y Ross, A.~A. (eds.): 2008,
 
 \bibitem[\protect\astroncite{{Jefatura del Estado}}{2018}]{lopdgdd2018}
 {Jefatura del Estado}: 2018,
-\newblock {\em Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y Garantía de los Derechos Digitales}
+\newblock {\em Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
+  Personales y Garantía de los Derechos Digitales}
 
-\bibitem[\protect\astroncite{{Parlamento Europeo} and {Consejo de la Unión Europea}}{2016}]{rgpd2016}
+\bibitem[\protect\astroncite{{Parlamento Europeo} and {Consejo de la Unión
+  Europea}}{2016}]{rgpd2016}
 {Parlamento Europeo} y {Consejo de la Unión Europea}: 2016,
-\newblock {\em Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos}
+\newblock {\em Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo,
+  de 27 de abril de 2016, relativo a la protección de las personas físicas en
+  lo que respecta al tratamiento de datos personales y a la libre circulación
+  de estos datos}
 
 \bibitem[\protect\astroncite{Senerath et al.}{2023a}]{senerath2023}
-Senerath, D., Tharinda, S., Vishwajith, M., Rasnayaka, S., Wickramanayake, S., y Meedeniya, D.: 2023a,
-\newblock {\em BehaveFormer: A Framework with Spatio-Temporal Dual Attention Transformers for IMU enhanced Keystroke Dynamics}
+Senerath, D., Tharinda, S., Vishwajith, M., Rasnayaka, S., Wickramanayake, S.,
+  y Meedeniya, D.: 2023a,
+\newblock {\em BehaveFormer: A Framework with Spatio-Temporal Dual Attention
+  Transformers for IMU enhanced Keystroke Dynamics}
 
 \bibitem[\protect\astroncite{Senerath et al.}{2023b}]{senerath2023behaveformer}
-Senerath, D., Tharinda, S., Vishwajith, M., Rasnayaka, S., Wickramanayake, S., y Meedeniya, D.: 2023b,
-\newblock in {\em Proceedings of the IEEE International Joint Conference on Biometrics (IJCB)}
+Senerath, D., Tharinda, S., Vishwajith, M., Rasnayaka, S., Wickramanayake, S.,
+  y Meedeniya, D.: 2023b,
+\newblock in {\em Proceedings of the IEEE International Joint Conference on
+  Biometrics (IJCB)}
 
 \bibitem[\protect\astroncite{Stragapede et al.}{2022a}]{Stragapede2022}
-Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Acien, A., y Le~Lan, G.: 2022a,
+Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Acien, A., y
+  Le~Lan, G.: 2022a,
 \newblock {\em Pattern Recognition Letters} {\bf 157}, 35
 
-\bibitem[\protect\astroncite{Stragapede et al.}{2022b}]{stragapede2022patterns}
-Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Acien, A., y Le~Lan, G.: 2022b,
-\newblock {\em Pattern Recognition Letters} {\bf 157}, 35
-
-\bibitem[\protect\astroncite{Stragapede et al.}{2022c}]{stragapede2022ijcb2022mobilebehavioral}
-Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J., Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers, J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022c,
+\bibitem[\protect\astroncite{Stragapede et
+  al.}{2022b}]{stragapede2022ijcb2022mobilebehavioral}
+Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J.,
+  Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers,
+  J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022b,
 \newblock {\em IJCB 2022 Mobile Behavioral Biometrics Competition (MobileB2C)}
 
-\bibitem[\protect\astroncite{Stragapede et al.}{2022d}]{stragapede2022mobileb2c}
-Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J., Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers, J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022d,
-\newblock in {\em Proceedings of the IEEE International Joint Conference on Biometrics (IJCB)}
+\bibitem[\protect\astroncite{Stragapede et
+  al.}{2022c}]{stragapede2022mobileb2c}
+Stragapede, G., Vera-Rodriguez, R., Tolosana, R., Morales, A., Fierrez, J.,
+  Ortega-Garcia, J., Rasnayaka, S., Seneviratne, S., Dissanayake, V., Liebers,
+  J., Islam, A., Belhaouari, S.~B., Ahmad, S., y Jabin, S.: 2022c,
+\newblock in {\em Proceedings of the IEEE International Joint Conference on
+  Biometrics (IJCB)}
 
 \bibitem[\protect\astroncite{Vaswani et al.}{2017}]{vaswani2017attention}
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N., Kaiser, {\L}., y Polosukhin, I.: 2017,
-\newblock in {\em Advances in Neural Information Processing Systems (NeurIPS)}, Vol.~30
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N.,
+  Kaiser, {\L}., y Polosukhin, I.: 2017,
+\newblock in {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  Vol.~30
 
 \end{thebibliography}

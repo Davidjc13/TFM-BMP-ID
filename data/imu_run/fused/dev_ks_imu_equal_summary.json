@@ -1,0 +1,39 @@
+{
+  "model": "sota_imu",
+  "split": "dev",
+  "modalities": [
+    "keystroke",
+    "imu"
+  ],
+  "n_users": 14,
+  "drop_modalities": [],
+  "k_enroll": 5,
+  "pair": "min",
+  "collect_all": true,
+  "zscore_impostor": "claimed",
+  "n_genuine": 1356,
+  "n_impostor": 17628,
+  "eer": 0.27791014295439076,
+  "auc": 0.786078212256848,
+  "threshold_split_eer": -0.2687416449189186,
+  "far_at_1frr": {
+    "far": 0.8840481052870434,
+    "frr": 0.009587020648967548,
+    "threshold": -0.45165902376174927,
+    "target_frr": 0.01
+  },
+  "ttd": {
+    "n_sequences": 182,
+    "n_detected": 82,
+    "detect_rate": 0.45054945054945056,
+    "mean_events": 6.109756097560975,
+    "median_events": 2.0
+  },
+  "proposed_system": false,
+  "fusion": "fixed_equal",
+  "weights": [
+    0.5,
+    0.5
+  ],
+  "n_scores": 18984
+}

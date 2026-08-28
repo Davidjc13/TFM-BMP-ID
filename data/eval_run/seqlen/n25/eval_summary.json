@@ -1,0 +1,37 @@
+{
+  "model": "ensemble_keystroke",
+  "seq_len": 25,
+  "stride": 12,
+  "seed": 42,
+  "split": "eval",
+  "n_users": 18,
+  "n_genuine": 5045,
+  "n_impostor": 85765,
+  "eer": 0.48881828251617787,
+  "auc": 0.5329592023100901,
+  "threshold_split_eer": -0.20786650478839874,
+  "far_at_1frr": {
+    "far": 0.9704774674983968,
+    "frr": 0.009910802775024763,
+    "threshold": -0.7509511709213257,
+    "target_frr": 0.01
+  },
+  "ttd": {
+    "n_sequences": 306,
+    "n_detected": 306,
+    "detect_rate": 1.0,
+    "mean_events": 6.26797385620915,
+    "median_events": 3.0
+  },
+  "drop_modalities": [],
+  "k_enroll": 5,
+  "pair": "min",
+  "collect_all": true,
+  "zscore_impostor": "owner",
+  "operating_point_dev_tau": {
+    "tau": -0.2598569095134735,
+    "far": 0.5819973182533668,
+    "frr": 0.35302279484638255
+  },
+  "n_scores": 90810
+}

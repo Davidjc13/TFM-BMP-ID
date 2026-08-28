@@ -98,66 +98,107 @@ modelos base.
 
 \subsection{Protocolo de Evaluación}
 
-Ambos enfoques se evaluarán bajo un protocolo común de verificación, siguiendo las directrices establecidas en 
-las competiciones MobileB2C~\cite{stragapede2022mobileb2c}:
+Ambos enfoques se evalúan bajo un protocolo común de verificación \textit{open-set}, inspirado en las 
+directrices de MobileB2C~\cite{stragapede2022mobileb2c} y adaptado al dump NYIT realmente usado:
 
 \begin{itemize}
-    \item \textbf{Partición de datos}: división en conjuntos de enrolamiento, desarrollo y evaluación, 
-    sin solapamiento de usuarios entre particiones.
-    \item \textbf{Escenarios de impostor}: se considerarán impostores aleatorios (usuarios distintos sin 
-    conocimiento del objetivo) e impostores hábiles (usuarios que intentan imitar al legítimo), cuando el 
-    dataset seleccionado lo permita.
-    \item \textbf{Métricas principales}: \textit{Equal Error Rate} (EER) como métrica primaria de comparación, 
-    complementada con AUC, FAR@1\%FRR y el \textit{Time-to-Detection} (TTD) estimado.
+    \item \textbf{Partición de usuarios}: 49 / 16 / 18 usuarios en tren / desarrollo / evaluación 
+    (\textit{seed} 42), sin solapamiento de identidades entre particiones.
+    \item \textbf{Enrolamiento leftover}: $k=5$ primeras ventanas por modalidad para el perfil; 
+    el resto de ventanas del mismo usuario constituyen las consultas genuinas (sin muestrear).
+    \item \textbf{Impostor}: aleatorio (usuarios distintos del split de evaluación). NYIT no define 
+    un protocolo de impostor hábil.
+    \item \textbf{Longitud oficial}: ventanas de tecleo $N=50$ (stride 25). Ablación $N\in\{25,50,100\}$ 
+    solo en el experto BiLSTM de tecleo.
+    \item \textbf{Métricas}: EER (primaria), AUC, FAR a FRR~$1\%$ y TTD con $k=2$ ventanas consecutivas 
+    por debajo del umbral fijado en desarrollo.
 \end{itemize}
 
+La firma en NYIT no es una firma legal: se emplea un \textit{proxy} de trazo táctil (\textit{swipe}). 
+Tecleo y \textit{swipe} proceden de \textbf{ensayos distintos}, de modo que la fusión es a nivel de usuario, 
+no de ensayo simultáneo. El tecleo del dump es solo \textit{press} (DT nulo; FT $=$ IKI).
 
-\section{Resultados Preliminares}\label{sec:resultados_preliminares}
+Un experimento adicional de IMU (36-D alineada a ventanas de tecleo) se documenta como réplica de la línea 
+BehaveFormer; \textbf{no forma parte del sistema propuesto} ni de su tabla de resultados.
 
-En el momento de redacción de este documento, el desarrollo del sistema se encuentra en fase de diseño 
-arquitectónico y planificación experimental. Por tanto, los resultados que se presentan a continuación son 
-estimaciones de referencia (\textit{baseline}) derivadas de la replicación parcial de trabajos del estado del 
-arte sobre datasets públicos, con el objetivo de establecer un punto de comparación para las arquitecturas 
-propuestas.
+\subsection{Dos pipelines (visión de conjunto)}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners, align=center, inner sep=5pt, font=\small,
+              minimum width=3.3cm, minimum height=1.05cm},
+  arr/.style={->, thick}
+]
+\node[box] (in) {Tecleo + firma \textit{proxy}\\+ scroll (NYIT)};
+\node[box, fill=blue!8, above right=0.55cm and 0.35cm of in] (tf)
+  {Transformer\\encoders + atención cruzada\\Set2set};
+\node[box, fill=orange!10, below right=0.55cm and 0.35cm of in] (ens)
+  {Ensemble\\BiLSTM / CNN-LSTM / MLP\\fusión de \textit{scores}};
+\node[box, right=6.4cm of in] (out) {EER / AUC / TTD\\eval leftover};
+\draw[arr] (in) -- (tf);
+\draw[arr] (in) -- (ens);
+\draw[arr] (tf.east) -- (out.north west);
+\draw[arr] (ens.east) -- (out.south west);
+\end{tikzpicture}
+\caption{Pipelines comparados en este trabajo. La IMU queda fuera del diagrama (réplica, no propuesta).}
+\label{fig:diagrama_enfoques}
+\end{figure}
+
+
+\section{Resultados obtenidos}\label{sec:resultados_preliminares}
+
+Las cifras de esta sección sustituyen las estimaciones iniciales (EER del orden del $1$--$3\%$). 
+Dichas estimaciones \textbf{no se materializan} en NYIT: el dump es \textit{press-only}, la firma es un 
+\textit{proxy} de \textit{swipe} y la fusión no es simultánea a nivel de ensayo. El detalle, las curvas DET 
+y la discusión frente a Cariello (mismo set) y al SOTA de otro corpus se recogen en el Capítulo~\ref{chapter:06}.
 
 \subsection{Baseline de Referencia}
 
-A continuación se muestra la tabla que recoge los valores de EER reportados por los sistemas más relevantes del estado
- del arte sobre las modalidades y datasets que se emplearán en este trabajo,
-  y que constituyen el umbral de rendimiento que el sistema propuesto deberá superar.
+A continuación se recogen EER publicados: primero SOTA de \textbf{otro} corpus (no son el umbral que este
+sistema deba superar en NYIT) y, debajo, Cariello et al.\ como único referente del mismo set.
 
 \begin{table}[h]
 \centering
-\caption{Resultados de referencia del estado del arte (EER~\%).}\label{tab:baseline}
+\caption{Referencias de EER (\%). TypeNet / Type2Branch / BehaveFormer / MobileB2C son SOTA \textbf{ajena}
+(otro corpus). Cariello es el único referente publicado sobre NYIT; usa RF/$k$-NN/SVM y mocap, no un Transformer.}\label{tab:baseline}
 \begin{tabular}{llccc}
-\textbf{Sistema} & \textbf{Modalidad} & \textbf{Dataset} & \textbf{EER (\%)} & \textbf{Seq. length} \\
-TypeNet~\cite{acien2022typenet}             & Tecleo              & Aalto DB   & 2.20 & 50 chars \\
-Type2Branch~\cite{gonzalez2025type2branch}  & Tecleo              & Mobile     & 1.03 & 50 chars \\
-BehaveFormer~\cite{senerath2023behaveformer}& Tecleo + IMU        & HuMIdb     & 2.95 & ---      \\
-MobileB2C top-1~\cite{stragapede2022mobileb2c} & Keystroke      & BehavePassDB & \multicolumn{1}{c}{AUC: 66.37} & --- \\
+\toprule
+\textbf{Sistema} & \textbf{Modalidad} & \textbf{Dataset} & \textbf{EER (\%)} & \textbf{Ventana} \\
+\midrule
+TypeNet~\cite{acien2022typenet}             & Tecleo              & Aalto      & 2{,}20 & 50 chars \\
+Type2Branch~\cite{gonzalez2025type2branch}  & Tecleo              & Mobile     & 1{,}03 & 50 chars \\
+BehaveFormer~\cite{senerath2023behaveformer}& Tecleo + IMU        & HuMIdb     & 2{,}95 & ---      \\
+MobileB2C top-1~\cite{stragapede2022mobileb2c} & Keystroke        & BehavePassDB & \multicolumn{1}{c}{AUC: 66{,}37} & --- \\
+\midrule
+Cariello RF+mocap~\cite{cariello2026keystroke} & Tecleo+IMU+Vicon & NYIT lab & $\approx$1{,}5 & 1\,s \\
+Cariello teléfono~\cite{cariello2026keystroke} & Tecleo/IMU (sin cuerpo) & NYIT lab & 9{,}5--11{,}9 & 1\,s \\
+Cariello swipe+IMU~\cite{cariello2025posture} & Swipe+IMU teléfono & NYIT lab & 15{,}7 & 60\,s \\
+\bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Estimaciones Esperadas del Sistema Propuesto}
-
-A modo orientativo, y en base a las mejoras arquitectónicas propuestas respecto a los sistemas de referencia,
- se anticipan los rangos de rendimiento recogidos en la siguiente tabla:
+\subsection{Resultados del sistema propuesto (NYIT, eval leftover)}
 
 \begin{table}[h]
 \centering
-\caption{Estimación de rendimiento esperado del sistema propuesto (EER~\%). 
-\textbf{[PENDIENTE DE ACTUALIZAR]}}\label{tab:resultados_esperados}
+\caption{Rendimiento obtenido del sistema propuesto (EER~\%, eval leftover, $N=50$). 
+IMU excluida. El Transformer 3-mod usa 545 pares genuinos (tope de scroll); el resto de filas de 
+ensemble y ablación de tecleo usan 2278.}\label{tab:resultados_esperados}
 \begin{tabular}{llcc}
-\textbf{Enfoque} & \textbf{Modalidades} & \textbf{EER esperado (\%)} & \textbf{Observaciones} \\
-Transformer unificado  & Tecleo + Firma          & $\sim$1.5 -- 2.5  & Fusión cross-modal \\
-Transformer unificado  & Tecleo + Firma + Scroll & $\sim$1.2 -- 2.0  & Mejora con scroll  \\
-Ensemble modular       & Tecleo + Firma          & $\sim$1.8 -- 3.0  & Fusión de scores   \\
-Ensemble modular       & Tecleo + Firma + Scroll & $\sim$1.5 -- 2.5  & Meta-clasificador  \\
+\toprule
+\textbf{Enfoque} & \textbf{Modalidades} & \textbf{EER (\%)} & \textbf{Observaciones} \\
+\midrule
+Transformer unificado  & Tecleo + firma + scroll & 24{,}60 & Mejor del propuesto; AUC $0{,}83$ \\
+Transformer unificado  & Tecleo + firma          & 28{,}14 & El scroll sí aporta en el TF \\
+Ensemble (meta)        & Tecleo + firma + scroll & 28{,}98 & Mejor fusor de scores \\
+Ensemble (fijo)        & Tecleo + firma          & 36{,}62 & Peor que solo tecleo (z reclamado) \\
+Transformer unimodal   & Tecleo                  & 44{,}59 & DT nulo; lejos de TypeNet/Aalto \\
+\bottomrule
 \end{tabular}
 \end{table}
 
-Estas estimaciones se fundamentan en la hipótesis de que la fusión multimodal de tecleo y firma 
-aportará una mejora consistente respecto al uso de tecleo en solitario, tal y como sugieren los trabajos 
-previos en fusión de modalidades conductuales~\cite{stragapede2022patterns}. 
-La incorporación del scroll se plantea como un experimento ablativo para cuantificar su contribución marginal 
-al rendimiento global del sistema.
+La fusión por atención cruzada sí mejora al ensemble de scores en este dump. El scroll es útil en el 
+Transformer y perjudicial o irrelevante en el ensemble. La firma \textit{proxy} no discrimina (EER unimodal 
+próximo al $50\%$). Un experimento IMU aparte alcanza EER $34{,}63\%$ en tecleo+IMU ($1/\mathrm{EER}$); 
+esa cifra no entra en la Tabla~\ref{tab:resultados_esperados}.

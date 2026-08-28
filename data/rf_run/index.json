@@ -1,0 +1,68 @@
+{
+  "env": {
+    "utc": "2026-08-27T09:26:09.214469+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "seed": 42,
+    "torch": "2.13.0+cpu",
+    "cuda": false
+  },
+  "protocol": {
+    "dataset": "nyit",
+    "splits": "user-disjoint train/dev/eval",
+    "k_enroll": 5,
+    "seq_len": 50,
+    "impostor": "random leftover of other users",
+    "note": "RF no replica Cariello (otro split, mocap Vicon, ventanas 1 s).",
+    "store_raw_text": false
+  },
+  "runs": [
+    {
+      "system": "rf_keystroke",
+      "level": "L1",
+      "split": "eval",
+      "eer": 0.3200821153746837,
+      "auc": 0.7667398193027377,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "n_users": 18,
+      "modalities": [
+        "keystroke"
+      ],
+      "official": true
+    },
+    {
+      "system": "rf_3mod_features",
+      "level": "L1",
+      "split": "eval",
+      "eer": 0.30949491297836074,
+      "auc": 0.7559719901514691,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "n_users": 18,
+      "modalities": [
+        "keystroke",
+        "signature",
+        "scroll"
+      ],
+      "official": true
+    },
+    {
+      "system": "rf_meta_3mod",
+      "level": "L3",
+      "split": "eval",
+      "eer": 0.30323297009760886,
+      "auc": 0.7615903726398706,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "n_users": 18,
+      "modalities": [
+        "keystroke",
+        "signature",
+        "scroll"
+      ],
+      "compared_to": "ensemble_meta_3mod",
+      "official": true
+    }
+  ]
+}

@@ -173,3 +173,23 @@ El estudio subraya varias deficiencias en la literatura actual:
 
 \subsection*{Problema Específico a Resolver}
 El vacío que este artículo intenta llenar es la \textbf{evaluación exhaustiva de la fusión de múltiples biometrías conductuales} (tecleo, scroll, dibujo, sensores de fondo) bajo un protocolo común y utilizando una base de datos pública de gran escala (\textit{HuMIdb}). El objetivo es determinar cuál es la combinación mínima de sensores y tiempo de análisis necesaria para lograr una autenticación robusta y transparente.
+
+\section{NYIT Smartphone Activity Dataset: único referente del mismo corpus}
+
+El dump empleado en este TFM es el \textit{Smartphone Activity Dataset} de NYIT~\cite{NYIT_dataset:2025}.
+En la literatura pública, el único grupo que reporta autenticación sobre ese conjunto (o sobre la recolección
+de laboratorio de la que deriva) es el laboratorio LAMP, con Cariello y colaboradores. No hay, a fecha de
+esta memoria, un Transformer o un TypeNet/BehaveFormer reentrenado en NYIT con el que medir el sistema propuesto
+en igualdad de corpus.
+
+Cariello et al.~\cite{cariello2025posture} combinan \textit{swipe}, IMU del teléfono y captura de movimiento
+corporal en estudio Vicon. Los verificadores son clásicos: \textit{Random Forest}, $k$-NN, SVM de una clase y
+distancia de Manhattan escalada. Con mocap alcanzan EER $5{,}4$--$6{,}4\%$ en ventanas de $1$--$5$\,s;
+solo \textit{swipe} e IMU del teléfono quedan en $15{,}7\%$ con latencia de $60$\,s.
+
+El trabajo posterior~\cite{cariello2026keystroke} alinea rasgos de cuerpo e IMU a cada pulsación. De nuevo
+el mejor clasificador es \textit{Random Forest} (no hay LSTM ni atención cruzada). Con mocap reportan EER
+$\approx 1{,}5\%$ en ventanas de $1$\,s; el baseline de teléfono (tecleo/IMU, sin cuerpo) se sitúa en
+$9{,}5$--$11{,}9\%$. Esas cifras no son un SOTA Transformer en NYIT: dependen de marcadores ópticos de
+laboratorio y de un protocolo (sesiones lab, ventanas de un segundo) distinto del leftover \textit{open-set}
+de este trabajo.

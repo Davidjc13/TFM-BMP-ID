@@ -1,0 +1,146 @@
+[
+  {
+    "user_id": "0059",
+    "n_genuine": 24,
+    "n_impostor": 2254,
+    "leftover": {
+      "keystroke": 24
+    }
+  },
+  {
+    "user_id": "0067",
+    "n_genuine": 549,
+    "n_impostor": 1729,
+    "leftover": {
+      "keystroke": 549
+    }
+  },
+  {
+    "user_id": "0133",
+    "n_genuine": 185,
+    "n_impostor": 2093,
+    "leftover": {
+      "keystroke": 185
+    }
+  },
+  {
+    "user_id": "0158",
+    "n_genuine": 73,
+    "n_impostor": 2205,
+    "leftover": {
+      "keystroke": 73
+    }
+  },
+  {
+    "user_id": "0166",
+    "n_genuine": 291,
+    "n_impostor": 1987,
+    "leftover": {
+      "keystroke": 291
+    }
+  },
+  {
+    "user_id": "0182",
+    "n_genuine": 246,
+    "n_impostor": 2032,
+    "leftover": {
+      "keystroke": 246
+    }
+  },
+  {
+    "user_id": "0281",
+    "n_genuine": 178,
+    "n_impostor": 2100,
+    "leftover": {
+      "keystroke": 178
+    }
+  },
+  {
+    "user_id": "0299",
+    "n_genuine": 88,
+    "n_impostor": 2190,
+    "leftover": {
+      "keystroke": 88
+    }
+  },
+  {
+    "user_id": "0307",
+    "n_genuine": 96,
+    "n_impostor": 2182,
+    "leftover": {
+      "keystroke": 96
+    }
+  },
+  {
+    "user_id": "0323",
+    "n_genuine": 97,
+    "n_impostor": 2181,
+    "leftover": {
+      "keystroke": 97
+    }
+  },
+  {
+    "user_id": "0364",
+    "n_genuine": 126,
+    "n_impostor": 2152,
+    "leftover": {
+      "keystroke": 126
+    }
+  },
+  {
+    "user_id": "1172",
+    "n_genuine": 47,
+    "n_impostor": 2231,
+    "leftover": {
+      "keystroke": 47
+    }
+  },
+  {
+    "user_id": "1271",
+    "n_genuine": 33,
+    "n_impostor": 2245,
+    "leftover": {
+      "keystroke": 33
+    }
+  },
+  {
+    "user_id": "1321",
+    "n_genuine": 36,
+    "n_impostor": 2242,
+    "leftover": {
+      "keystroke": 36
+    }
+  },
+  {
+    "user_id": "1339",
+    "n_genuine": 34,
+    "n_impostor": 2244,
+    "leftover": {
+      "keystroke": 34
+    }
+  },
+  {
+    "user_id": "1362",
+    "n_genuine": 53,
+    "n_impostor": 2225,
+    "leftover": {
+      "keystroke": 53
+    }
+  },
+  {
+    "user_id": "1438",
+    "n_genuine": 51,
+    "n_impostor": 2227,
+    "leftover": {
+      "keystroke": 51
+    }
+  },
+  {
+    "user_id": "1446",
+    "n_genuine": 71,
+    "n_impostor": 2207,
+    "leftover": {
+      "keystroke": 71
+    }
+  }
+]

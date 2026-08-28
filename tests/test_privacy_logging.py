@@ -56,3 +56,13 @@ def test_format_safe_used_for_logs():
     s = format_safe({"text": "leak", "seq_len": 50})
     assert "leak" not in s
     assert "50" in s
+
+
+def test_dump_json_dummy_dataset_row(tmp_path):
+    from bmpid.privacy.serialize import dump_json
+
+    secret = "typedpassword"
+    dump_json(tmp_path / "row.json", {"user_id": "42", "text": secret, "dt": [0.1]})
+    blob = (tmp_path / "row.json").read_text(encoding="utf-8")
+    assert secret not in blob
+    assert '"text"' not in blob

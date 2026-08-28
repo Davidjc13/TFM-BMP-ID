@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 
 from bmpid.config import load_config
-from bmpid.features.extract import extract
+from bmpid.features.extract import extract, extract_keystroke_seq_len
 from bmpid.features.keystroke import timings_from_presses, windows_from_csv
 from bmpid.features.normalize import apply_clip, fit_clip
 from bmpid.features.scroll import scroll_gesture_to_vector
@@ -102,6 +102,21 @@ def test_extract_mini_nyit_no_text(tmp_path: Path):
     stats = Path(summary["norm_stats"]).read_text(encoding="utf-8")
     assert "SECRETCHAR" not in stats
     assert_no_raw_text(__import__("json").loads(stats))
+
+
+def test_extract_keystroke_seq_len_25(tmp_path: Path):
+    root = tmp_path / "nyit"
+    _mini_nyit(root)
+    cfg = load_config()
+    cfg["dataset"]["root"] = str(root)
+    cfg["paths"]["processed_root"] = str(tmp_path / "processed")
+    cfg["dataset"]["checksums_file"] = str(tmp_path / "nyit.sha256")
+    out = tmp_path / "n25"
+    summary = extract_keystroke_seq_len(cfg, n=25, stride=12, out_dir=out)
+    assert summary["seq_len"] == 25
+    npz = np.load(summary["file"])
+    assert npz["x"].shape[1] == 25
+    assert b"SECRETCHAR" not in Path(summary["file"]).read_bytes()
 
 
 def test_features_package_does_not_export_imu():

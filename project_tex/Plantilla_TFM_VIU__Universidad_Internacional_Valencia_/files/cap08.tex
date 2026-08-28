@@ -1,0 +1,36 @@
+\section{Limitaciones}
+
+El dump NYIT empleado no incluye tiempos de liberación de tecla: el \textit{dwell time} está ausente y 
+el \textit{flight time} coincide con el IKI. La firma no es una rúbrica legal, sino un \textit{proxy} de 
+\textit{swipe}. Tecleo y gesto táctil ocurren en ensayos distintos, de modo que no hay fusión temporalmente 
+alineada. No hay protocolo de impostor hábil. Un solo modelo de dispositivo (iPhone XR) impide hablar de 
+heterogeneidad de hardware. TypeNet, Type2Branch y BehaveFormer se citan como SOTA ajena (Aalto/HuMIdb),
+no reentrenada aquí. El único referente del mismo set es Cariello et al.\ (RF/$k$-NN/SVM + mocap);
+no hay un Transformer SOTA publicado en NYIT.
+
+La cabeza clásica (Random Forest de rasgos y RF-meta de scores) se evaluó en el mismo leftover y no bate
+al Transformer; clonar el protocolo de Cariello con Vicon, lab y ventanas de un segundo sigue fuera de alcance.
+El $\tau$ de EER de \textit{dev} del RF de rasgos no se calibra a eval: el ranking se lee por EER, no por ese umbral.
+
+El $N$ de pares genuinos difiere entre el Transformer 3-mod (545, tope de scroll) y el ensemble (2278). 
+Comparar EER sin esa nota sobreestima o subestima diferencias. El TTD usa una regla de $k=2$ ventanas 
+consecutivas y no modela el tiempo de reloj de una sesión real. El experimento IMU, aunque archivado, no 
+replica HuMIdb ni el STDAT de BehaveFormer.
+
+\section{Trabajos futuros}
+
+Las extensiones naturales son: (i)~un corpus con DT/FT reales y, si se mantiene la modalidad de firma, 
+trazos de rúbrica en el mismo ensayo que el tecleo; (ii)~impostor hábil y más de un dispositivo; 
+(iii)~entrenar y evaluar en Aalto o HuMIdb con el mismo código, sin mezclar ejes con NYIT; (iv)~calibrar 
+umbrales por usuario y estudiar TTD en tiempo de pared; (v)~sustituir el \textit{proxy} de firma o 
+eliminarlo del sistema propuesto si sigue en azar; (vi)~explotar \textbf{rasgos que el dump ya contiene}
+y este pipeline no usa en el sistema propuesto. El \textit{dwell} no se puede inventar: no hay
+\textit{release}. Sí se pueden enriquecer los IKI (autocorrelación, histogramas, pausas, FFT), la
+cinemática del \textit{swipe} (curvatura, jerk) y, sobre todo, la IMU de teléfono ya extraída como
+\textit{sidecar} (tecleo+IMU en leftover: EER $34{,}63\%$, peor que el Transformer 3-mod). En lab hay
+además series Vicon y, en algunos trials, \textit{face tracking}; alinear IMU (o mocap) a cada pulsación
+como Cariello, sin salir del teléfono, sería la comparación de rasgos pendiente. Sit/walk y casa/lab son
+etiquetas de contexto, no identidad nueva.
+
+Recolectar firma legal y bajar el EER mediante reentrenamiento del Transformer quedan fuera del alcance
+ya cerrado de esta memoria.

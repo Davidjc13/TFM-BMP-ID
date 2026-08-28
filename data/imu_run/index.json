@@ -1,0 +1,54 @@
+{
+  "env": {
+    "utc": "2026-08-25T14:29:58.106316+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "seed": 42,
+    "torch": "2.13.0+cpu",
+    "cuda": false,
+    "proposed_system": false
+  },
+  "runs": [
+    {
+      "tag": "dev_ks_imu_inv_eer",
+      "eer": 0.26999659632402995,
+      "auc": 0.7952744544245445,
+      "n_genuine": 1356,
+      "n_impostor": 17628
+    },
+    {
+      "tag": "dev_ks_imu_equal",
+      "eer": 0.27791014295439076,
+      "auc": 0.786078212256848,
+      "n_genuine": 1356,
+      "n_impostor": 17628
+    },
+    {
+      "tag": "eval_ks_imu_inv_eer",
+      "eer": 0.3463048081392346,
+      "auc": 0.7133876612786251,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "tag": "eval_ks_imu_equal",
+      "eer": 0.3529928213603264,
+      "auc": 0.6989201094363828,
+      "n_genuine": 2278,
+      "n_impostor": 38726
+    },
+    {
+      "tag": "eval_imu_unimodal",
+      "eer": 0.5105742911738884,
+      "auc": 0.4664555729030191
+    },
+    {
+      "tag": "eval_keystroke_unimodal",
+      "eer": 0.4755719671538501,
+      "auc": 0.527567352939136
+    }
+  ],
+  "proposed_system": false,
+  "behaveformer_humidb_eer": 0.0295,
+  "note": "BehaveFormer 2.95% es HuMIdb, no NYIT; no es cifra comparable 1:1."
+}

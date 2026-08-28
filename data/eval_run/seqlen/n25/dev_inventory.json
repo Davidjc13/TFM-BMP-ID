@@ -1,0 +1,157 @@
+{
+  "split": "dev",
+  "k_enroll": 5,
+  "modalities": [
+    "keystroke"
+  ],
+  "totals": {
+    "keystroke": {
+      "n": 3111,
+      "enroll": 70,
+      "leftover": 3041,
+      "users": 14
+    }
+  },
+  "users": [
+    {
+      "user_id": "0026",
+      "split": "dev",
+      "keystroke": {
+        "n": 695,
+        "enroll": 5,
+        "leftover": 690
+      },
+      "fused_min_leftover": 690
+    },
+    {
+      "user_id": "0224",
+      "split": "dev",
+      "keystroke": {
+        "n": 654,
+        "enroll": 5,
+        "leftover": 649
+      },
+      "fused_min_leftover": 649
+    },
+    {
+      "user_id": "0265",
+      "split": "dev",
+      "keystroke": {
+        "n": 156,
+        "enroll": 5,
+        "leftover": 151
+      },
+      "fused_min_leftover": 151
+    },
+    {
+      "user_id": "0505",
+      "split": "dev",
+      "keystroke": {
+        "n": 163,
+        "enroll": 5,
+        "leftover": 158
+      },
+      "fused_min_leftover": 158
+    },
+    {
+      "user_id": "1115",
+      "split": "dev",
+      "keystroke": {
+        "n": 110,
+        "enroll": 5,
+        "leftover": 105
+      },
+      "fused_min_leftover": 105
+    },
+    {
+      "user_id": "1149",
+      "split": "dev",
+      "keystroke": {
+        "n": 125,
+        "enroll": 5,
+        "leftover": 120
+      },
+      "fused_min_leftover": 120
+    },
+    {
+      "user_id": "1164",
+      "split": "dev",
+      "keystroke": {
+        "n": 148,
+        "enroll": 5,
+        "leftover": 143
+      },
+      "fused_min_leftover": 143
+    },
+    {
+      "user_id": "1180",
+      "split": "dev",
+      "keystroke": {
+        "n": 66,
+        "enroll": 5,
+        "leftover": 61
+      },
+      "fused_min_leftover": 61
+    },
+    {
+      "user_id": "1214",
+      "split": "dev",
+      "keystroke": {
+        "n": 176,
+        "enroll": 5,
+        "leftover": 171
+      },
+      "fused_min_leftover": 171
+    },
+    {
+      "user_id": "1222",
+      "split": "dev",
+      "keystroke": {
+        "n": 84,
+        "enroll": 5,
+        "leftover": 79
+      },
+      "fused_min_leftover": 79
+    },
+    {
+      "user_id": "1313",
+      "split": "dev",
+      "keystroke": {
+        "n": 100,
+        "enroll": 5,
+        "leftover": 95
+      },
+      "fused_min_leftover": 95
+    },
+    {
+      "user_id": "1396",
+      "split": "dev",
+      "keystroke": {
+        "n": 173,
+        "enroll": 5,
+        "leftover": 168
+      },
+      "fused_min_leftover": 168
+    },
+    {
+      "user_id": "1404",
+      "split": "dev",
+      "keystroke": {
+        "n": 106,
+        "enroll": 5,
+        "leftover": 101
+      },
+      "fused_min_leftover": 101
+    },
+    {
+      "user_id": "3111",
+      "split": "dev",
+      "keystroke": {
+        "n": 355,
+        "enroll": 5,
+        "leftover": 350
+      },
+      "fused_min_leftover": 350
+    }
+  ]
+}

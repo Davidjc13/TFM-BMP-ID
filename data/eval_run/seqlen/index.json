@@ -1,0 +1,67 @@
+{
+  "env": {
+    "utc": "2026-08-25T14:08:23.372414+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "seed": 42,
+    "torch": "2.13.0+cpu",
+    "cuda": false
+  },
+  "runs": [
+    {
+      "seq_len": 25,
+      "stride": 12,
+      "eer": 0.48881828251617787,
+      "auc": 0.5329592023100901,
+      "n_genuine": 5045,
+      "n_impostor": 85765,
+      "features": {
+        "out_dir": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n25",
+        "seq_len": 25,
+        "stride": 12,
+        "norm_stats": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n25/norm_stats.json",
+        "file": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n25/keystroke.npz",
+        "counts": {
+          "all": 22220,
+          "train": 13974,
+          "dev": 3111,
+          "eval": 5135
+        }
+      }
+    },
+    {
+      "seq_len": 50,
+      "stride": 25,
+      "eer": 0.4755719671538501,
+      "auc": 0.527567352939136,
+      "n_genuine": 2278,
+      "n_impostor": 38726,
+      "features": {
+        "reused": true,
+        "seq_len": 50,
+        "out_dir": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n50"
+      }
+    },
+    {
+      "seq_len": 100,
+      "stride": 50,
+      "eer": 0.46482454653331073,
+      "auc": 0.5488664805146424,
+      "n_genuine": 1041,
+      "n_impostor": 17697,
+      "features": {
+        "out_dir": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n100",
+        "seq_len": 100,
+        "stride": 50,
+        "norm_stats": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n100/norm_stats.json",
+        "file": "/home/ubuntu/TFM-BMP-ID/data/processed/nyit/features/ablation/n100/keystroke.npz",
+        "counts": {
+          "all": 4852,
+          "train": 3025,
+          "dev": 696,
+          "eval": 1131
+        }
+      }
+    }
+  ]
+}

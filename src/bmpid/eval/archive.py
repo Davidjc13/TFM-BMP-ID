@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 import json
 import platform
 import shutil
@@ -58,6 +59,7 @@ def persist_verify(dest: Path, tag: str, payload: dict[str, Any], cfg: dict[str,
     )
     det_path = dest / f"{tag}_det.json"
     det_path.write_text(json.dumps(payload["det"], indent=2) + "\n", encoding="utf-8")
+    csv_path = write_det_csv(payload["det"], dest / f"{tag}_det.csv")
     per_user = dest / f"{tag}_per_user.json"
     per_user.write_text(json.dumps(payload.get("per_user", []), indent=2) + "\n", encoding="utf-8")
     inv = dest / f"{tag}_inventory.json"
@@ -77,10 +79,33 @@ def persist_verify(dest: Path, tag: str, payload: dict[str, Any], cfg: dict[str,
         "summary": str(summary_path),
         "scores": str(dest / f"{tag}_scores.npz"),
         "det": str(det_path),
+        "det_csv": str(csv_path),
         "per_user": str(per_user),
         "inventory": str(inv),
         "ttd": str(ttd_path),
     }
+
+
+def write_det_csv(det: dict[str, Any], path: Path) -> Path:
+    """far / frr / umbral para figuras de la memoria (sin scores ni texto)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    far = list(det.get("far") or [])
+    frr = list(det.get("frr") or [])
+    thr = list(det.get("threshold") or [])
+    n = min(len(far), len(frr), len(thr))
+    with path.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["threshold", "far", "frr"])
+        for i in range(n):
+            w.writerow([thr[i], far[i], frr[i]])
+    assert_no_raw_text({"columns": ["threshold", "far", "frr"]})
+    return path
+
+
+def det_json_to_csv(src: Path, dest: Path | None = None) -> Path:
+    det = json.loads(src.read_text(encoding="utf-8"))
+    out = dest or src.with_suffix(".csv")
+    return write_det_csv(det, out)
 
 
 def copy_train_log(cfg: dict[str, Any], dest: Path, *, kind: str = "transformer") -> str | None:

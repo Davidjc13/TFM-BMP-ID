@@ -1,0 +1,234 @@
+{
+  "split": "dev",
+  "k_enroll": 5,
+  "modalities": [
+    "keystroke",
+    "imu"
+  ],
+  "totals": {
+    "keystroke": {
+      "n": 1426,
+      "enroll": 70,
+      "leftover": 1356,
+      "users": 14
+    },
+    "imu": {
+      "n": 1426,
+      "enroll": 70,
+      "leftover": 1356,
+      "users": 14
+    }
+  },
+  "users": [
+    {
+      "user_id": "0026",
+      "split": "dev",
+      "keystroke": {
+        "n": 321,
+        "enroll": 5,
+        "leftover": 316
+      },
+      "imu": {
+        "n": 321,
+        "enroll": 5,
+        "leftover": 316
+      },
+      "fused_min_leftover": 316
+    },
+    {
+      "user_id": "0224",
+      "split": "dev",
+      "keystroke": {
+        "n": 304,
+        "enroll": 5,
+        "leftover": 299
+      },
+      "imu": {
+        "n": 304,
+        "enroll": 5,
+        "leftover": 299
+      },
+      "fused_min_leftover": 299
+    },
+    {
+      "user_id": "0265",
+      "split": "dev",
+      "keystroke": {
+        "n": 75,
+        "enroll": 5,
+        "leftover": 70
+      },
+      "imu": {
+        "n": 75,
+        "enroll": 5,
+        "leftover": 70
+      },
+      "fused_min_leftover": 70
+    },
+    {
+      "user_id": "0505",
+      "split": "dev",
+      "keystroke": {
+        "n": 77,
+        "enroll": 5,
+        "leftover": 72
+      },
+      "imu": {
+        "n": 77,
+        "enroll": 5,
+        "leftover": 72
+      },
+      "fused_min_leftover": 72
+    },
+    {
+      "user_id": "1115",
+      "split": "dev",
+      "keystroke": {
+        "n": 48,
+        "enroll": 5,
+        "leftover": 43
+      },
+      "imu": {
+        "n": 48,
+        "enroll": 5,
+        "leftover": 43
+      },
+      "fused_min_leftover": 43
+    },
+    {
+      "user_id": "1149",
+      "split": "dev",
+      "keystroke": {
+        "n": 57,
+        "enroll": 5,
+        "leftover": 52
+      },
+      "imu": {
+        "n": 57,
+        "enroll": 5,
+        "leftover": 52
+      },
+      "fused_min_leftover": 52
+    },
+    {
+      "user_id": "1164",
+      "split": "dev",
+      "keystroke": {
+        "n": 67,
+        "enroll": 5,
+        "leftover": 62
+      },
+      "imu": {
+        "n": 67,
+        "enroll": 5,
+        "leftover": 62
+      },
+      "fused_min_leftover": 62
+    },
+    {
+      "user_id": "1180",
+      "split": "dev",
+      "keystroke": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "imu": {
+        "n": 26,
+        "enroll": 5,
+        "leftover": 21
+      },
+      "fused_min_leftover": 21
+    },
+    {
+      "user_id": "1214",
+      "split": "dev",
+      "keystroke": {
+        "n": 78,
+        "enroll": 5,
+        "leftover": 73
+      },
+      "imu": {
+        "n": 78,
+        "enroll": 5,
+        "leftover": 73
+      },
+      "fused_min_leftover": 73
+    },
+    {
+      "user_id": "1222",
+      "split": "dev",
+      "keystroke": {
+        "n": 35,
+        "enroll": 5,
+        "leftover": 30
+      },
+      "imu": {
+        "n": 35,
+        "enroll": 5,
+        "leftover": 30
+      },
+      "fused_min_leftover": 30
+    },
+    {
+      "user_id": "1313",
+      "split": "dev",
+      "keystroke": {
+        "n": 42,
+        "enroll": 5,
+        "leftover": 37
+      },
+      "imu": {
+        "n": 42,
+        "enroll": 5,
+        "leftover": 37
+      },
+      "fused_min_leftover": 37
+    },
+    {
+      "user_id": "1396",
+      "split": "dev",
+      "keystroke": {
+        "n": 81,
+        "enroll": 5,
+        "leftover": 76
+      },
+      "imu": {
+        "n": 81,
+        "enroll": 5,
+        "leftover": 76
+      },
+      "fused_min_leftover": 76
+    },
+    {
+      "user_id": "1404",
+      "split": "dev",
+      "keystroke": {
+        "n": 47,
+        "enroll": 5,
+        "leftover": 42
+      },
+      "imu": {
+        "n": 47,
+        "enroll": 5,
+        "leftover": 42
+      },
+      "fused_min_leftover": 42
+    },
+    {
+      "user_id": "3111",
+      "split": "dev",
+      "keystroke": {
+        "n": 168,
+        "enroll": 5,
+        "leftover": 163
+      },
+      "imu": {
+        "n": 168,
+        "enroll": 5,
+        "leftover": 163
+      },
+      "fused_min_leftover": 163
+    }
+  ]
+}

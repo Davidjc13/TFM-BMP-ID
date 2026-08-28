@@ -25,7 +25,7 @@
 % In moder computers, this should be set to UTF8
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc} // only for non-UTF supporting 
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-noshorthands]{babel}
 \usepackage{caption}
 % SECTIONS WITH SmallCaps
 \usepackage[T1]{fontenc}
@@ -64,6 +64,8 @@
 \usepackage{float}
 \usepackage{lscape}
 \usepackage{wrapfig}
+\usepackage{tikz}
+\usetikzlibrary{positioning,babel}
 
 % NOTA:
 % Si compilamos en DVI->dvips->ps2pdf tendremos que usar: EPS o PS (tamin BMP)
@@ -109,7 +111,7 @@
 % Pie de pagina
 \fancyfoot[LE, RO]{\thepage}
 % TamaÃ±o de las lineas del encabezado y pie de pagina
-\renewcommand{\headrulewidth}{0.5pt}
+\setlength{\headheight}{15pt}
 \renewcommand{\footrulewidth}{0.5pt}
 % Si quitamos las lineas, mejor poner el texto de los encabezados y pie de pagina en negrita o cursiva
 % Formato PLAIN (Usando \thispagestyle{plain}) CREO QUE ES EL QUE USAN LOS CHAPTERS...
@@ -270,16 +272,16 @@ Demostración}}{\begin{flushright}Q.E.D.\end{flushright}}
 \input{./files/cap05.tex}
 
 % CAPITULO 7
-%\chapter{Resultados}\label{chapter:06}
-%\input{./files/cap06.tex}
+\chapter{Resultados}\label{chapter:06}
+\input{./files/cap06.tex}
 
 % CAPITULO 8
-%\chapter{Conclusiones}\label{chapter:07}
-%\input{./files/cap07.tex}
+\chapter{Conclusiones}\label{chapter:07}
+\input{./files/cap07.tex}
 
 % CAPITULO 9
-%\chapter{Limitaciones y trabajos futuros}\label{chapter:08}
-%\input{./files/cap08.tex}
+\chapter{Limitaciones y trabajos futuros}\label{chapter:08}
+\input{./files/cap08.tex}
 
 % BIBLIOGRAFIA
 \newpage

@@ -1,0 +1,8 @@
+{
+  "tables": "data/eval_run/tables.json",
+  "det_csv_n": 24,
+  "privacy_ok": true,
+  "n_transformer_rows": 7,
+  "n_ensemble_rows": 11,
+  "n_seqlen_rows": 3
+}

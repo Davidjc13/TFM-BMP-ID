@@ -1,0 +1,27 @@
+{
+  "out_data": "/home/ubuntu/TFM-BMP-ID/data/figures",
+  "out_tex": "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06",
+  "files": [
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/det_transformer_ensemble.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/det_transformer_ensemble.eps",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_barras_propuesto.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_barras_propuesto.eps",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_seqlen.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_seqlen.eps",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_imu.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_imu.eps",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/ttd_detect.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/ttd_detect.eps",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_rf_vs_propuesto.png",
+    "/home/ubuntu/TFM-BMP-ID/project_tex/Plantilla_TFM_VIU__Universidad_Internacional_Valencia_/files/figures/cap06/eer_rf_vs_propuesto.eps"
+  ],
+  "stems": [
+    "det_transformer_ensemble",
+    "eer_barras_propuesto",
+    "eer_seqlen",
+    "eer_imu",
+    "ttd_detect",
+    "eer_rf_vs_propuesto"
+  ],
+  "note": "EER en barras = tanto por uno \u00d7 100. IMU no es sistema propuesto. F7 no pinta Cariello 1,5 %."
+}

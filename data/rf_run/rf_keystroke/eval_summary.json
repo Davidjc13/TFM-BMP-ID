@@ -1,0 +1,37 @@
+{
+  "model": "random_forest",
+  "system": "rf_keystroke",
+  "split": "eval",
+  "modalities": [
+    "keystroke"
+  ],
+  "n_users": 18,
+  "k_enroll": 5,
+  "pair": "min",
+  "n_genuine": 2278,
+  "n_impostor": 38726,
+  "eer": 0.3200821153746837,
+  "auc": 0.7667398193027377,
+  "threshold_split_eer": 0.20098146088641677,
+  "far_at_1frr": {
+    "far": 0.7375148479057997,
+    "frr": 0.009657594381035972,
+    "threshold": 0.058010721919372725,
+    "target_frr": 0.01
+  },
+  "ttd": {
+    "n_sequences": 306,
+    "n_detected": 300,
+    "detect_rate": 0.9803921568627451,
+    "mean_events": 8.45,
+    "median_events": 2.0
+  },
+  "level": "L1",
+  "trained_on": "dev",
+  "operating_point_dev_tau": {
+    "tau": 0.6504171563349576,
+    "far": 0.00033569178329804263,
+    "frr": 0.9960491659350307
+  },
+  "operating_tau_dev": 0.6504171563349576
+}

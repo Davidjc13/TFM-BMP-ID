@@ -1,0 +1,114 @@
+[
+  {
+    "user_id": "0026",
+    "n_genuine": 690,
+    "n_impostor": 2351,
+    "leftover": {
+      "keystroke": 690
+    }
+  },
+  {
+    "user_id": "0224",
+    "n_genuine": 649,
+    "n_impostor": 2392,
+    "leftover": {
+      "keystroke": 649
+    }
+  },
+  {
+    "user_id": "0265",
+    "n_genuine": 151,
+    "n_impostor": 2890,
+    "leftover": {
+      "keystroke": 151
+    }
+  },
+  {
+    "user_id": "0505",
+    "n_genuine": 158,
+    "n_impostor": 2883,
+    "leftover": {
+      "keystroke": 158
+    }
+  },
+  {
+    "user_id": "1115",
+    "n_genuine": 105,
+    "n_impostor": 2936,
+    "leftover": {
+      "keystroke": 105
+    }
+  },
+  {
+    "user_id": "1149",
+    "n_genuine": 120,
+    "n_impostor": 2921,
+    "leftover": {
+      "keystroke": 120
+    }
+  },
+  {
+    "user_id": "1164",
+    "n_genuine": 143,
+    "n_impostor": 2898,
+    "leftover": {
+      "keystroke": 143
+    }
+  },
+  {
+    "user_id": "1180",
+    "n_genuine": 61,
+    "n_impostor": 2980,
+    "leftover": {
+      "keystroke": 61
+    }
+  },
+  {
+    "user_id": "1214",
+    "n_genuine": 171,
+    "n_impostor": 2870,
+    "leftover": {
+      "keystroke": 171
+    }
+  },
+  {
+    "user_id": "1222",
+    "n_genuine": 79,
+    "n_impostor": 2962,
+    "leftover": {
+      "keystroke": 79
+    }
+  },
+  {
+    "user_id": "1313",
+    "n_genuine": 95,
+    "n_impostor": 2946,
+    "leftover": {
+      "keystroke": 95
+    }
+  },
+  {
+    "user_id": "1396",
+    "n_genuine": 168,
+    "n_impostor": 2873,
+    "leftover": {
+      "keystroke": 168
+    }
+  },
+  {
+    "user_id": "1404",
+    "n_genuine": 101,
+    "n_impostor": 2940,
+    "leftover": {
+      "keystroke": 101
+    }
+  },
+  {
+    "user_id": "3111",
+    "n_genuine": 350,
+    "n_impostor": 2691,
+    "leftover": {
+      "keystroke": 350
+    }
+  }
+]

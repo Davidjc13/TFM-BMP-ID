@@ -21,6 +21,10 @@ ZKEY_VECTOR = {"keystroke": "keystroke", "signature": "signature", "scroll": "sc
 
 
 def features_dir(cfg: dict[str, Any]) -> Path:
+    custom = (cfg.get("paths") or {}).get("features_dir")
+    if custom:
+        raw = Path(custom)
+        return raw if raw.is_absolute() else REPO_ROOT / raw
     name = str((cfg.get("dataset") or {}).get("name", "nyit"))
     out = Path((cfg.get("paths") or {}).get("processed_root", "data/processed"))
     if not out.is_absolute():
@@ -53,7 +57,7 @@ class NyitModalityBank:
         return sorted(self.by_split_user.get(split, {}))
 
     def indices(self, split: str, user_id: str) -> np.ndarray:
-        return self.by_split_user[split][user_id]
+        return self.by_split_user.get(split, {}).get(user_id, np.zeros((0,), dtype=int))
 
 
 class NyitFeatureStore:
@@ -125,7 +129,8 @@ class NyitFeatureStore:
         stats = zstats if zstats is not None else self.zscore_train(modality)
         x = apply_zscore(x, stats)
         x = np.where(mask[..., None], x, 0.0).astype(np.float32)
-        return x, mask, True
+        ok = bool(np.asarray(mask).any()) if modality == "imu" else True
+        return x, mask, ok
 
     def n_items(self, modality: str, split: str, user_id: str) -> int:
         if user_id not in self.banks[modality].by_split_user.get(split, {}):
