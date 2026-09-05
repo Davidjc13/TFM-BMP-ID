@@ -13,6 +13,7 @@ from bmpid.config import REPO_ROOT
 
 DET_DIR = REPO_ROOT / "data" / "eval_run" / "det"
 TABLES = REPO_ROOT / "data" / "eval_run" / "tables.json"
+MATCHED = REPO_ROOT / "data" / "eval_run" / "matched_subset.json"
 IMU_INDEX = REPO_ROOT / "data" / "imu_run" / "index.json"
 IMU_DET = REPO_ROOT / "data" / "imu_run" / "fused" / "eval_ks_imu_inv_eer_det.csv"
 RF_INDEX = REPO_ROOT / "data" / "rf_run" / "index.json"
@@ -134,6 +135,15 @@ def _eer(tables: dict[str, Any], section: str, system: str, split: str = "eval")
     raise KeyError(system)
 
 
+def _matched_eer(matched: dict[str, Any] | None, system: str) -> float | None:
+    if not matched:
+        return None
+    row = (matched.get("systems") or {}).get(system)
+    if not row or "eer" not in row:
+        return None
+    return float(row["eer"])
+
+
 def _copy_stems(src: Path, dest: Path) -> list[str]:
     written: list[str] = []
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -155,6 +165,7 @@ def generate_all(
     imu_index: Path | None = None,
     imu_det: Path | None = None,
     rf_index: Path | None = None,
+    matched_path: Path | None = None,
     data_out: Path | None = None,
     tex_out: Path | None = None,
 ) -> dict[str, Any]:
@@ -164,21 +175,38 @@ def generate_all(
     imu_index = Path(imu_index) if imu_index else IMU_INDEX
     imu_det = Path(imu_det) if imu_det else IMU_DET
     rf_index = Path(rf_index) if rf_index else RF_INDEX
+    matched_path = Path(matched_path) if matched_path else MATCHED
     data_out = Path(data_out) if data_out else REPO_ROOT / "data" / "figures"
     tex_out = Path(tex_out) if tex_out else _thesis_fig_dir()
     data_out.mkdir(parents=True, exist_ok=True)
     tex_out.mkdir(parents=True, exist_ok=True)
     tables = json.loads(tables_path.read_text(encoding="utf-8"))
+    matched = json.loads(matched_path.read_text(encoding="utf-8")) if matched_path.is_file() else None
     written: list[str] = []
-    note_n = "N genuinos: 545 (Transformer 3-mod) frente a 2278 (ensemble y ablaciones de tecleo)."
+    ens_3_eer = _matched_eer(matched, "ensemble_meta_3mod")
+    if ens_3_eer is None:
+        ens_3_eer = _eer(tables, "ensemble", "ensemble_meta_3mod")
+    tf_3_eer = _matched_eer(matched, "transformer_3mod")
+    if tf_3_eer is None:
+        tf_3_eer = _eer(tables, "transformer", "transformer_3mod")
+    note_n = (
+        "Head-to-head 3-mod: 545 pares genuinos (mismo leftover). "
+        "Ablaciones de tecleo: 2278."
+    )
+    det_tf = det_dir / "matched_transformer_3mod_eval_det.csv"
+    det_ens = det_dir / "matched_ensemble_meta_3mod_eval_det.csv"
+    if not det_tf.is_file():
+        det_tf = det_dir / "transformer_fused_eval_det.csv"
+    if not det_ens.is_file():
+        det_ens = det_dir / "ensemble_fused_eval_meta_det.csv"
 
     def dual(name: str) -> tuple[Path, Path]:
         return data_out / name, tex_out / name
 
     d1, t1 = dual("det_transformer_ensemble")
     series = [
-        ("Transformer 3-mod", det_dir / "transformer_fused_eval_det.csv"),
-        ("Ensemble meta", det_dir / "ensemble_fused_eval_meta_det.csv"),
+        ("Transformer 3-mod", det_tf),
+        ("Ensemble meta", det_ens),
         ("Ensemble tecleo", det_dir / "ensemble_fused_eval_no_scroll_signature_det.csv"),
     ]
     if imu_det.is_file():
@@ -194,19 +222,19 @@ def generate_all(
     d2, t2 = dual("eer_barras_propuesto")
     labels = [
         "TF uni. tecleo",
-        "TF ks+firma",
+        "TF ks+swipe",
         "TF 3-mod",
         "Ens. uni. tecleo",
-        "Ens. ks+firma",
+        "Ens. ks+swipe",
         "Ens. meta 3-mod",
     ]
     eers = [
         _eer(tables, "transformer", "transformer_unimodal_keystroke"),
         _eer(tables, "transformer", "transformer_ks_sig"),
-        _eer(tables, "transformer", "transformer_3mod"),
+        tf_3_eer,
         _eer(tables, "ensemble", "ensemble_unimodal_keystroke"),
         _eer(tables, "ensemble", "ensemble_ks_sig_fixed"),
-        _eer(tables, "ensemble", "ensemble_meta_3mod"),
+        ens_3_eer,
     ]
     plot_bars(
         labels,
@@ -252,8 +280,8 @@ def generate_all(
     plot_bars(
         ["Transformer 3-mod", "Ensemble meta"],
         [float(tf3["ttd_detect_rate"]), float(em["ttd_detect_rate"])],
-        ylabel="Tasa de detección TTD (%)",
-        title="TTD (k=2 ventanas consecutivas) — eval NYIT",
+        ylabel="Tasa de detección (%)",
+        title="Tasa de detección (k=2 ventanas consecutivas) — eval NYIT",
         out_stem=d5,
         as_percent=True,
     )
@@ -269,19 +297,22 @@ def generate_all(
     rf = json.loads(rf_index.read_text(encoding="utf-8")) if rf_index.is_file() else None
     if rf:
         by_sys = {r["system"]: r["eer"] for r in rf.get("runs", []) if r.get("split") == "eval" and "eer" in r}
+        rf_ks = _matched_eer(matched, "rf_keystroke")
+        rf_3 = _matched_eer(matched, "rf_3mod_features")
+        rf_meta = _matched_eer(matched, "rf_meta_3mod")
         d7, t7 = dual("eer_rf_vs_propuesto")
         plot_bars(
             ["RF tecleo", "RF 3-mod (rasgos)", "Ensemble meta", "Transformer 3-mod"],
             [
-                float(by_sys["rf_keystroke"]),
-                float(by_sys["rf_3mod_features"]),
-                _eer(tables, "ensemble", "ensemble_meta_3mod"),
-                _eer(tables, "transformer", "transformer_3mod"),
+                float(rf_ks if rf_ks is not None else by_sys["rf_keystroke"]),
+                float(rf_3 if rf_3 is not None else by_sys["rf_3mod_features"]),
+                ens_3_eer,
+                tf_3_eer,
             ],
             ylabel="EER (%)",
             title="EER eval — RF vs sistema propuesto (mismo leftover NYIT)",
             out_stem=d7,
-            footnote=note_n + " Cariello 1,5 % no está en el eje (otro protocolo, mocap).",
+            footnote="N genuinos = 545 (mismo leftover). Cariello 1,5 % no está en el eje (otro protocolo, mocap).",
         )
         written.extend(_copy_stems(d7, t7))
         stems.append("eer_rf_vs_propuesto")

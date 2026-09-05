@@ -19,17 +19,17 @@ la riqueza de información identitaria que aportan:
      tiempos de vuelo entre teclas (\textit{Flight Time}, FT) e intervalos entre pulsaciones consecutivas 
      (\textit{Inter-key Interval}, IKI). Constituye la modalidad más estudiada en la literatura y ofrece alta 
      discriminabilidad incluso con ráfagas cortas de texto.
-    \item \textbf{Dinámica de firma (\textit{signature dynamics})}: patrones de presión, velocidad y
-     aceleración durante el trazo de la firma en pantalla táctil. Aporta una señal de alta varianza 
-     inter-usuario y baja varianza intra-usuario cuando el individuo firma de forma natural.
-    \item \textbf{Gestos de desplazamiento (\textit{scroll dynamics})}: características extraídas de 
-    los movimientos de deslizamiento sobre la pantalla, incluyendo velocidad, aceleración, longitud del trazo 
-    y ángulo de desplazamiento. Su inclusión está condicionada al análisis del beneficio marginal que aporta en 
-    la fusión multimodal.
+    \item \textbf{Gesto táctil (\textit{swipe})}: series de posición $(x_t, y_t)$ y cinemática del deslizamiento
+     sobre la pantalla. En NYIT \textbf{no hay firma manuscrita ni presión}: el \textit{swipe} se usa como
+     aproximación de trazo táctil, no como rúbrica.
+    \item \textbf{Gestos de desplazamiento (\textit{scroll dynamics})}: características extraídas de
+     los mismos ensayos $xy$, segmentados en gestos (hueco de $300$\,ms): velocidad, aceleración, longitud del trazo
+     y ángulo de desplazamiento. Su inclusión está condicionada al análisis del beneficio marginal que aporta en 
+     la fusión multimodal.
 \end{itemize}
 
 El principal desafío técnico es la \textbf{heterogeneidad temporal} de las señales: la dinámica de tecleo 
-es discreta y de longitud variable, la firma es una señal continua de corta duración, y el scroll produce 
+es discreta y de longitud variable, el \textit{swipe} es una trayectoria continua de corta duración, y el scroll produce 
 eventos esporádicos dependientes del contexto de uso. El sistema debe ser capaz de integrar estas tres fuentes 
 de forma coherente y tomar decisiones de autenticación con latencia mínima, idealmente tras menos de 50 eventos
 de interacción.
@@ -37,22 +37,26 @@ de interacción.
 \section{Metodología}\label{sec:metodologia}
 Para abordar el problema descrito, se propone una metodología experimental comparativa basada en dos 
 enfoques arquitectónicos complementarios, cuyo rendimiento se evaluará bajo un protocolo común.
+Los hiperparámetros se fijaron en \texttt{configs/default.yaml} (semilla 42). \textbf{No se realizó una búsqueda
+sistemática} (rejilla o bayesiana): se eligieron valores habituales en TypeNet/BehaveFormer a esta escala y se
+conservó el \textit{checkpoint} de menor EER en desarrollo.
 
 \subsection{Preprocesamiento y Extracción de Características}
 Previo al modelado, cada modalidad requiere un pipeline de preprocesamiento específico:
 
 \begin{itemize}
     \item \textbf{Tecleo}: a partir de los eventos de pulsación se extraen las tripletas $(DT_i, FT_i, IKI_i)$ para cada tecla 
-    $i$ de la secuencia. Las secuencias se segmentan en ventanas deslizantes de longitud fija $N$ 
-    (objetivo: $N = 50$ eventos), con solapamiento configurable para la autenticación continua. Los 
-    valores atípicos se filtran mediante umbrales basados en percentiles y las secuencias se normalizan
-     con estadísticos calculados por usuario en la fase de enrolamiento.
-    \item \textbf{Firma}: se extraen series temporales de posición $(x_t, y_t)$, presión $p_t$ y sus derivadas 
-    de primer y segundo orden. La señal se remuestrea a una frecuencia fija para garantizar la homogeneidad 
-    de la representación de entrada.
-    \item \textbf{Scroll}: se caracterizan cada gesto de deslizamiento mediante un vector de rasgos agregados: 
-    velocidad media, velocidad máxima, aceleración media, longitud euclidiana del trazo, duración y desviación 
-    angular respecto al eje vertical.
+    $i$. El dump es solo \textit{press}: $DT=0$ y $FT=\mathrm{IKI}$. Las secuencias se segmentan en ventanas deslizantes de 
+    longitud $N=50$ (oficial) y \textit{stride} 25. Los valores atípicos se recortan por canal con percentiles 
+    \textbf{1 y 99} ajustados en el split de entrenamiento. En verificación, cada ventana se normaliza con 
+    \textbf{$z$-score por usuario}: media y desviación de las $k=5$ ventanas de enrolamiento (si $\sigma<10^{-8}$, se usa 1).
+    El impostor se puntúa con los estadísticos del usuario \textbf{reclamado}.
+    \item \textbf{Gesto táctil (\textit{swipe})}: se interpola la trayectoria a \textbf{$100$\,Hz} y se recorta o rellena a 
+    $T=128$ muestras. Canales: $x_{\mathrm{rel}}$, $y_{\mathrm{rel}}$, $dx$, $dy$, velocidad y aceleración (sin presión).
+    En el código esta rama se almacena como \texttt{signature.npz}; es el \textit{swipe} remuestreado, no una rúbrica.
+    \item \textbf{Scroll}: cada gesto (separación $\geq 300$\,ms) se resume en un vector 6-D: velocidad media, velocidad máxima,
+    aceleración media, longitud euclidiana, duración y desviación angular respecto al eje vertical. El ensemble usa ese
+    vector; el Transformer usa hasta 16 tokens de gesto por secuencia.
 \end{itemize}
 
 \subsection{Enfoque 1: Arquitectura basada en Transformer}
@@ -60,41 +64,63 @@ Previo al modelado, cada modalidad requiere un pipeline de preprocesamiento espe
 El primer enfoque propone una arquitectura \textit{end-to-end} inspirada en BehaveFormer~\cite{senerath2023behaveformer}
  y Type2Branch~\cite{gonzalez2025type2branch}, que procesa las tres modalidades de forma conjunta 
  mediante mecanismos de atención.
-Cada secuencia de interacción se trata como una serie de \textit{tokens} de entrada. Un codificador 
-Transformer independiente por modalidad —con capas de \textit{Multi-Head Self-Attention} y redes 
-\textit{feed-forward} posicionales— genera una representación de contexto para cada fuente de señal. Las 
-representaciones resultantes se fusionan mediante un módulo de \textbf{atención cruzada entre modalidades} 
-(\textit{cross-modal attention}), que aprende a ponderar dinámicamente la contribución de cada fuente en función del contexto de uso.
-La función de pérdida empleada para el entrenamiento es \textit{Set2set Loss}~\cite{gonzalez2025type2branch}, 
-que compara un conjunto de muestras de enrolamiento $\mathcal{S} = \{s_1, \ldots, s_k\}$ contra una muestra de consulta $q$, 
-permitiendo una estimación más robusta de la similitud que el clásico \textit{Triplet Loss} puntual:
+Cada secuencia se trata como tokens. Un codificador Transformer Pre-LN por modalidad ---proyección lineal, 
+codificación posicional sinusoidal, \textbf{2 capas} de \textit{Multi-Head Self-Attention} ($d_{\mathrm{model}}=128$, 
+\textbf{4 cabezas}, FFN 256, dropout $0{,}1$, activación GELU)--- produce un contexto por fuente. Un token CLS atiende 
+a las $K$ modalidades (\textit{cross-modal attention}, mismas 4 cabezas); un token aprendido sustituye modalidades 
+ausentes. La cabeza es LayerNorm + lineal a $d_{\mathrm{embed}}=128$, con normalización L2.
+La función de pérdida es \textit{Set2set Loss}~\cite{gonzalez2025type2branch}, 
+que compara un conjunto de enrolamiento $\mathcal{S} = \{s_1, \ldots, s_k\}$ contra una consulta $q$:
 
 \begin{equation}
     \mathcal{L}_{\text{set2set}} = \max\left(0,\; m + d\!\left(\bar{e}_{\mathcal{S}},\, q^+\right) - d\!\left(\bar{e}_{\mathcal{S}},\, q^-\right)\right)
     \label{eq:set2set}
 \end{equation}
 
-donde $\bar{e}_{\mathcal{S}}$ es la representación agregada del conjunto de enrolamiento, 
-$q^+$ una muestra del usuario legítimo, $q^-$ una muestra de impostor y $m$ el margen de separación.
+donde $\bar{e}_{\mathcal{S}}$ es el centro L2 del enrolamiento, 
+$q^+$ una muestra genuina, $q^-$ un impostor y $m=0{,}2$ el margen.
 
 \subsection{Enfoque 2: Ensemble de Modelos Especializados por Modalidad}
 
-El segundo enfoque adopta una estrategia modular: se entrena un modelo especializado e independiente 
-para cada modalidad conductual, y sus puntuaciones de similitud se combinan mediante una estrategia de fusión 
-a nivel de \textit{score}.
+El segundo enfoque entrena un experto independiente por modalidad y fusiona puntuaciones:
 
 \begin{itemize}
-    \item \textbf{Modelo de tecleo}: red LSTM bidireccional seguida de una capa de proyección métrica, 
-    entrenada con \textit{Triplet Loss}, siguiendo la línea de TypeNet~\cite{acien2022typenet}.
-    \item \textbf{Modelo de firma}: red CNN-LSTM que extrae características locales de los segmentos del 
-    trazo (CNN) y modela la dinámica temporal global (LSTM).
-    \item \textbf{Modelo de scroll}: clasificador ligero basado en un perceptrón multicapa (MLP) o una red 
-    CNN-1D sobre los vectores de rasgos agregados por gesto.
+    \item \textbf{Tecleo}: BiLSTM de 2 capas, hidden 64, bidireccional, dropout $0{,}1$, proyección a embedding 128 (TypeNet~\cite{acien2022typenet}).
+    \item \textbf{\textit{Swipe}}: CNN-1D (dos Conv1d, kernel 5, 32 canales, GELU) seguida de LSTM bidireccional (hidden 64, 1 capa).
+    \item \textbf{Scroll}: MLP $6\to 64\to 32\to 128$ con GELU y dropout $0{,}3$ (no se implementó CNN-1D).
 \end{itemize}
 
-La fusión de puntuaciones se explorará mediante tres estrategias: combinación lineal con pesos fijos, 
-combinación lineal con pesos aprendidos, y un meta-clasificador entrenado sobre las puntuaciones de los 
-modelos base.
+Se implementaron tres fusores: combinación lineal con pesos fijos ($0{,}34$ / $0{,}33$ / $0{,}33$),
+pesos softmax aprendidos, y un meta-clasificador MLP sobre el triplete de \textit{scores} y máscaras de presencia
+(entrada $6$-D, hidden 16, GELU, salida logit; Adam, lr $0{,}02$, 400 pasos, BCE). El fusor oficial es el meta.
+
+\subsection{Entrenamiento}
+
+Transformer y expertos se entrenan con AdamW (lr $10^{-3}$, \textit{weight decay} $10^{-4}$), \textit{batch} 8,
+12 \textit{epochs}, 48 pasos por \textit{epoch} y recorte de gradiente $1{,}0$. El Triplet de los expertos usa
+margen $0{,}2$ y minado \textit{semi-hard}. Se recorre el presupuesto de 12 \textit{epochs}; cada 8 \textit{epochs}
+(y al final) se mide EER en desarrollo y se guarda el \textit{checkpoint} de menor EER. El Random Forest de rasgos
+usa 200 árboles, profundidad 12, \textit{min\_samples\_leaf} 2 y \textit{class\_weight=balanced}.
+
+\begin{table}[h]
+\centering
+\caption{Configuración finalmente utilizada (sistema propuesto).}\label{tab:config_modelos}
+\begin{tabular}{llp{6.2cm}}
+\toprule
+\textbf{Componente} & \textbf{Clave} & \textbf{Valor} \\
+\midrule
+Transformer & capas / $d$ / heads / FFN / drop & 2 / 128 / 4 / 256 / $0{,}1$ \\
+BiLSTM tecleo & capas / hidden / drop & 2 / 64 / $0{,}1$ \\
+CNN-LSTM \textit{swipe} & conv / LSTM hidden & $2\times$32 ($k{=}5$) / 64 bi \\
+MLP scroll & anchos / drop & $6$--$64$--$32$--$128$ / $0{,}3$ \\
+Pérdidas & márgenes & Set2set $0{,}2$; Triplet $0{,}2$ \\
+Optimizador & AdamW & lr $10^{-3}$, wd $10^{-4}$, clip 1 \\
+Bucle & batch / epochs / steps & 8 / 12 / 48; mejor EER en \textit{dev} \\
+Preproceso & clip / $z$ / $f_s$ / $T$ & p1--p99; $z$ enrolamiento; $100$\,Hz; $T{=}128$ \\
+RF & árboles / profundidad & 200 / 12 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Protocolo de Evaluación}
 
@@ -110,13 +136,18 @@ directrices de MobileB2C~\cite{stragapede2022mobileb2c} y adaptado al dump NYIT 
     un protocolo de impostor hábil.
     \item \textbf{Longitud oficial}: ventanas de tecleo $N=50$ (stride 25). Ablación $N\in\{25,50,100\}$ 
     solo en el experto BiLSTM de tecleo.
-    \item \textbf{Métricas}: EER (primaria), AUC, FAR a FRR~$1\%$ y TTD con $k=2$ ventanas consecutivas 
-    por debajo del umbral fijado en desarrollo.
+    \item \textbf{Métricas}: EER (primaria), AUC y FAR a FRR~$1\%$. La \textbf{tasa de detección} es la
+    fracción de secuencias de impostor en las que hay $k=2$ ventanas consecutivas por debajo del umbral.
+    El \textbf{TTD} es el número de ventanas (media y mediana, solo en detectados) hasta ese disparo.
+    No es tiempo de pared.
+    \item \textbf{Comparación 3-mod}: Transformer, ensemble meta y RF se reportan sobre el \textbf{mismo}
+    leftover (545 pares genuinos, tope de secuencias de scroll del Transformer), recortando el prefijo de
+    puntuaciones ya archivadas, sin reentrenar. Las ablaciones sin scroll conservan 2278 pares (leftover de tecleo).
 \end{itemize}
 
-La firma en NYIT no es una firma legal: se emplea un \textit{proxy} de trazo táctil (\textit{swipe}). 
 Tecleo y \textit{swipe} proceden de \textbf{ensayos distintos}, de modo que la fusión es a nivel de usuario, 
-no de ensayo simultáneo. El tecleo del dump es solo \textit{press} (DT nulo; FT $=$ IKI).
+no de ensayo simultáneo. El canal scroll del ensemble cuenta trazas de \textit{swipe}; el del Transformer cuenta
+secuencias de gestos: el emparejado alinea las ventanas de tecleo, no el mismo objeto físico de scroll.
 
 Un experimento adicional de IMU (36-D alineada a ventanas de tecleo) se documenta como réplica de la línea 
 BehaveFormer; \textbf{no forma parte del sistema propuesto} ni de su tabla de resultados.
@@ -130,12 +161,12 @@ BehaveFormer; \textbf{no forma parte del sistema propuesto} ni de su tabla de re
               minimum width=3.3cm, minimum height=1.05cm},
   arr/.style={->, thick}
 ]
-\node[box] (in) {Tecleo + firma \textit{proxy}\\+ scroll (NYIT)};
+\node[box] (in) {Tecleo + swipe\\+ scroll (NYIT)};
 \node[box, fill=blue!8, above right=0.55cm and 0.35cm of in] (tf)
   {Transformer\\encoders + atención cruzada\\Set2set};
 \node[box, fill=orange!10, below right=0.55cm and 0.35cm of in] (ens)
   {Ensemble\\BiLSTM / CNN-LSTM / MLP\\fusión de \textit{scores}};
-\node[box, right=6.4cm of in] (out) {EER / AUC / TTD\\eval leftover};
+\node[box, right=6.4cm of in] (out) {EER / AUC / det.\ / TTD\\eval leftover};
 \draw[arr] (in) -- (tf);
 \draw[arr] (in) -- (ens);
 \draw[arr] (tf.east) -- (out.north west);
@@ -149,8 +180,8 @@ BehaveFormer; \textbf{no forma parte del sistema propuesto} ni de su tabla de re
 \section{Resultados obtenidos}\label{sec:resultados_preliminares}
 
 Las cifras de esta sección sustituyen las estimaciones iniciales (EER del orden del $1$--$3\%$). 
-Dichas estimaciones \textbf{no se materializan} en NYIT: el dump es \textit{press-only}, la firma es un 
-\textit{proxy} de \textit{swipe} y la fusión no es simultánea a nivel de ensayo. El detalle, las curvas DET 
+Dichas estimaciones \textbf{no se materializan} en NYIT: el dump es \textit{press-only}, el trazo táctil es un
+\textit{swipe} (no rúbrica) y la fusión no es simultánea a nivel de ensayo. El detalle, las curvas DET 
 y la discusión frente a Cariello (mismo set) y al SOTA de otro corpus se recogen en el Capítulo~\ref{chapter:06}.
 
 \subsection{Baseline de Referencia}
@@ -183,22 +214,20 @@ Cariello swipe+IMU~\cite{cariello2025posture} & Swipe+IMU teléfono & NYIT lab &
 \begin{table}[h]
 \centering
 \caption{Rendimiento obtenido del sistema propuesto (EER~\%, eval leftover, $N=50$). 
-IMU excluida. El Transformer 3-mod usa 545 pares genuinos (tope de scroll); el resto de filas de 
-ensemble y ablación de tecleo usan 2278.}\label{tab:resultados_esperados}
+IMU excluida. Filas 3-mod: 545 pares genuinos (mismo leftover). Ablaciones sin scroll: 2278.}\label{tab:resultados_esperados}
 \begin{tabular}{llcc}
 \toprule
 \textbf{Enfoque} & \textbf{Modalidades} & \textbf{EER (\%)} & \textbf{Observaciones} \\
 \midrule
-Transformer unificado  & Tecleo + firma + scroll & 24{,}60 & Mejor del propuesto; AUC $0{,}83$ \\
-Transformer unificado  & Tecleo + firma          & 28{,}14 & El scroll sí aporta en el TF \\
-Ensemble (meta)        & Tecleo + firma + scroll & 28{,}98 & Mejor fusor de scores \\
-Ensemble (fijo)        & Tecleo + firma          & 36{,}62 & Peor que solo tecleo (z reclamado) \\
+Transformer unificado  & Tecleo + swipe + scroll & 24{,}60 & Mejor del propuesto; AUC $0{,}83$ \\
+Transformer unificado  & Tecleo + swipe          & 28{,}14 & El scroll sí aporta en el TF \\
+Ensemble (meta)        & Tecleo + swipe + scroll & 27{,}72 & Mismo leftover que el TF \\
+Ensemble (fijo)        & Tecleo + swipe          & 36{,}62 & Peor que solo tecleo (z reclamado) \\
 Transformer unimodal   & Tecleo                  & 44{,}59 & DT nulo; lejos de TypeNet/Aalto \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-La fusión por atención cruzada sí mejora al ensemble de scores en este dump. El scroll es útil en el 
-Transformer y perjudicial o irrelevante en el ensemble. La firma \textit{proxy} no discrimina (EER unimodal 
-próximo al $50\%$). Un experimento IMU aparte alcanza EER $34{,}63\%$ en tecleo+IMU ($1/\mathrm{EER}$); 
+La fusión por atención cruzada sí mejora al ensemble de scores en este dump (mismo leftover). El scroll es útil en el 
+Transformer. El \textit{swipe} unimodal no discrimina (EER próximo al $50\%$). Un experimento IMU aparte alcanza EER $34{,}63\%$ en tecleo+IMU ($1/\mathrm{EER}$); 
 esa cifra no entra en la Tabla~\ref{tab:resultados_esperados}.

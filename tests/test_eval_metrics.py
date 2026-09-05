@@ -5,6 +5,7 @@ import numpy as np
 import pytest
 
 from bmpid.eval.archive import persist_verify, write_det_csv
+from bmpid.eval.matched_subset import match_prefix
 from bmpid.eval.metrics import auc_score, eer_and_threshold, far_at_frr, far_frr_at_threshold, time_to_detect
 from bmpid.privacy.asserts import assert_no_raw_text
 from bmpid.privacy.serialize import drop_text_fields, dump_json
@@ -76,6 +77,16 @@ def test_persist_verify_rejects_text_and_writes_csv(tmp_path: Path):
     assert csv_text.splitlines()[0] == "threshold,far,frr"
     assert "leak" not in csv_text
     assert "text" not in json.loads((tmp_path / "eval_summary.json").read_text(encoding="utf-8"))
+
+
+def test_match_prefix_takes_probe_cap():
+    y = np.array([1, 1, 1, 0, 0, 0, 0])
+    s = np.array([9.0, 8.0, 7.0, 1.0, 2.0, 3.0, 4.0])
+    claimed = np.array(["A", "A", "A", "A", "A", "A", "A"])
+    probe = np.array(["A", "A", "A", "B", "B", "B", "B"])
+    ym, sm = match_prefix(y, s, claimed, probe, {"A": 2, "B": 2})
+    assert ym.tolist() == [1, 1, 0, 0]
+    assert sm.tolist() == [9.0, 8.0, 1.0, 2.0]
 
 
 def test_write_det_csv_roundtrip(tmp_path: Path):

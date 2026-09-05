@@ -13,6 +13,7 @@ python -m bmpid.eval --config configs/default.yaml --report
 | --- | --- |
 | `index.json` | Puntero a tablas + `privacy_ok` + recuento de filas |
 | `tables.json` | Filas oficiales Transformer / ensemble / seq_len + SOTA (no propias) |
+| `matched_subset.json` | EER/AUC de ensemble y RF recortados al leftover del Transformer 3-mod (545 genuinos) |
 | `env.json` | Python, torch, seed, UTC |
 | `det/` | CSV DET (`threshold,far,frr`) exportados desde las corridas 3 y 4 y seq_len |
 | `seqlen/n{25,50,100}/` | Eval leftover unimodal tecleo; N=50 reusa el experto oficial |

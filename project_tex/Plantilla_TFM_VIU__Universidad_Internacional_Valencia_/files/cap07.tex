@@ -6,7 +6,7 @@ Capítulo~\ref{chapter:06}; las limitaciones y las líneas abiertas, en el Capí
 
 Se ha diseñado, implementado y evaluado un verificador \textit{open-set} de autenticación continua y pasiva
 en un smartphone público (dump NYIT \textit{home+lab cleaned}, iPhone XR), con fusión de dinámica de tecleo,
-firma \textit{proxy} (\textit{swipe}) y gestos de desplazamiento. El sistema opera sobre ventanas de interacción
+gesto táctil (\textit{swipe}) y gestos de desplazamiento. El sistema opera sobre ventanas de interacción
 sin exigir un gesto de login y sin persistir el texto tecleado.
 
 Ese objetivo se cumple como \textbf{demostrador de arquitectura y protocolo}, no como sustituto de un factor
@@ -14,37 +14,36 @@ biométrico de alta seguridad. El mejor sistema propuesto ---Transformer de tres
 $0{,}83$ en leftover de evaluación, de modo que el ranking genuino/impostor es viable. El EER $24{,}60\%$
 no admite un umbral de baja fricción: en el punto de error igual se acepta y se rechaza del orden de uno
 de cada cuatro intentos. Las estimaciones iniciales de EER $1$--$3\%$ (Capítulo~\ref{chap:desarrollo})
-\textbf{no se materializan} en este corpus (tecleo solo \textit{press}, firma que no es rúbrica, fusión no
+\textbf{no se materializan} en este corpus (tecleo solo \textit{press}, \textit{swipe} que no es rúbrica, fusión no
 simultánea a nivel de ensayo).
 
 \section{Objetivos específicos}
 
 \begin{enumerate}
     \item \textbf{Arquitectura multimodal.} Un Transformer con encoders por modalidad y atención cruzada,
-    entrenado con \textit{Set2set Loss}, produce la mejor representación conjunta del dump. La firma
-    \textit{proxy} no aporta identidad en unimodal (EER $\approx 50\%$); el scroll sí reduce el EER del
-    Transformer ($28{,}14\%\to 24{,}60\%$) y no ayuda al ensemble.
+    entrenado con \textit{Set2set Loss}, produce la mejor representación conjunta del dump. El \textit{swipe}
+    no aporta identidad en unimodal (EER $\approx 50\%$); el scroll sí reduce el EER del
+    Transformer ($28{,}14\%\to 24{,}60\%$) y no ayuda al ensemble en leftover de tecleo.
 
     \item \textbf{Dos enfoques bajo el mismo protocolo.} Transformer y ensemble (BiLSTM / CNN-LSTM / MLP
     con fusión de \textit{scores}) se evalúan con los mismos splits \textit{user-disjoint} (49/16/18,
-    \textit{seed} 42), $k=5$, leftover e impostor aleatorio. La atención cruzada supera a la mejor fusión
-    de puntuaciones (meta: EER $28{,}98\%$). Un \textit{Random Forest} de rasgos y un RF-meta sobre los
-    mismos \textit{scores} de expertos, en ese leftover, tampoco baten al Transformer (mejor RF:
-    $30{,}32\%$). La diferencia con Cariello et al.\ no se explica por ``usar RF en vez de una red''.
+    \textit{seed} 42), $k=5$, leftover e impostor aleatorio. Sobre el leftover emparejado (545 pares),
+    la atención cruzada (EER $24{,}60\%$) supera al ensemble meta ($27{,}72\%$) y al mejor RF ($26{,}78\%$).
+    La diferencia con Cariello et al.\ no se explica por ``usar RF en vez de una red''.
 
     \item \textbf{Pérdidas de verificación.} \textit{Triplet Loss} en los expertos y \textit{Set2set} en
     el Transformer permiten comparar un perfil de enrolamiento contra consultas continuas. El umbral se
     fija en desarrollo (EER) y se aplica en evaluación.
 
-    \item \textbf{Evaluación y referentes.} El corpus ejecutado es NYIT, no Aalto, HuMIdb ni BehavePassDB.
-    TypeNet, Type2Branch y BehaveFormer se citan como SOTA \textbf{ajena}. El único referente del mismo
-    set es Cariello et al.\ (RF/$k$-NN/SVM + mocap Vicon, otro protocolo). No hay un Transformer SOTA
+    \item \textbf{Evaluación y referentes.} El corpus ejecutado es NYIT, no Aalto, HuMIdb ni BehavePassDB
+    (estas últimas, no disponibles aquí; se dejan como trabajo futuro). TypeNet, Type2Branch y BehaveFormer
+    se citan como SOTA \textbf{ajena}. El único referente del mismo set es Cariello et al.\ (RF/$k$-NN/SVM + mocap Vicon, otro protocolo). No hay un Transformer SOTA
     publicado en NYIT con el que igualar cifras.
 
-    \item \textbf{Longitud de secuencia y TTD.} En el BiLSTM de tecleo, $N\in\{25,50,100\}$ apenas mueve
-    el EER ($48{,}88\%$, $47{,}56\%$, $46{,}48\%$): no hay salto tipo TypeNet. El TTD ($k=2$ ventanas)
-    muestra que el Transformer marca impostor en más secuencias que el ensemble; no modela tiempo de
-    reloj de una sesión real.
+    \item \textbf{Longitud de secuencia, detección y TTD.} En el BiLSTM de tecleo, $N\in\{25,50,100\}$ apenas mueve
+    el EER ($48{,}88\%$, $47{,}56\%$, $46{,}48\%$): no hay salto tipo TypeNet. La tasa de detección ($k=2$ ventanas)
+    es $97{,}7\%$ en el Transformer frente a $41{,}2\%$ en el ensemble; el TTD medio en detectados es $11{,}6$ y
+    $24{,}2$ ventanas, respectivamente. No se modela tiempo de reloj de una sesión real.
 
     \item \textbf{Privacidad.} No se persistió texto de las pulsaciones. Las trazas versionables son
     métricas, incrustaciones y puntuaciones con identificadores seudónimos, alineado con minimización
@@ -56,9 +55,9 @@ sistema propuesto ni de su tabla de resultados.
 
 \section{Conclusión}
 
-En NYIT leftover, el orden estable es Transformer 3-mod $>$ ensemble meta $>$ RF-meta $>$ RF de rasgos $>$
-unimodales próximos al azar. Open-set continuo es viable en \textbf{ranking} y no lo es como login
+En NYIT leftover emparejado (545 pares), el Transformer 3-mod es el mejor sistema propuesto; le siguen
+el RF de rasgos 3-mod y el ensemble meta. Open-set continuo es viable en \textbf{ranking} y no lo es como login
 operativo tipo Aalto o tipo Vicon. El trabajo aporta un pipeline reproducible, una comparación honesta
 de arquitecturas (incluida una cabeza clásica en el mismo protocolo) y una lectura explícita de los
-límites del dump. Lo que queda abierto ---DT real, firma legal alineada, impostor hábil, más dispositivos,
-Aalto/HuMIdb con el mismo código--- se detalla en el capítulo siguiente.
+límites del dump. Lo que queda abierto ---DT real, rúbrica alineada al tecleo, impostor hábil, más dispositivos,
+Aalto/HuMIdb/BehavePassDB con el mismo código--- se detalla en el capítulo siguiente.

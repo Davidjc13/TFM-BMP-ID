@@ -1,0 +1,106 @@
+{
+  "n_users": 18,
+  "caps_genuine": {
+    "0059": 19,
+    "0067": 69,
+    "0133": 46,
+    "0158": 19,
+    "0166": 64,
+    "0182": 55,
+    "0281": 48,
+    "0299": 21,
+    "0307": 13,
+    "0323": 24,
+    "0364": 21,
+    "1172": 20,
+    "1271": 21,
+    "1321": 21,
+    "1339": 21,
+    "1362": 21,
+    "1438": 21,
+    "1446": 21
+  },
+  "note": "Prefijo leftover por usuario: mismas ventanas de tecleo que el Transformer 3-mod (tope de secuencias de scroll). El canal swipe/scroll no es el mismo objeto f\u00edsico entre pipelines. Sin reentrenamiento.",
+  "systems": {
+    "transformer_3mod": {
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "eer": 0.24603345925526174,
+      "auc": 0.8295807938527654,
+      "threshold_split_eer": -0.226954385638237,
+      "far_at_1frr": {
+        "far": 0.45979492714517,
+        "frr": 0.00917431192660545,
+        "threshold": -0.47194626927375793,
+        "target_frr": 0.01
+      },
+      "system": "transformer_3mod",
+      "source": "data/transformer_run/fused/eval_scores.npz",
+      "matched_to": "transformer_3mod leftover prefix"
+    },
+    "ensemble_meta_3mod": {
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "eer": 0.27722611980572043,
+      "auc": 0.8159525094441447,
+      "threshold_split_eer": -2.0016348361968994,
+      "far_at_1frr": {
+        "far": 0.809282245008095,
+        "frr": 0.00917431192660545,
+        "threshold": -6.012879848480225,
+        "target_frr": 0.01
+      },
+      "system": "ensemble_meta_3mod",
+      "source": "data/ensemble_run/fused/eval_scores.npz",
+      "matched_to": "transformer_3mod leftover prefix"
+    },
+    "rf_keystroke": {
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "eer": 0.3225580140313006,
+      "auc": 0.7572798883041139,
+      "threshold_split_eer": 0.18944823741912842,
+      "far_at_1frr": {
+        "far": 0.7522935779816514,
+        "frr": 0.00917431192660545,
+        "threshold": 0.05513106286525726,
+        "target_frr": 0.01
+      },
+      "system": "rf_keystroke",
+      "source": "data/rf_run/rf_keystroke/eval_scores.npz",
+      "matched_to": "transformer_3mod leftover prefix"
+    },
+    "rf_3mod_features": {
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "eer": 0.267835941716136,
+      "auc": 0.8094207756328691,
+      "threshold_split_eer": 0.22503015398979187,
+      "far_at_1frr": {
+        "far": 0.8277388019427955,
+        "frr": 0.00917431192660545,
+        "threshold": 0.09251467138528824,
+        "target_frr": 0.01
+      },
+      "system": "rf_3mod_features",
+      "source": "data/rf_run/rf_3mod_features/eval_scores.npz",
+      "matched_to": "transformer_3mod leftover prefix"
+    },
+    "rf_meta_3mod": {
+      "n_genuine": 545,
+      "n_impostor": 9265,
+      "eer": 0.2842957366432811,
+      "auc": 0.7733094362229362,
+      "threshold_split_eer": 0.6000873446464539,
+      "far_at_1frr": {
+        "far": 0.6295736643281166,
+        "frr": 0.00917431192660545,
+        "threshold": 0.03897736221551895,
+        "target_frr": 0.01
+      },
+      "system": "rf_meta_3mod",
+      "source": "data/rf_run/rf_meta_3mod/eval_scores.npz",
+      "matched_to": "transformer_3mod leftover prefix"
+    }
+  }
+}

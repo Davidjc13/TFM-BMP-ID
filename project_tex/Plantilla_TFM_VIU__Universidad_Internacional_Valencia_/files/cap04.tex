@@ -215,8 +215,8 @@ BehaveFormer \cite{senerath2023behaveformer}, cada modalidad ---dinámica de
 tecleo y señales IMU--- se trata como una secuencia de tokens y el mecanismo 
 de atención aprende a qué fuente dar mayor peso en cada instante, sin reglas 
 de fusión manuales. El presente trabajo reutiliza ese principio de atención 
-cruzada, aplicándolo a las modalidades del sistema propuesto ---tecleo, firma 
-en pantalla y scroll---, y lo contrasta con la fusión clásica a nivel de 
+cruzada, aplicándolo a las modalidades del sistema propuesto ---tecleo, gesto táctil (\textit{swipe})
+y scroll---, y lo contrasta con la fusión clásica a nivel de 
 puntuación (ensemble de expertos). Esto mantiene la IMU en el marco teórico 
 como modalidad del estado del arte, no como rama del modelo a desarrollar.
 
@@ -228,7 +228,36 @@ Equal Error Rate (EER) frente a modelos precedentes como TypeNet.
 
 \section{Bases de datos y benchmarks del dominio}
 
-Aquí incluiré lo que utilice para comparar más adelante...
+La evaluación experimental de este trabajo se realiza exclusivamente sobre el dump
+\textit{Smartphone Activity Dataset} de NYIT~\cite{NYIT_dataset:2025}
+(\textit{home+lab cleaned}, iPhone XR). El conjunto aporta dinámica de tecleo
+(\textit{press-only}), gesto táctil (\textit{swipe}) y desplazamiento, además de IMU
+de teléfono que aquí solo se usa en un experimento de réplica. El protocolo propio
+es \textit{open-set} leftover (Capítulo~\ref{chap:desarrollo}). El único referente
+publicado sobre el mismo corpus es Cariello et al.~\cite{cariello2025posture,cariello2026keystroke},
+con verificadores clásicos y, en sus mejores cifras, mocap Vicon y un protocolo de
+laboratorio distinto.
+
+Los EER $\approx 1$--$3\%$ que se citan como estado del arte de tecleo y tecleo+IMU
+proceden de \textbf{otros} conjuntos y no se mezclan en los mismos ejes que NYIT:
+
+\begin{itemize}
+    \item \textbf{Aalto DB}~\cite{acien2022typenet}: texto libre a gran escala, con
+    \textit{dwell} y \textit{flight} reales. Es el corpus de TypeNet (EER $2{,}20\%$
+    a $N=50$ caracteres).
+    \item \textbf{HuMIdb}~\cite{senerath2023behaveformer}: multimodal (tecleo, IMU y
+    otras señales de teléfono). Es el corpus de BehaveFormer (EER $2{,}95\%$ en
+    tecleo+IMU).
+    \item \textbf{BehavePassDB} / MobileB2C~\cite{stragapede2022mobileb2c}:
+    competición con tecleo, lectura, \textit{swipe} de galería y toques; el top-1
+    de tecleo reporta AUC mixed $66{,}37\%$. Define impostor aleatorio y hábil;
+    NYIT no define impostor hábil.
+\end{itemize}
+
+Aalto, HuMIdb y BehavePassDB no se entrenaron ni evaluaron en este TFM (acceso y
+disponibilidad). Sirven como anclaje bibliográfico; la Tabla~\ref{tab:baseline}
+separa esas cifras de las de Cariello sobre NYIT. Type2Branch~\cite{gonzalez2025type2branch}
+se cita igual: SOTA de otro corpus móvil, no un baseline reejecutado aquí.
 
 \section{Privacidad y Consideraciones Éticas}
 
@@ -267,8 +296,8 @@ conductuales:
     \item \textbf{Minimización de datos}: únicamente deben recogerse 
     los datos estrictamente necesarios para el fin declarado. En el 
     contexto de este sistema, esto implica limitar la captura a las 
-    métricas temporales de tecleo (DT, FT, IKI), las series de trazo 
-    de la firma y los descriptores de gestos de desplazamiento, 
+    métricas temporales de tecleo (DT, FT, IKI), las series del gesto táctil
+    (\textit{swipe}) y los descriptores de gestos de desplazamiento, 
     evitando el almacenamiento del contenido textual 
     introducido por el usuario.
 

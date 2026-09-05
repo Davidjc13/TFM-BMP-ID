@@ -7,27 +7,31 @@ continuación se detallan los objetivos generales y específicos que guiarán la
 
 Desarrollar un sistema de autenticación basado en biometría conductual para dispositivos móviles que sea capaz de verificar la identidad 
 del usuario de forma continua y transparente, sin requerir interacción explícita, mediante el uso de 
-arquitecturas de aprendizaje profundo y fusión multimodal de dinámica de tecleo, dinámica de firma y gestos de desplazamiento.
+arquitecturas de aprendizaje profundo y fusión multimodal de dinámica de tecleo, gesto táctil (\textit{swipe}) y gestos de desplazamiento (\textit{scroll}).
 
 \section{Objetivos Específicos}
 
 Para alcanzar el objetivo general, se plantean los siguientes objetivos específicos:
 
 \begin{enumerate}
-    \item \textbf{Diseñar una arquitectura de aprendizaje profundo multimodal} capaz de procesar de forma conjunta señales heterogéneas ---dinámica de tecleo (\textit{keystroke dynamics}), dinámica de firma en pantalla (\textit{signature dynamics}) y gestos de desplazamiento (\textit{scroll dynamics})--- para generar representaciones de identidad robustas frente a variaciones de contexto y dispositivo.
-    \item \textbf{Implementar y evaluar dos enfoques complementarios bajo un protocolo común}: un Transformer con atención cruzada entre modalidades, y un ensemble de modelos especializados (LSTM de tecleo, CNN-LSTM de firma y clasificador ligero de scroll) con fusión a nivel de puntuación.
+    \item \textbf{Diseñar una arquitectura de aprendizaje profundo multimodal} capaz de procesar de forma conjunta señales heterogéneas ---dinámica de tecleo (\textit{keystroke dynamics}), gesto táctil o \textit{swipe} y gestos de desplazamiento (\textit{scroll dynamics})--- para generar representaciones de identidad robustas frente a variaciones de contexto y dispositivo.
+    \item \textbf{Implementar y evaluar dos enfoques complementarios bajo un protocolo común}: un Transformer con atención cruzada entre modalidades, y un ensemble de modelos especializados (LSTM de tecleo, CNN-LSTM de \textit{swipe} y MLP de scroll) con fusión a nivel de puntuación.
     \item \textbf{Explorar funciones de pérdida orientadas a la verificación}, en particular \textit{Triplet Loss} (expertos unimodales) y \textit{Set2set Loss} (enfoque Transformer), que permitan optimizar el sistema para la comparación de perfiles continuos de usuario en lugar de clasificaciones estáticas.
-    \item \textbf{Evaluar el rendimiento del sistema sobre benchmarks públicos reconocidos} en el dominio, tales como BehavePassDB, HuMIdb o Aalto DB, utilizando métricas estándar como el \textit{Equal Error Rate} (EER) y el \textit{Area Under the Curve} (AUC), con el objetivo de facilitar la comparación con trabajos previos. Los sistemas basados en tecleo e IMU (p.~ej.\ BehaveFormer) se emplean como referencia bibliográfica, no como definición del sistema propuesto.
-    \item \textbf{Analizar el impacto de la longitud de secuencia} en la precisión de autenticación, buscando alcanzar una detección fiable con ráfagas cortas de actividad (en torno a 50 caracteres o eventos de tecleo), lo que se traduce directamente en una reducción del \textit{Time-to-Detection} (TTD) ante posibles impostores. La inclusión del scroll se plantea como experimento ablativo de beneficio marginal.
+    \item \textbf{Evaluar el rendimiento del sistema sobre el dump NYIT} \textit{Smartphone Activity Dataset} (\textit{home+lab cleaned}), utilizando métricas estándar como el \textit{Equal Error Rate} (EER) y el \textit{Area Under the Curve} (AUC). Los sistemas basados en tecleo e IMU (p.~ej.\ BehaveFormer en HuMIdb o TypeNet en Aalto) se emplean como referencia bibliográfica, no como definición del sistema propuesto ni como corpus de esta evaluación.
+    \item \textbf{Analizar el impacto de la longitud de secuencia} en la precisión de autenticación, buscando alcanzar una detección fiable con ráfagas cortas de actividad (en torno a 50 caracteres o eventos de tecleo). Se reportan por separado la \textbf{tasa de detección} de impostores y el \textit{Time-to-Detection} (TTD) en número de ventanas. La inclusión del scroll se plantea como experimento ablativo de beneficio marginal.
     \item \textbf{Garantizar el cumplimiento de los principios de privacidad y ética} aplicables al tratamiento de datos biométricos conductuales, siguiendo las directrices del RGPD y el principio de \textit{Privacy by Design}, con especial atención a la minimización de datos y la no recuperabilidad del contenido textual a partir de las métricas capturadas.
 \end{enumerate}
 
 \section{Alcance y Limitaciones}
 
 El sistema se circunscribe al ámbito de los dispositivos móviles con pantalla táctil. El escenario 
-principal de uso es la escritura de texto libre (\textit{free-text}), complementada con la firma manuscrita 
-en pantalla y los gestos de desplazamiento. 
+principal de uso es la escritura de texto libre (\textit{free-text}), complementada con el gesto táctil 
+(\textit{swipe}) y los gestos de desplazamiento disponibles en NYIT. En este corpus \textbf{no existe una firma manuscrita}:
+el \textit{swipe} se emplea como aproximación de trazo táctil, no como rúbrica legal.
 Quedan fuera del alcance de este trabajo la autenticación basada en biometría fisiológica 
 (huella dactilar, reconocimiento facial) y el análisis de señales de voz o vídeo. 
 Los sensores inerciales (\textit{IMU}) no forman parte del sistema propuesto; pueden utilizarse únicamente 
 como línea de comparación con el estado del arte.
+BehavePassDB, HuMIdb y Aalto DB no se utilizaron en el desarrollo ni en la evaluación: habría sido
+interesante validar la propuesta sobre ellas, pero no ha sido posible por restricciones de acceso
+y disponibilidad de los datos. Se mantienen como trabajo futuro.
